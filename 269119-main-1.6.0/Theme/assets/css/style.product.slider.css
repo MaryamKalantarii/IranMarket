@@ -1,0 +1,28 @@
+.containerPSlider {
+  max-width: 1400px;
+  width: 100%;
+}
+.slide-container {
+  margin: 0 1px;
+  overflow: hidden;
+}
+.swiper-navBtn {
+  color: #ef4444;
+  height: 50px;
+  width: 50px;
+  transform: translateY(-50%);
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+}
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+  font-size: 20px;
+}
+.swiper-pagination-bullet {
+  background-color: #333;
+}
+@media screen and (max-width: 767px) {
+  .swiper-navBtn {
+    display: none;
+  }
+}
