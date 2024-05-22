@@ -3,7 +3,7 @@ version: "3.9"
 services:
  backend:
   build: .
-  container_name: cometicorg
+  container_name: IranMarket
   command: python manage.py runserver 0.0.0.0:8000
   volumes:
    - .:/core
