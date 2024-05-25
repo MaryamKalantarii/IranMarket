@@ -20,7 +20,7 @@ class Product(models.Model):
     content4= models.CharField(max_length=255)
     content5= models.CharField(max_length=255)
     price = models.IntegerField(default=0)
-    number = models.IntegerField(max_length=255)
+    number = models.IntegerField()
     warranty = models.CharField(max_length=255)
     color = models.CharField(max_length=255)
     category = models.ManyToManyField(Category)
