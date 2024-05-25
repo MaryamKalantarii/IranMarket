@@ -8,6 +8,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class Product(models.Model):
     image = models.ImageField(upload_to='products')
     image1 = models.ImageField(upload_to='products')
