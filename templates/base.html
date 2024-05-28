@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#b91c1c"/>
 
-    <link rel="stylesheet" href="./{% static 'assets/css/output.css' %}" />
-    <link rel="stylesheet" href="./{% static 'assets/css/font.css' %}">
-    <link rel="stylesheet" href="./{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/output.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 
     <!-- SLIDER HERO -->
-    <link rel="stylesheet" href="./{% static 'assets/css/owl.carousel.min.css' %}" />
-    <link rel="stylesheet" href="./{% static 'assets/css/owl.theme.default.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}" />
     <!-- PRODUCT SLIDER CSS -->
-    <link rel="stylesheet" href="./{% static 'assets/css/swiper-bundle.min.css' %}" />
-    <link rel="stylesheet" href="./{% static 'assets/css/style.product.slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.product.slider.css' %}" />
 
     <title>صفحه اصلی</title>
   </head>
@@ -27,8 +27,8 @@
       <!-- TOP -->
       <nav
         class="relative px-5 py-2 flex flex-wrap justify-between items-start pt-5 bg-white">
-        <a class="order-2" href="./index.html">
-          <img class="w-36" src="./{% static 'assets/image/logo.png' %}" alt="" />
+        <a class="order-2" href="index.html">
+          <img class="w-36" src="{% static 'assets/image/logo.png' %}" alt="" />
         </a>
         <div class="order-3 w-full mt-3 lg:mt-0 lg:w-5/12 lg:mr-[10%]">
           <div class="relative">
@@ -40,24 +40,24 @@
               onfocus="showModalSearch()"/>
             <div
               class="absolute inset-y-0 left-0 flex items-center pl-4">
-              <img class="w-5 h-5 text-gray-500" src="./{% static 'assets/image/search.png' %}" alt="" />
+              <img class="w-5 h-5 text-gray-500" src="{% static 'assets/image/search.png' %}" alt="" />
             </div>
             <div class="absolute w-full bg-gray-50 shadow-2xl h-auto mt-2 z-50 rounded-2xl hidden" id="showModalSearch">
               <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 p-3">
                 <a href="" class="flex items-center bg-white p-2 rounded-xl">
-                  <img src="./{% static 'assets/image/product/bag.png' %}" alt="" class="w-14 rounded-lg ml-2">
+                  <img src="{% static 'assets/image/product/bag.png' %}" alt="" class="w-14 rounded-lg ml-2">
                   <div class="text-xs opacity-70">
                     کیف لپ تاپ مدل ضدآب
                   </div>
                 </a>
                 <a href="" class="flex items-center bg-white p-2 rounded-xl">
-                  <img src="./{% static 'assets/image/product/bag.png' %}" alt="" class="w-14 rounded-lg ml-2">
+                  <img src="{% static 'assets/image/product/bag.png' %}" alt="" class="w-14 rounded-lg ml-2">
                   <div class="text-xs opacity-70">
                     کیف لپ تاپ مدل ضدآب
                   </div>
                 </a>
                 <a href="" class="flex items-center bg-white p-2 rounded-xl">
-                  <img src="./{% static 'assets/image/product/bag.png' %}" alt="" class="w-14 rounded-lg ml-2">
+                  <img src="{% static 'assets/image/product/bag.png' %}" alt="" class="w-14 rounded-lg ml-2">
                   <div class="text-xs opacity-70">
                     کیف لپ تاپ مدل ضدآب
                   </div>
@@ -151,16 +151,16 @@
             @mouseenter="showChildren=true"
             @mouseleave="showChildren=false">
             <a
-              href="./login.html"
+              href="login.html"
               class="flex items-center h-10 leading-10 px-3 mx-1 transition rounded-xl hover:bg-red-50">
-              <img class="ml-1 w-6" src="./{% static 'assets/image/user.png' %}" alt="" />
+              <img class="ml-1 w-6" src="{% static 'assets/image/user.png' %}" alt="" />
               <span
                 class="text-sm opacity-95"
                 >
                 ورود | ثبت نام
               </span>
               <span>
-                <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
               </span>
             </a>
             <div
@@ -183,13 +183,13 @@
                     @mouseleave="showChildren=false"
                     @mouseenter="showChildren=true">
                     <a
-                      href="./profile.html"
+                      href="profile.html"
                       class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span
                         class="flex justify-center items-center opacity-90"
                         ><img
                           class="w-8 ml-2"
-                          src="./{% static 'assets/image/userNotImage.png' %}"
+                          src="{% static 'assets/image/userNotImage.png' %}"
                           alt="" />امیررضا کریمی</span
                       >
                     </a>
@@ -200,12 +200,12 @@
                     @mouseleave="showChildren=false"
                     @mouseenter="showChildren=true">
                     <a
-                      href="./profile-order.html"
+                      href="profile-order.html"
                       class="px-4 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center text-sm opacity-90"
                         ><img
                           class="w-5 ml-1"
-                          src="./{% static 'assets/image/package.png' %}"
+                          src="{% static 'assets/image/package.png' %}"
                           alt="" />سفارش ها</span
                       >
                     </a>
@@ -216,12 +216,12 @@
                     @mouseleave="showChildren=false"
                     @mouseenter="showChildren=true">
                     <a
-                      href="./profile-favorites.html"
+                      href="profile-favorites.html"
                       class="px-4 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center text-sm opacity-90"
                         ><img
                           class="w-5 ml-1"
-                          src="./{% static 'assets/image/heart.png' %}"
+                          src="{% static 'assets/image/heart.png' %}"
                           alt="" />علاقه مندی ها</span
                       >
                     </a>
@@ -235,7 +235,7 @@
                       href="#"
                       class="px-4 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center text-sm opacity-90"
-                        ><img class="w-5 ml-1" src="./{% static 'assets/image/exit.png' %}" alt="" />خروج
+                        ><img class="w-5 ml-1" src="{% static 'assets/image/exit.png' %}" alt="" />خروج
                         از حساب کاربری</span
                       >
                     </a>
@@ -251,18 +251,18 @@
             @mouseenter="showChildren=true"
             @mouseleave="showChildren=false">
             <a
-              href="./cart.html"
+              href="cart.html"
               class="flex items-center h-10 leading-10 px-3 cursor-pointer no-underline hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100">
               <img
                 class="inline ml-1 w-5"
-                src="./{% static 'assets/image/shopping-cart.png' %}"
+                src="{% static 'assets/image/shopping-cart.png' %}"
                 alt="" />
               <span
                 class="text-sm text-neutral-800 hover:text-neutral-700 opacity-95">
                 سبد خرید
               </span>
               <span>
-                <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
               </span>
             </a>
             <div
@@ -282,13 +282,13 @@
                   <li
                     class="relative">
                     <a
-                      href="./single-product.html"
+                      href="single-product.html"
                       class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center opacity-90">
                         <div class="flex">
                           <img
                           class="w-14 ml-2 rounded-lg"
-                          src="./{% static 'assets/image/product/bag.png' %}"
+                          src="{% static 'assets/image/product/bag.png' %}"
                           alt="" />
                           <div class="flex flex-col flex-wrap gap-y-1 justify-center">
                             <div class="opacity-80 w-full text-sm">
@@ -316,13 +316,13 @@
                   <li
                     class="relative">
                     <a
-                      href="./single-product.html"
+                      href="single-product.html"
                       class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center opacity-90">
                         <div class="flex">
                           <img
                           class="w-14 ml-2 rounded-lg"
-                          src="./{% static 'assets/image/product/bag.png' %}"
+                          src="{% static 'assets/image/product/bag.png' %}"
                           alt="" />
                           <div class="flex flex-col flex-wrap gap-y-1 justify-center">
                             <div class="opacity-80 w-full text-sm">
@@ -350,7 +350,7 @@
                   <li
                     class="relative">
                     <a
-                      href="./checkout.html"
+                      href="checkout.html"
                       class="px-2 py-2 flex w-full items-start justify-center">
                       <span class="flex justify-center items-center opacity-90">
                         <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-xs">تسویه حساب</button>
@@ -380,7 +380,7 @@
             <ul class="flex w-full flex-wrap items-center h-10">
               <li class="block relative">
                 <a
-                  href="./index.html"
+                  href="{% url 'root:home' %}"
                   class="flex items-center h-10 text-sm leading-10 px-4 mx-1 transition text-gray-700 hover:text-red-500">
                   <span class=" border-b-2 border-red-600">صفحه اصلی</span>
                 </a>
@@ -390,14 +390,14 @@
                 x-data="{showChildren:false}"
                 >
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 text-sm mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>پوشاک</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -418,7 +418,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">مردانه</span>
                         </a>
@@ -426,7 +426,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">زنانه</span>
                         </a>
@@ -434,7 +434,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">بچگانه</span>
                         </a>
@@ -448,14 +448,14 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>کالای دیجیتال</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -476,7 +476,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">لپ تاپ و کامپیوتر</span>
                         </a>
@@ -484,7 +484,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">موبایل</span>
                         </a>
@@ -492,7 +492,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">تبلت</span>
                         </a>
@@ -500,7 +500,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">وسایل جانبی</span>
                         </a>
@@ -514,14 +514,14 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>لوازم خانگی</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -542,7 +542,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">یخچال و فریزر</span>
                         </a>
@@ -550,7 +550,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">ماشین لباسشویی</span>
                         </a>
@@ -558,7 +558,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">ماشین ظرف شویی</span>
                         </a>
@@ -566,7 +566,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">اجاق گاز</span>
                         </a>
@@ -574,7 +574,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">هود و سینک</span>
                         </a>
@@ -588,14 +588,14 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>زیبایی</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -616,7 +616,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">لوازم آرایشی</span>
                         </a>
@@ -624,7 +624,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">عطر و ادکلن</span>
                         </a>
@@ -632,7 +632,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">لوازم بهداشتی</span>
                         </a>
@@ -646,14 +646,14 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>لوازم برقی</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -674,7 +674,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">سشوار</span>
                         </a>
@@ -682,7 +682,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">اتو</span>
                         </a>
@@ -690,7 +690,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">ریش تراش</span>
                         </a>
@@ -698,7 +698,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">ساعت دیجیتال</span>
                         </a>
@@ -706,7 +706,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">هم زن و آبمیوه گیر</span>
                         </a>
@@ -714,7 +714,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">ترازو دیجیتال و چرخ کن</span>
                         </a>
@@ -728,14 +728,14 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>سوپر مارکت</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -756,7 +756,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">صبحانه</span>
                         </a>
@@ -764,7 +764,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">تنقلات</span>
                         </a>
@@ -772,7 +772,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">خشکبار</span>
                         </a>
@@ -780,7 +780,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">حبوبات و کنسرو</span>
                         </a>
@@ -788,7 +788,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">میوه و سبزیجات</span>
                         </a>
@@ -796,7 +796,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">سوسیس و کالباس</span>
                         </a>
@@ -804,7 +804,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">گوشت</span>
                         </a>
@@ -812,7 +812,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">لبنیات</span>
                         </a>
@@ -826,14 +826,14 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                   @click.prevent="showChildren=!showChildren"
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
                   <span>کودک و نوزاد</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -854,7 +854,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">پوشک</span>
                         </a>
@@ -862,7 +862,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">بهداشت و حمام</span>
                         </a>
@@ -870,7 +870,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">سرگرمی و غذاخوری</span>
                         </a>
@@ -878,7 +878,7 @@
                       <li
                         class="relative">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">کالای خواب</span>
                         </a>
@@ -899,7 +899,7 @@
                 @mouseleave="showChildren=false">
                 <span>صفحات</span>
                 <span>
-                  <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                 </span>
               </a>
               <div
@@ -920,7 +920,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./404.html"
+                        href="404.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">404</span>
                       </a>
@@ -928,7 +928,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./aboute-me.html"
+                        href="aboute-me.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">درباره ما</span>
                       </a>
@@ -936,7 +936,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./blog.html"
+                        href="blog.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">بلاگ</span>
                       </a>
@@ -944,7 +944,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./blog(single).html"
+                        href="blog(single).html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">بلاگ(تک صفحه)</span>
                       </a>
@@ -952,7 +952,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./cart.html"
+                        href="cart.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">سبد خرید</span>
                       </a>
@@ -960,7 +960,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./checkout.html"
+                        href="checkout.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">تسویه حساب</span>
                       </a>
@@ -968,7 +968,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./faq.html"
+                        href="faq.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">سوالات متداول</span>
                       </a>
@@ -976,7 +976,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./login.html"
+                        href="login.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">ورود</span>
                       </a>
@@ -984,7 +984,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./verify.html"
+                        href="verify.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">ارسال کد 4 رقمی</span>
                       </a>
@@ -992,7 +992,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./profile.html"
+                        href="profile.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">پروفایل</span>
                       </a>
@@ -1000,7 +1000,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./search.html"
+                        href="search.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">جستجو محصول</span>
                       </a>
@@ -1008,7 +1008,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./single-product.html"
+                        href="single-product.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">صفحه محصول</span>
                       </a>
@@ -1016,7 +1016,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./category.html"
+                        href="category.html"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">دسته بندی</span>
                       </a>
@@ -1024,7 +1024,7 @@
                     <li
                       class="relative">
                       <a
-                        href="./category-index.html"
+                        href="{% url 'product:products' %}"
                         class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                         <span class="flex-1">دسته بندی تکی(نمونه لپ تاپ)</span>
                       </a>
@@ -1043,8 +1043,8 @@
         <nav
           class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-5 px-6 bg-white border-r overflow-y-auto">
           <div class="flex justify-center items-center mb-4">
-            <a class="order-1" href="./index.html">
-              <img class="w-32" src="./{% static 'assets/image/logo.png' %}" alt="" />
+            <a class="order-1" href="index.html">
+              <img class="w-32" src="{% static 'assets/image/logo.png' %}" alt="" />
             </a>
           </div>
           <div>
@@ -1054,19 +1054,19 @@
                   <div>
                     <div
                       class="md:flex justify-center align-middle lg:inline-block py-2 px-4 text-sm text-neutral-800 rounded-xl hover:text-neutral-700 hover:bg-red-100 transition">
-                      <a href="./cart.html">
+                      <a href="cart.html">
                         <img
                           class="inline ml-1 w-5"
-                          src="./{% static 'assets/image/shopping-cart.png' %}"
+                          src="{% static 'assets/image/shopping-cart.png' %}"
                           alt="" />سبد خرید</a
                       >
                     </div>
                     <div
                       class="md:flex justify-center align-middle lg:inline-block py-2 px-4 text-sm text-neutral-800 rounded-xl hover:text-neutral-700 hover:bg-red-100 transition">
-                      <a href="./login-register.html"
+                      <a href="login-register.html"
                         ><img
                           class="inline ml-1 w-5"
-                          src="./{% static 'assets/image/user.png' %}"
+                          src="{% static 'assets/image/user.png' %}"
                           alt="" />ورود | ثبت نام</a
                       >
                     </div>
@@ -1078,12 +1078,12 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="./category-index.html"
+                  href="{% url 'product:products' %}"
                   class="flex justify-between items-center h-10 leading-10 text-sm opacity-90 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
                   @click.prevent="showChildren=!showChildren">
                   <span>پوشاک</span>
                   <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
                   </span>
                 </a>
                 <div
@@ -1106,7 +1106,7 @@
                         @mouseleave="showChildren=false"
                         @mouseenter="showChildren=true">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">مردانه</span>
                         </a>
@@ -1117,7 +1117,7 @@
                         @mouseleave="showChildren=false"
                         @mouseenter="showChildren=true">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">زنانه</span>
                         </a>
@@ -1128,7 +1128,7 @@
                         @mouseleave="showChildren=false"
                         @mouseenter="showChildren=true">
                         <a
-                          href="./category.html"
+                          href="category.html"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">بچگانه</span>
                         </a>
@@ -1137,522 +1137,7 @@
                   </div>
                 </div>
               </li>
-              <li
-                class="relative flex"
-                x-data="{showChildren:false}"
-                @click.away="showChildren=false">
-                <a
-                  href="./category-index.html"
-                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
-                  @click.prevent="showChildren=!showChildren">
-                  <span>کالای دیجیتال</span>
-                  <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
-                  </span>
-                </a>
-                <div
-                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
-                  x-show="showChildren"
-                  x-transition:enter="transition ease duration-300 transform"
-                  x-transition:enter-start="opacity-0 translate-y-2"
-                  x-transition:enter-end="opacity-100 translate-y-0"
-                  x-transition:leave="transition ease duration-300 transform"
-                  x-transition:leave-start="opacity-100 translate-y-0"
-                  x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none">
-                  </span>
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لپ تاپ و کامپیوتر</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">موبایل</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">تبلت</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">وسایل جانبی</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li
-                class="relative flex"
-                x-data="{showChildren:false}"
-                @click.away="showChildren=false">
-                <a
-                  href="./category-index.html"
-                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
-                  @click.prevent="showChildren=!showChildren">
-                  <span>لوازم خانگی</span>
-                  <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
-                  </span>
-                </a>
-                <div
-                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
-                  x-show="showChildren"
-                  x-transition:enter="transition ease duration-300 transform"
-                  x-transition:enter-start="opacity-0 translate-y-2"
-                  x-transition:enter-end="opacity-100 translate-y-0"
-                  x-transition:leave="transition ease duration-300 transform"
-                  x-transition:leave-start="opacity-100 translate-y-0"
-                  x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none">
-                  </span>
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">یخچال و فریزر</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ماشین لباسشویی</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ماشین ظرف شویی</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">اجاق گاز</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">هود و سینک</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li
-                class="relative flex"
-                x-data="{showChildren:false}"
-                @click.away="showChildren=false">
-                <a
-                  href="./category-index.html"
-                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
-                  @click.prevent="showChildren=!showChildren">
-                  <span>زیبایی</span>
-                  <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
-                  </span>
-                </a>
-                <div
-                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
-                  x-show="showChildren"
-                  x-transition:enter="transition ease duration-300 transform"
-                  x-transition:enter-start="opacity-0 translate-y-2"
-                  x-transition:enter-end="opacity-100 translate-y-0"
-                  x-transition:leave="transition ease duration-300 transform"
-                  x-transition:leave-start="opacity-100 translate-y-0"
-                  x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none">
-                  </span>
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لوازم آرایشی</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">عطر و ادکلن</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لوازم بهداشتی</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li
-                class="relative flex"
-                x-data="{showChildren:false}"
-                @click.away="showChildren=false">
-                <a
-                  href="./category-index.html"
-                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
-                  @click.prevent="showChildren=!showChildren">
-                  <span>لوازم برقی</span>
-                  <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
-                  </span>
-                </a>
-                <div
-                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
-                  x-show="showChildren"
-                  x-transition:enter="transition ease duration-300 transform"
-                  x-transition:enter-start="opacity-0 translate-y-2"
-                  x-transition:enter-end="opacity-100 translate-y-0"
-                  x-transition:leave="transition ease duration-300 transform"
-                  x-transition:leave-start="opacity-100 translate-y-0"
-                  x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none">
-                  </span>
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">سشوار</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">اتو</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ریش تراش</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ساعت دیجیتال</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">هم زن و آبمیوه گیر</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ترازو دیجیتال و چرخ کن</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li
-                class="relative flex"
-                x-data="{showChildren:false}"
-                @click.away="showChildren=false">
-                <a
-                  href="./category-index.html"
-                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
-                  @click.prevent="showChildren=!showChildren">
-                  <span>سوپر مارکت</span>
-                  <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
-                  </span>
-                </a>
-                <div
-                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
-                  x-show="showChildren"
-                  x-transition:enter="transition ease duration-300 transform"
-                  x-transition:enter-start="opacity-0 translate-y-2"
-                  x-transition:enter-end="opacity-100 translate-y-0"
-                  x-transition:leave="transition ease duration-300 transform"
-                  x-transition:leave-start="opacity-100 translate-y-0"
-                  x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none">
-                  </span>
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">صبحانه</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">تنقلات</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">خشکبار</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">حبوبات و کنسرو</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">میوه و سبزیجات</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">سوسیس و کالباس</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">گوشت</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لبنیات</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li
-                class="relative flex"
-                x-data="{showChildren:false}"
-                @click.away="showChildren=false">
-                <a
-                  href="./category-index.html"
-                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
-                  @click.prevent="showChildren=!showChildren">
-                  <span>کودک و نوزاد</span>
-                  <span>
-                    <img class="w-4 mr-1" src="./{% static 'assets/image/chevron-down-login.png' %}" alt="" />
-                  </span>
-                </a>
-                <div
-                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
-                  x-show="showChildren"
-                  x-transition:enter="transition ease duration-300 transform"
-                  x-transition:enter-start="opacity-0 translate-y-2"
-                  x-transition:enter-end="opacity-100 translate-y-0"
-                  x-transition:leave="transition ease duration-300 transform"
-                  x-transition:leave-start="opacity-100 translate-y-0"
-                  x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none">
-                  </span>
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">پوشک</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">بهداشت و حمام</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">سرگرمی و غذاخوری</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="./category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">کالای خواب</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
+            
             </ul>
           </div>
         </nav>
@@ -1726,25 +1211,25 @@
     <div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-10 justify-items-center mb-10">
         <div class="flex justify-center items-center flex-col rounded-3xl w-32 h-24">
-          <img class="w-20" src="./{% static 'assets/image/services/cash-on-delivery.svg" alt="">
+          <img class="w-20" src="{% static 'assets/image/services/cash-on-delivery.svg" alt="">
           <span class="text-sm opacity-80">
           پرداخت درب منزل
           </span>
         </div>
         <div class="flex justify-center items-center flex-col rounded-3xl w-32 h-24">
-          <img class="w-20" src="./{% static 'assets/image/services/days-return.svg" alt="">
+          <img class="w-20" src="{% static 'assets/image/services/days-return.svg" alt="">
           <span class="text-sm opacity-80">
             ضمانت بازگشت کالا
           </span>
         </div>
         <div class="flex justify-center items-center flex-col rounded-3xl w-32 h-24">
-          <img class="w-20" src="./{% static 'assets/image/services/express-delivery.svg" alt="">
+          <img class="w-20" src="{% static 'assets/image/services/express-delivery.svg" alt="">
           <span class="text-sm opacity-80">
             تحویل سریع
           </span>
         </div>
         <div class="flex justify-center items-center flex-col rounded-3xl w-32 h-24">
-          <img class="w-20" src="./{% static 'assets/image/services/original-products.svg" alt="">
+          <img class="w-20" src="{% static 'assets/image/services/original-products.svg" alt="">
           <span class="text-sm opacity-80">
             ضمانت اصل بودن
           </span>
@@ -1753,9 +1238,9 @@
     </div>
     <!-- MAIN -->
     <div class="flex items-center justify-between my-4 px-5">
-      <a href="./index.html" class="inline-block">
+      <a href="index.html" class="inline-block">
         <img
-          src="./{% static 'assets/image/logo.png' %}"
+          src="{% static 'assets/image/logo.png' %}"
           alt="logo"
           class="w-48"
         />
@@ -1782,7 +1267,7 @@
             <ul class="grid gap-y-2">
               <li>
                 <a
-                  href="./index.html"
+                  href="index.html"
                   class="mb-2 text-sm hover:text-red-600 transition opacity-60 hover:opacity-100"
                 >
                 خانه
@@ -1790,7 +1275,7 @@
               </li>
               <li>
                 <a
-                  href="./aboute-me.html"
+                  href="aboute-me.html"
                   class="mb-12 text-sm hover:text-red-600 transition opacity-60 hover:opacity-100"
                 >
                   درباره ما
@@ -1798,7 +1283,7 @@
               </li>
               <li>
                 <a
-                  href="./index.html"
+                  href="index.html"
                   class="mb-2 text-sm hover:text-red-600 transition opacity-60 hover:opacity-100"
                 >
                   پیگیری سفارش
@@ -1806,7 +1291,7 @@
               </li>
               <li>
                 <a
-                  href="./faq.html"
+                  href="faq.html"
                   class="mb-2 text-sm hover:text-red-600 transition opacity-60 hover:opacity-100"
                 >
                   سوالات متداول
@@ -1814,7 +1299,7 @@
               </li>
               <li>
                 <a
-                  href="./blog.html"
+                  href="blog.html"
                   class="mb-2 text-sm hover:text-red-600 transition opacity-60 hover:opacity-100"
                 >
                   بلاگ
@@ -1864,10 +1349,10 @@
             </div>
             <div class="flex items-center justify-center gap-x-5">
               <a href="#">
-                <img class="w-28 h-auto" src="./{% static 'assets/image/logoSecrets/symbol-02.png' %}" alt="">
+                <img class="w-28 h-auto" src="{% static 'assets/image/logoSecrets/symbol-02.png' %}" alt="">
               </a>
               <a href="#">
-                <img class="w-20 h-auto" src="./{% static 'assets/image/logoSecrets/zarinPal.png' %}" alt="">
+                <img class="w-20 h-auto" src="{% static 'assets/image/logoSecrets/zarinPal.png' %}" alt="">
               </a>
             </div>
           </div>
@@ -1887,19 +1372,19 @@
   <script src="https://cdn.js' %}delivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js' %}" defer>
   </script>
   <!--MOBILE NAVBAR-->
-  <script src="./{% static 'assets/js/navbar.js' %}"></script>
+  <script src="{% static 'assets/js/navbar.js' %}"></script>
   <!-- SHOW MODAL SEARCH -->
-  <script src="./{% static 'assets/js/searchBox.js' %}"></script>
+  <script src="{% static 'assets/js/searchBox.js' %}"></script>
   <!-- SLIDER HERO -->
-  <script src="./{% static 'assets/js/jquery.min.js' %}"></script>
-  <script src="./{% static 'assets/js/owl.carousel.min.js' %}"></script>
-  <script src="./{% static 'assets/js/sliderHero.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/js/sliderHero.js' %}"></script>
   <!-- PRODUCT SLIDER -->
-  <script src="./{% static 'assets/js/swiper-bundle.min.js' %}"></script>
-  <script src="./{% static 'assets/js/scriptSlider.style.js' %}"></script>
+  <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/scriptSlider.style.js' %}"></script>
   <!-- BIG SLIDER -->
-  <script src="./{% static 'assets/js/bigSlider.js' %}"></script>
+  <script src="{% static 'assets/js/bigSlider.js' %}"></script>
   <!-- FOR TIMER OFF -->
-  <script src="./{% static 'assets/js/main.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
 </html>
 
