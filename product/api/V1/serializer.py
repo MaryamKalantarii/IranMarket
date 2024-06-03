@@ -12,6 +12,12 @@ class ProductSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
         rep = super().to_representation(instance)
         rep["category"] = CategorySerializer(instance.category,many=True).data
+        request = self.context.get('request')
+        kwargs = request.parser_context.get('kwargs')
+        if kwargs.get('pk') is None:
+            rep.pop('content')
+            
+        return rep
         
 
 
