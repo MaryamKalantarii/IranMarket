@@ -13,7 +13,7 @@ class ProductsView(viewsets.ModelViewSet):
     queryset = Product.objects.filter(status=True)
     search_fields = ['content', 'content2','content3','content4','content5','category__name']
     ordering_fields = ['created_date']
-    pagination_class = CustomePaginate
+    # pagination_class = CustomePaginate
 
 
 class CategoryView(viewsets.ModelViewSet):
