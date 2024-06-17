@@ -409,36 +409,12 @@
                   x-transition:leave="transition ease duration-300 transform"
                   x-transition:leave-start="opacity-100 translate-y-0"
                   x-transition:leave-end="opacity-0 translate-y-4"
-                  style="display: none"
-                  @mouseenter="showChildren=true"
+                  style="display: none" @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
-                    <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">مردانه</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">زنانه</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">بچگانه</span>
-                        </a>
-                      </li>
+                  <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset" id="poshak">
+                     
+                      
                     </ul>
                   </div>
                 </div>
@@ -470,14 +446,10 @@
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false"
                   style="display: none">
-                  <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                  <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
                     <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                      <li class="relative">
+                        <a href="category.html" class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                           <span class="flex-1">لپ تاپ و کامپیوتر</span>
                         </a>
                       </li>
@@ -1196,7 +1168,24 @@
         </div>
       </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+          $.get( "http://127.0.0.1:8000/product/api/V1/category/", function( data ) {
+            
+            poshak = $("#poshak")
+            for ( poshaks of data){
+              poshak.append(`<li
+                        class="relative">
+                        <a
+                          href="{% url 'product:index-Product' %}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">${poshaks.name}</span>
+                        </a>
+                      </li>`)
+            }
+          });
+    
+    </script> 
 
 
     {% block 'content'  %}
@@ -1369,7 +1358,7 @@
   </body>
   <!--DROPDOWNS FOR NAVBAR-->
   <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
-  <script src="https://cdn.js delivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer>
   </script>
   <!--MOBILE NAVBAR-->
   <script src="{% static 'assets/js/navbar.js' %}"></script>
