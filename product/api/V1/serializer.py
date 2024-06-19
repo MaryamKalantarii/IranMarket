@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from product.models import Product,Category
+from product.models import *
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,7 +11,9 @@ class ProductSerializer(serializers.ModelSerializer):
         
     def to_representation(self,instance):
         rep = super().to_representation(instance)
-        rep["category"] = CategorySerializer(instance.category,many=True).data
+        rep[" Category_clothing"] =  Category_clothing_Serializer(instance.category,many=True).data
+        rep["Category_Dijitalgoods"] = Category_Dijitalgoods_Serializer(instance.category,many=True).data
+        rep["Category_Homeappliances"] = Category_Homeappliances_Serializer(instance.category,many=True).data
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
         if kwargs.get('pk') is None:
@@ -21,8 +23,44 @@ class ProductSerializer(serializers.ModelSerializer):
         
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class Category_clothing_Serializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Category
+        model = Category_clothing
+        fields = ["id", "name"]
+
+class Category_Dijitalgoods_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category_Dijitalgoods
+        fields = ["id", "name"]
+
+class Category_Homeappliances_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category_Dijitalgoods_Serializer
+        fields = ["id", "name"]
+
+class Category_Beauty_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category_Beauty
+        fields = ["id", "name"]
+
+class Category_Appliances_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category_Appliances
+        fields = ["id", "name"]
+
+class Category_Supermarket_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category_Supermarket
+        fields = ["id", "name"]
+
+class Category_Child_and_baby_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category_Child_and_baby
         fields = ["id", "name"]

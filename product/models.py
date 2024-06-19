@@ -64,6 +64,7 @@ class Product(models.Model):
     content5= models.CharField(max_length=255,null=True,blank=True)
     price = models.IntegerField(default=0)
     number = models.IntegerField(default=0)
+    off = models.IntegerField(default=0)
     warranty = models.CharField(max_length=255,null=True,blank=True)
     color = models.CharField(max_length=255,null=True,blank=True)
 
