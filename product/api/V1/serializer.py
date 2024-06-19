@@ -12,12 +12,12 @@ class ProductSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
         rep = super().to_representation(instance)
         rep["Category_clothing"] =  Category_clothing_Serializer(instance.Category_clothing,many=True).data
-        rep["Category_clothing"] = Category_Dijitalgoods_Serializer(instance.Category_clothing,many=True).data
+        rep["Category_Dijitalgoods"] = Category_Dijitalgoods_Serializer(instance.Category_clothing,many=True).data
         rep["Category_Homeappliances"] = Category_Homeappliances_Serializer(instance.Category_Homeappliances,many=True).data
         rep["Category_Beauty"] = Category_Beauty_Serializer(instance.Category_Beauty,many=True).data
         rep["Category_Appliances"] = Category_Appliances_Serializer(instance.Category_Appliances,many=True).data
         rep["Category_Supermarket"] = Category_Supermarket_Serializer(instance.Category_Supermarket,many=True).data
-        rep["Category_Supermarket"] =  Category_Child_and_baby_Serializer(instance.Category_Supermarket,many=True).data
+        rep["Category_Child_and_baby"] =  Category_Child_and_baby_Serializer(instance.Category_Supermarket,many=True).data
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
         if kwargs.get('pk') is None:
