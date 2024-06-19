@@ -52,12 +52,12 @@ class Category_Child_and_baby(models.Model):
 
 
 class Product(models.Model):
-    image = models.ImageField(upload_to='products')
-    image1 = models.ImageField(upload_to='products', null=True ,blank=True)
-    image2 = models.ImageField(upload_to='products',null=True,blank=True)
+    image1 = models.ImageField(upload_to='products')
+    image2 = models.ImageField(upload_to='products', null=True ,blank=True)
     image3 = models.ImageField(upload_to='products',null=True,blank=True)
+    image4 = models.ImageField(upload_to='products',null=True,blank=True)
     title = models.CharField(max_length=100)
-    content= models.CharField(max_length=255)
+    content1= models.CharField(max_length=255)
     content2= models.CharField(max_length=100, null=True,blank=True)
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)

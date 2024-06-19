@@ -11,7 +11,7 @@ class ProductsView(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = ProductSerializer
     queryset = Product.objects.filter(status=True)
-    search_fields = ['content', 'content2','content3','content4','content5','category__name']
+    search_fields = ['content1', 'content2','content3','content4','content5','category__name']
     ordering_fields = ['created_date']
 
 

@@ -4,9 +4,9 @@ from product.models import *
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ["image","image1", "image2", "image3",
-                    "title","content","content2","content3",
-                    "content4","content5","price","number" ,
+        fields = ["image1", "image2", "image3","image4",
+                    "title","content1","content2","content3",
+                    "content4","content5","price","number" ,"off",
                     "warranty" ,"color" ,"category" ,"status" ]
         
     def to_representation(self,instance):
