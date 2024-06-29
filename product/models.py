@@ -47,8 +47,12 @@ class Category_Child_and_baby(models.Model):
     def __str__(self):
         return self.name
 
+class Category_brand(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='Brandimage')
 
-
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -64,21 +68,26 @@ class Product(models.Model):
     content5= models.CharField(max_length=255,null=True,blank=True)
     price = models.IntegerField(default=0)
     number = models.IntegerField(default=0)
-    off = models.IntegerField(default=0)
+    off = models.IntegerField(null=True, blank=True)
     warranty = models.CharField(max_length=255,null=True,blank=True)
     color = models.CharField(max_length=255,null=True,blank=True)
+   
 
     category_clothing = models.ManyToManyField(Category_clothing,null=True,blank=True)
     category_Dijitalgoods = models.ManyToManyField(Category_Dijitalgoods,null=True,blank=True)
     category_Homeappliances = models.ManyToManyField(Category_Homeappliances,null=True,blank=True)
     category_Beauty = models.ManyToManyField(Category_Beauty,null=True,blank=True)
     category_Appliances = models.ManyToManyField(Category_Appliances,null=True,blank=True)
-    category_Appliances = models.ManyToManyField(Category_Supermarket,null=True,blank=True)
+    category_Supermarket = models.ManyToManyField(Category_Supermarket,null=True,blank=True)
     category_Child_and_baby = models.ManyToManyField(Category_Child_and_baby,null=True,blank=True)
+    category_brand = models.ManyToManyField(Category_brand,null=True,blank=True)
 
     status = models.BooleanField(default=False)
+    amazing_offer = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    
 
    
     class Meta:
