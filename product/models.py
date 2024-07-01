@@ -345,13 +345,13 @@ class Child_and_baby(models.Model):
     
     more_details = models.CharField(max_length=255)
     category_Child_and_baby = models.ManyToManyField(Category_Child_and_baby)
-    category_brand = models.ManyToManyField(Category_brand)
     category_color = models.ManyToManyField(Category_color)
+    size = models.CharField(max_length=255)
     
     price = models.IntegerField(default=0)
     number = models.IntegerField(default=0)
     off = models.IntegerField(null=True, blank=True)
-    exception_date = models.CharField(max_length=255)
+
    
 
     status = models.BooleanField(default=False)
