@@ -64,6 +64,10 @@ class Category_color(models.Model):
 
 
 
+
+
+
+
 class Clothing(models.Model):
     title = models.CharField(max_length=255)
     content1 = models.CharField(max_length=255)
@@ -105,8 +109,6 @@ class Clothing(models.Model):
 
 
  
-
-
 class Dijitalgoods(models.Model):
     title = models.CharField(max_length=100)
     content1= models.CharField(max_length=255)
