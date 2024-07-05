@@ -10,7 +10,7 @@ class ClothingView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = ClothingSerializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Clothing.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
@@ -18,7 +18,7 @@ class DijitalgoodsView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = Dijitalgoods_Serializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Dijitalgoods.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
@@ -26,7 +26,7 @@ class HomeappliancesView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = Homeappliances_Serializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Homeappliances.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
@@ -34,7 +34,7 @@ class BeautyView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = Beauty_Serializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Beauty.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
@@ -42,7 +42,7 @@ class AppliancesView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = Appliances_Serializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Appliances.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
@@ -50,7 +50,7 @@ class SupermarketView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = Supermarket_Serializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Supermarket.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
@@ -58,7 +58,7 @@ class Child_and_babyView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     serializer_class = Child_and_babySerializer
-    queryset = Product.objects.filter(status=True)
+    queryset = Child_and_baby.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
 
