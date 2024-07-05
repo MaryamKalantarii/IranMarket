@@ -213,7 +213,7 @@ class Beauty(models.Model):
     more_details = models.CharField(max_length=255)
     category_Beauty = models.ManyToManyField(Category_Beauty)
     category_color = models.ManyToManyField(Category_color)
-    Category_brand = models.ManyToManyField(Category_brand)
+    category_brand = models.ManyToManyField(Category_brand)
 
     price = models.IntegerField(default=0)
     number = models.IntegerField(default=0)
@@ -259,7 +259,7 @@ class Appliances(models.Model):
     more_details = models.CharField(max_length=255)
     category_Appliances = models.ManyToManyField(Category_Appliances)
     category_color = models.ManyToManyField(Category_color)
-    Category_brand = models.ManyToManyField(Category_brand)
+    category_brand = models.ManyToManyField(Category_brand)
 
     price = models.IntegerField(default=0)
     number = models.IntegerField(default=0)

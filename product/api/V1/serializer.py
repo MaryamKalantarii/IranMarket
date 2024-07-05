@@ -76,7 +76,7 @@ class Beauty_Serializer(serializers.ModelSerializer):
         model = Beauty
         fields = ["title","content1","content2","content3","content4","content5",
                     "image1", "image2", "image3","image4",
-                    "more_details","category_Beauty", "category_color","category_brand" 
+                    "more_details","category_Beauty", "category_color","category_brand", 
                     "price","number" ,"off","exception_date",
                     "status","amazing_offer" ]
     def to_representation(self,instance):
@@ -102,7 +102,7 @@ class Appliances_Serializer(serializers.ModelSerializer):
         fields = ["title","content1","content2","content3","content4","content5",
                     "image1", "image2", "image3","image4",
                     "more_details","category_Appliances","category_color","category_brand",
-                    "price","number","off","color","warranty","status"] 
+                    "price","number","off","warranty","status"] 
     def to_representation(self,instance):
         rep = super().to_representation(instance)
         
@@ -146,16 +146,16 @@ class Supermarket_Serializer(serializers.ModelSerializer):
 
 class Child_and_babySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Clothing
+        model = Child_and_baby
         fields = ["title","content1","content2","content3","content4","content5",
                     "image1", "image2", "image3","image4",
                     "more_details","category_Child_and_baby","category_color","size",
-                    "price","number" ,"off","color" ,"status"]
+                    "price","number","off","status"]
     def to_representation(self,instance):
 
         rep = super().to_representation(instance)
-        rep["category_Child_and_baby"] =  Category_Child_and_baby_Serializer(instance.Category_Supermarket,many=True).data
-        rep["category_color"] =  Category_color(instance.Category_Supermarket,many=True).data
+        rep["category_Child_and_baby"] = Category_Child_and_baby_Serializer(instance.Category_Child_and_baby,many=True).data
+        rep["category_color"] = Category_color_Serializer(instance.Category_color,many=True).data
 
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
@@ -219,7 +219,7 @@ class Category_Child_and_baby_Serializer(serializers.ModelSerializer):
 class Category_brand_Serializer(serializers.ModelSerializer):
 
     class Meta:
-        models = Category_color
+        models = Category_brand
         fields = ['id', 'name','image']
 
 class Category_color_Serializer(serializers.ModelSerializer):
