@@ -9,7 +9,7 @@ from .paginator import CustomePaginate
 class ClothingView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = ClothingSerializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
@@ -17,7 +17,7 @@ class ClothingView(viewsets.ModelViewSet):
 class DijitalgoodsView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = Dijitalgoods_Serializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
@@ -25,7 +25,7 @@ class DijitalgoodsView(viewsets.ModelViewSet):
 class HomeappliancesView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = Homeappliances_Serializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
@@ -33,7 +33,7 @@ class HomeappliancesView(viewsets.ModelViewSet):
 class BeautyView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = Beauty_Serializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
@@ -41,7 +41,7 @@ class BeautyView(viewsets.ModelViewSet):
 class AppliancesView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = Appliances_Serializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
@@ -49,7 +49,7 @@ class AppliancesView(viewsets.ModelViewSet):
 class SupermarketView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = Supermarket_Serializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']
@@ -57,7 +57,7 @@ class SupermarketView(viewsets.ModelViewSet):
 class Child_and_babyView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    serializer_class = ProductSerializer
+    serializer_class = Child_and_babySerializer
     queryset = Product.objects.filter(status=True)
     search_fields = ['title','content1', 'content2','content3','content4','content5']
     ordering_fields = ['created_date']

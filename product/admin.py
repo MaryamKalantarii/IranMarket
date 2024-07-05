@@ -9,4 +9,4 @@ from .models import *
 # admin.site.register(Category_Appliances)
 # admin.site.register(Category_Supermarket)
 # admin.site.register(Category_Child_and_baby)
-admin.site.register(Product)
+# admin.site.register(Product)

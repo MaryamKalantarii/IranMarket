@@ -165,7 +165,7 @@ class Homeappliances(models.Model):
     image4 = models.ImageField(upload_to='homeappliances',null=True,blank=True)
     
     more_details = models.CharField(max_length=255)
-    category_Dijitalgoods = models.ManyToManyField(Category_Dijitalgoods)
+    category_Homeappliances = models.ManyToManyField(Category_Homeappliances)
     category_color = models.ManyToManyField(Category_color)
     category_brand = models.ManyToManyField(Category_brand)
 
@@ -174,9 +174,6 @@ class Homeappliances(models.Model):
     off = models.IntegerField(null=True, blank=True)
     warranty = models.CharField(max_length=255,null=True,blank=True)
    
-
-    
-    category_Homeappliances = models.ManyToManyField(Category_Homeappliances)
     
 
     status = models.BooleanField(default=False)
