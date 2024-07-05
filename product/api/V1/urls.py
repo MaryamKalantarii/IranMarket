@@ -4,7 +4,17 @@ from .views import *
 app_name = 'api-v1'
 
 router = DefaultRouter()
-# router.register('products',ProductsView , basename='products')
+router.register('clothing',ClothingView , basename='clothing')
+router.register('dijitalgood',DijitalgoodsView , basename='dijitalgood')
+router.register('homeappliance',HomeappliancesView , basename='homeappliance')
+router.register('beauty',BeautyView , basename='beauty')
+router.register('appliance',AppliancesView , basename='appliance')
+router.register('supermarket',SupermarketView , basename='supermarket')
+router.register('child',Child_and_babyView ,basename='child')
+
+
+
+
 router.register('category_Dijitalgoods',Category_DijitalgoodsView , basename='category_Dijitalgoods')
 router.register('category_clothing',Category_clothingView , basename='category_clothing')
 router.register('category_Homeappliances',Category_HomeappliancesView , basename='category_Homeappliances')
