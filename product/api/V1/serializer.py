@@ -11,18 +11,16 @@ class ClothingSerializer(serializers.ModelSerializer):
                     "more_details","category_clothing","category_color",
                     "price","number" ,"off","size","status","amazing_offer"
                    ]
-    def to_representation(self,instance):
-        rep = super().to_representation(instance)
-        rep["category_clothing"] =  Category_clothing_Serializer(instance.Category_clothing,many=True).data
-        rep["category_color"] = Category_color_Serializer(instance.Category_color,many=True).data
-        request = self.context.get('request')
-        kwargs = request.parser_context.get('kwargs')
-        if kwargs.get('pk') is None:
-            rep.pop('content')
-            
-        return rep
-        
 
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['category_clothing'] = Category_clothing_Serializer(instance.category_clothing,many=True).data
+        rep['category_color'] = Category_color_Serializer(instance.category_color,many=True).data
+        request = self.context.get('request')
+        # kwargs = request.parser_context.get('kwargs')
+        # if kwargs.get('pk') is not None and None:
+        #     rep.pop('content')
+        return rep
 
 
 class Dijitalgoods_Serializer(serializers.ModelSerializer):
@@ -33,16 +31,15 @@ class Dijitalgoods_Serializer(serializers.ModelSerializer):
                     "more_details","category_Dijitalgoods","category_color","category_brand",
                     "price","number" ,"off","warranty" ,"status","amazing_offer" 
                     ]
-    def to_representation(self,instance):
+    def to_representation(self, instance):
         rep = super().to_representation(instance)
-        rep["category_Dijitalgoods"] = Category_Dijitalgoods_Serializer(instance.Category_clothing,many=True).data
-        rep["category_color"] = Category_Color_Serializer(instance.Category_Color,many=True).data
-        rep["category_brand"] = Category_Brand_Serializer(instance.Category_Brand,many=True).data
+        rep['category_Dijitalgoods'] = Category_Dijitalgoods_Serializer(instance.category_Dijitalgoods,many=True).data
+        rep['category_color'] = Category_color_Serializer(instance.category_color,many=True).data
+        rep['category_brand'] = Category_brand_Serializer(instance.category_brand,many=True).data
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
-        if kwargs.get('pk') is None:
-            rep.pop('content')
-            
+        if kwargs.get('pk') is not None:
+            rep.pop('content')   
         return rep
         
 
@@ -54,16 +51,16 @@ class Homeappliances_Serializer(serializers.ModelSerializer):
         fields = ["title","content1","content2","content3","content4","content5",
                     "image1", "image2", "image3","image4",
                     "more_details","category_Homeappliances","category_color","category_brand",
-                    "price","number" ,"off","status","amazing_offer" ]
+                    "price","number" ,"off","status","amazing_offer" 
+                    ]
     def to_representation(self,instance):
         rep = super().to_representation(instance)
-        
-        rep["category_Homeappliances"] = Category_Homeappliances_Serializer(instance.Category_Homeappliances,many=True).data
-        rep["category_color"] = Category_Color_Serializer(instance.Category_Color,many=True).data
-        rep["category_brand"] = Category_Brand_Serializer(instance.Category_Brand,many=True).data
+        rep["category_Homeappliances"] = Category_Homeappliances_Serializer(instance.category_Homeappliances,many=True).data
+        rep["category_color"] = Category_color_Serializer(instance.category_color,many=True).data
+        rep["category_brand"] = Category_brand_Serializer(instance.category_brand,many=True).data
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
-        if kwargs.get('pk') is None:
+        if kwargs.get('pk') is not None:
             rep.pop('content')
             
         return rep
@@ -78,18 +75,17 @@ class Beauty_Serializer(serializers.ModelSerializer):
                     "image1", "image2", "image3","image4",
                     "more_details","category_Beauty", "category_color","category_brand", 
                     "price","number" ,"off","exception_date",
-                    "status","amazing_offer" ]
+                    "status","amazing_offer" 
+                    ]
     def to_representation(self,instance):
         rep = super().to_representation(instance)
-       
-        rep["category_Beauty"] = Category_Beauty_Serializer(instance.Category_Beauty,many=True).data
-        rep["category_color"] = Category_Color_Serializer(instance.Category_Color,many=True).data
-        rep["category_brand"] = Category_Brand_Serializer(instance.Category_Brand,many=True).data
+        rep["category_Beauty"] = Category_Beauty_Serializer(instance.category_Beauty,many=True).data
+        rep["category_color"] = Category_color_Serializer(instance.category_color,many=True).data
+        rep["category_brand"] = Category_brand_Serializer(instance.category_brand,many=True).data
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
-        if kwargs.get('pk') is None:
+        if kwargs.get('pk') is not None:
             rep.pop('content')
-            
         return rep
         
 
@@ -106,9 +102,9 @@ class Appliances_Serializer(serializers.ModelSerializer):
     def to_representation(self,instance):
         rep = super().to_representation(instance)
         
-        rep["category_Appliances"] = Category_Appliances_Serializer(instance.Category_Appliances,many=True).data
-        rep["category_color"] = Category_Color_Serializer(instance.Category_Color,many=True).data
-        rep["category_brand"] = Category_Brand_Serializer(instance.Category_Brand,many=True).data
+        rep["category_Appliances"] = Category_Appliances_Serializer(instance.category_Appliances).data
+        rep["category_color"] = Category_color_Serializer(instance.category_color).data
+        rep["category_brand"] = Category_brand_Serializer(instance.category_brand,many=True).data
         request = self.context.get('request')
         kwargs = request.parser_context.get('kwargs')
         if kwargs.get('pk') is None:
@@ -219,11 +215,11 @@ class Category_Child_and_baby_Serializer(serializers.ModelSerializer):
 class Category_brand_Serializer(serializers.ModelSerializer):
 
     class Meta:
-        models = Category_brand
+        model = Category_brand
         fields = ['id', 'name','image']
 
 class Category_color_Serializer(serializers.ModelSerializer):
 
     class Meta:
-        models = Category_color
-        fields = ['id', 'name','image']
+        model = Category_color
+        fields = ["id", "name","image"]
