@@ -3,13 +3,24 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 
-class ProductView(TemplateView):
-    template_name = 'product/category.html'
+class ClothingView(TemplateView):
+    template_name = 'product/category_clothing.html'
+
+
+class DijitalgoodsView(TemplateView):
+    template_name = 'product/category_Dijitalgoods.html'
+
+
+class HomeappliancesView(TemplateView):
+    template_name = 'product/category_Homeappliances.html'
 
 
 
-class Product_index_View(TemplateView):
-    template_name = 'product/category-index.html'
+
+
+
+
+
 
 
 
