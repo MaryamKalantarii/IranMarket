@@ -8,10 +8,10 @@ urlpatterns =[
     path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
     path("category-dijitalgoods/",DijitalgoodsView.as_view(),name="category-dijitalgoods"),
     path("category-homeappliances/",HomeappliancesView.as_view(),name="category-homeappliances"),
-    path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
-    path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
-    path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
-    path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
+    path("category-beauty/", BeautyView.as_view(),name="category-beauty"),
+    path("category-appliances/",AppliancesView.as_view(),name="category-appliances"),
+    path("category-supermarket/",SupermarketView.as_view(),name="category-supermarket"),
+    path("category-child/",Child_and_babyView.as_view(),name="category-child"),
 
 
 

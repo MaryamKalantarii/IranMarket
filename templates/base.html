@@ -463,37 +463,23 @@
                   @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false"
                   style="display: none">
-                  <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                  <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="kaladijital">
                     <ul class="list-reset">
-                      <li class="relative">
-                        <a href="category.html" class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لپ تاپ و کامپیوتر</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">موبایل</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">تبلت</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">وسایل جانبی</span>
-                        </a>
-                      </li>
+                  <script>
+                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Dijitalgoods/", function( data ) {
+                          kaladijital = $("#kaladijital")
+                        for ( kaladijitals of data){
+                          kaladijital.append(`<li
+                                    class="relative">
+                                    <a
+                                      href="{% url 'product:category-dijitalgoods' %}"
+                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                                      <span class="flex-1">${kaladijitals.name}</span>
+                                    </a>
+                                  </li>`)
+                        }
+                      });
+                  </script>  
                     </ul>
                   </div>
                 </div>
@@ -526,48 +512,24 @@
                   @mouseleave="showChildren=false"
                   style="display: none">
                   <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="lavazemkhonegi">
                     <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">یخچال و فریزر</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ماشین لباسشویی</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ماشین ظرف شویی</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">اجاق گاز</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">هود و سینک</span>
-                        </a>
-                      </li>
+                    <script>
+                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Homeappliances/", function( data ) {
+                          lavazemkhonegi = $("#lavazemkhonegi")
+                        for ( lavazemkhonegis of data){
+                          lavazemkhonegi.append(`<li
+                                    class="relative">
+                                    <a
+                                      href="{% url 'product:category-homeappliances' %}"
+                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                                      <span class="flex-1">${lavazemkhonegis.name}</span>
+                                    </a>
+                                  </li>`)
+                        }
+                      });
+            
+                    </script>  
                     </ul>
                   </div>
                 </div>
@@ -600,32 +562,24 @@
                   @mouseleave="showChildren=false"
                   style="display: none">
                   <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="arayeshi">
                     <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لوازم آرایشی</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">عطر و ادکلن</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لوازم بهداشتی</span>
-                        </a>
-                      </li>
+                    <script>
+                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Beauty/", function( data ) {
+                          arayeshi = $("#arayeshi")
+                        for ( arayeshis of data){
+                          arayeshi.append(`<li
+                                    class="relative">
+                                    <a
+                                      href="{% url 'product:category-beauty' %}"
+                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                                      <span class="flex-1">${arayeshis.name}</span>
+                                    </a>
+                                  </li>`)
+                        }
+                      });
+            
+                    </script>  
                     </ul>
                   </div>
                 </div>
@@ -658,56 +612,24 @@
                   @mouseleave="showChildren=false"
                   style="display: none">
                   <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="lavazembarqi">
                     <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">سشوار</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">اتو</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ریش تراش</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ساعت دیجیتال</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">هم زن و آبمیوه گیر</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">ترازو دیجیتال و چرخ کن</span>
-                        </a>
-                      </li>
+                      <script>
+                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Appliances/", function( data ) {
+                          lavazembarqi = $("#lavazembarqi")
+                        for ( lavazembarqis of data){
+                          lavazembarqi.append(`<li
+                                    class="relative">
+                                    <a
+                                      href="{% url 'product:category-appliances' %}"
+                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                                      <span class="flex-1">${lavazembarqis.name}</span>
+                                    </a>
+                                  </li>`)
+                        }
+                      });
+            
+                    </script>  
                     </ul>
                   </div>
                 </div>
@@ -740,72 +662,24 @@
                   @mouseleave="showChildren=false"
                   style="display: none">
                   <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="supermarket">
                     <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">صبحانه</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">تنقلات</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">خشکبار</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">حبوبات و کنسرو</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">میوه و سبزیجات</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">سوسیس و کالباس</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">گوشت</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">لبنیات</span>
-                        </a>
-                      </li>
+                      <script>
+                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Supermarket/", function( data ) {
+                          supermarket = $("#supermarket")
+                        for ( supermarkets of data){
+                          supermarket.append(`<li
+                                    class="relative">
+                                    <a
+                                      href="{% url 'product:category-supermarket' %}"
+                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                                      <span class="flex-1">${supermarkets.name}</span>
+                                    </a>
+                                  </li>`)
+                        }
+                      });
+            
+                    </script>  
                     </ul>
                   </div>
                 </div>
@@ -838,40 +712,24 @@
                   @mouseleave="showChildren=false"
                   style="display: none">
                   <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="baby">
                     <ul class="list-reset">
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">پوشک</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">بهداشت و حمام</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">سرگرمی و غذاخوری</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">کالای خواب</span>
-                        </a>
-                      </li>
+                      <script>
+                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Child_and_baby/", function( data ) {
+                          baby = $("#baby")
+                        for ( babys of data){
+                          baby.append(`<li
+                                    class="relative">
+                                    <a
+                                      href="{% url 'product:category-child' %}"
+                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                                      <span class="flex-1">${babys.name}</span>
+                                    </a>
+                                  </li>`)
+                        }
+                      });
+            
+                    </script>  
                     </ul>
                   </div>
                 </div>

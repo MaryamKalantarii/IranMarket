@@ -15,11 +15,20 @@ class HomeappliancesView(TemplateView):
     template_name = 'product/category_Homeappliances.html'
 
 
+class BeautyView(TemplateView):
+    template_name = 'product/category_Beauty.html'
 
 
+class AppliancesView(TemplateView):
+    template_name = 'product/category_Appliances.html'
 
 
+class SupermarketView(TemplateView):
+    template_name = 'product/category_Supermarket.html'
 
+
+class Child_and_babyView(TemplateView):
+    template_name = 'product/category_Child_and_baby.html'
 
 
 
