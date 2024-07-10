@@ -146,7 +146,7 @@
     product.append(`<a href="{% url 'product:singleProduct' %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
       <div class="image-box sm:mb-6">
         <div>
-          <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="${products.image1_url}" alt="${products.title}" />
+          <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="" alt="" />
         </div>
       </div>
       <div class="flex flex-col w-full">
@@ -169,8 +169,172 @@
 });
 
   
-  </script> -->
+  </script>  -->
 
 {% endblock 'content' %}
  
  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div id="products">
+        <!-- Products will be dynamically added here -->
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $.get("http://127.0.0.1:8000/product/api/V1/products/", function(data) {
+                var productsContainer = $("#products");
+
+                data.forEach(function(product) {
+                    var imageUrl = product.image_url; // Assume the API returns an image URL field
+
+                    var productHtml = `
+                        <a href="{% url 'product:singleProduct' %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
+                            <div class="image-box sm:mb-6">
+                                <div>
+                                    <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="${imageUrl}" alt="${product.title}" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <span class="text-xs sm:text-sm opacity-90 mb-5">
+                                    <div class="leading-7 h-auto">
+                                        ${product.title}
+                                    </div>
+                                </span>
+                                <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
+                                    <div>${product.price}</div>
+                                    <div>تومان</div>
+                                </div>
+                                <div class="flex justify-end text-xs opacity-75 pl-3 md:pl-0">
+                                    <div class="line-through">1.350.000</div>
+                                    <div class="line-through">تومان</div>
+                                </div>
+                            </div>
+                        </a>`;
+                    
+                    productsContainer.append(productHtml);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+        
+
+
+
+
+<!-- ba format dade ha khodet -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <div id="products">
+        <!-- Products will be dynamically added here -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.get("http://127.0.0.1:8000/product/api/V1/products/", function(data) {
+                var productsContainer = $("#products");
+
+                data.forEach(function(product) {
+                    var imageUrl = product.image1; // Assuming 'image1' contains the image URL
+
+                    var productHtml = `
+                        <a href="{% url 'product:singleProduct' %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
+                            <div class="image-box sm:mb-6">
+                                <div>
+                                    <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src= "http://127.0.0.1:8000/media/beauty/w4.jpg" alt="${product.title}" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <span class="text-xs sm:text-sm opacity-90 mb-5">
+                                    <div class="leading-7 h-auto">
+                                        ${product.title}
+                                    </div>
+                                </span>
+                                <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
+                                    <div>${product.content1}</div>
+                                </div>
+                            </div>
+                        </a>`;
+                    
+                    productsContainer.append(productHtml);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- ba format .webp -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div id="products">
+        <!-- Products will be dynamically added here -->
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $.get("http://127.0.0.1:8000/product/api/V1/products/", function(data) {
+                var productsContainer = $("#products");
+
+                data.forEach(function(product) {
+                    var imageUrl = product.image1; // Assuming 'image1' contains the image URL
+
+                    var productHtml = `
+                        <a href="{% url 'product:singleProduct' %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
+                            <div class="image-box sm:mb-6">
+                                <div>
+                                    <picture>
+                                        <source srcset="${imageUrl}" type="image/webp">
+                                        <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="${imageUrl}" alt="${product.title}" />
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <span class="text-xs sm:text-sm opacity-90 mb-5">
+                                    <div class="leading-7 h-auto">
+                                        ${product.title}
+                                    </div>
+                                </span>
+                                <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
+                                    <div>${product.content1}</div>
+                                </div>
+                            </div>
+                        </a>`;
+                    
+                    productsContainer.append(productHtml);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
