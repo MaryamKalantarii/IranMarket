@@ -8,7 +8,7 @@ from django.contrib import messages
 class LoginView(FormView):
     template_name = 'registration/login-register.html'
     form_class = Loginform
-    success_url = '/'
+    success_url = 'registration/login.html'
     def form_valid(self, form):
         phone = self.request.POST.get('phone')
         user = authenticates(phone=phone)
@@ -19,7 +19,7 @@ class LoginView(FormView):
 
 class SignupView(CreateView):
     template_name ='registration/login.html'
-    form_class = CustiomUserCreation
+    form_class = CustomeUserCreation
     success_url = '/'
 
     def form_valid(self, form):

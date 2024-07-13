@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -6,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود</title>
 
-  <link rel="stylesheet" href="./assets/css/output.css" />
-  <link rel="stylesheet" href="./assets/css/font.css">
+  <link rel="stylesheet" href="{% static 'assets/css/output.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/font.css' %}">
   <style>
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -21,8 +22,8 @@
     <div class="shadow-xl rounded-2xl p-8 bg-white">
       <form action="">
         <div class="mb-2">
-          <a href="./index.html">
-            <img src="./assets/image/logo.png" alt="" class="w-36 mx-auto">
+          <a href="index.html">
+            <img src="{% static 'assets/image/logo.png' %}" alt="" class="w-36 mx-auto">
           </a>
         </div>
         <div class="opacity-80 text-lg mb-5">
