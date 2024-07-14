@@ -1,15 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from.models import CustomeUser
+from .models import CustomeUser, Profile
 
 
-class CustomeUserCreation(UserCreationForm):
-    class Meta:
-        model = CustomeUser
-        fields = ["email","password1", "password2"]
-
-
-class Loginform(UserCreationForm):
+class CustomUserCreation(UserCreationForm):
 
     class Meta:
         model = CustomeUser
