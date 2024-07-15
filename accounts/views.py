@@ -1,33 +1,59 @@
 from django.shortcuts import redirect
 from django.views.generic import FormView, CreateView
-from .forms import CustomUserCreation
+from .forms import CustomUserCreation,OtpForm
+from django.views.generic import TemplateView
+import time
+import random
+import threading
+# Create your views here.
+
+class LoginView(TemplateView):
+    template_name = 'registration/login.html'
+
+
+
+
+
 
 class SignUpView(CreateView):
-    template_name = 'registration/signup.html'
+    template_name = 'registration/login-register.html'
     form_class = CustomUserCreation
     success_url = '/accounts/login/' #'registration/login'
 
     def delete_code(self):
-        time.sleep(10)
+        time.sleep(15)
         self.request.session.pop('code')
         self.request.session.save()
 
     def form_valid(self, form):
-        form.save()
-        code = random.randint(1000,1000)
+        user = form.save()
+        code = random.randint(1000, 10000)
         self.request.session['code'] = code
         print(self.request.session.get('code'))
         tr1 = threading.Thread(target=self.delete_code)
         tr1.start()
-        return redirect("accounts:otp-verify")    
+        return redirect("accounts:otp-verify")
+
     def form_invalid(self, form):
-        pass
+        return redirect(self.request.path_info)
        
 
 
 
 
 
+class OtpVerifyView(FormView):
+    template_name = "registration/otp.html"
+    form_class = OtpForm
+    success_url = "/"
+
+    def form_valid(self, form):
+        code = self.request.POST['otp_code']
+        if (self.request.session.get('code')) and (int(code) == self.request.session['code']):
+            return redirect('/')
+        else:
+            print(self.request.session.get('code'))
+            return redirect(self.request.path_info)
 
 
 
@@ -36,46 +62,6 @@ class SignUpView(CreateView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# class LoginView(FormView):
-#     template_name = 'registration/login-register.html'
-#     form_class = SignUpForm
-#     success_url = '/accounts/signup/'
-#     def form_valid(self, form):
-#         email = self.request.POST.get('email')
-#         user = authenticate(email=email)
-#         if user is not None:
-#             login(self.request, user)
-#             return super().form_valid(form)
-
-
-# class SignupView(CreateView):
-#     template_name ='registration/login.html'
-#     form_class = CustomeUserCreation
-#     success_url = '/'
-
-#     def form_valid(self, form):
-#         form.seve()
-#         email = self.request.POST.get('email')
-#         password = self.request.POST.get('password1')
-#         user = authenticate(email=email, password=password)
-#         if user is not None:
-#             login(self.request, user)
-#             return super().form_valid(form)
-
-#     def form_invalid(self, form):
-#         messages.add_message(self.request, messages.ERROR, 'Invalid Credentials')
-#         return super().form_invalid(form)
 
 
 
