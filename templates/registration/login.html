@@ -1,5 +1,4 @@
-<!-- {% load static %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -29,16 +28,26 @@
           </a>
         </div>
         <div class="opacity-80 text-lg mb-5">
-          ورود | ثبت نام
+          ورود
         </div>
         <div class="text-xs opacity-70 mb-2">
-           ایمیل خود را وارد کنید:
+          شماره همراه یا ایمیل خود را وارد کنید:
         </div>
         <div class="mb-2">
-          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" name="email" type="email" >
+          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="email" name="email">
         </div>
-        <div class="text-xs text-red-500 hidden">
-          شماره موبایل نادرست است
+      
+        <div class="text-xs opacity-70 mb-2">
+          رمز عبور
+        </div>
+        <div class="mb-2">
+          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="password" name="password1">
+        </div>
+        <div class="text-xs opacity-70 mb-2">
+          تکرار رمز عبور        
+        </div>
+        <div class="mb-2">
+          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="password" name="password2">
         </div>
         <div class="text-center mt-5 mb-3">
           <button class="bg-red-500 hover:bg-red-600 transition text-white opacity-80 rounded-2xl w-full py-2" type="submit">
@@ -54,17 +63,4 @@
     </div>
   </div>
 </body>
-</html> -->
-
-
-<form method="post" enctype='multipart/form-data'>
-  {% csrf_token %}
-  {{form.as_p}}
-  <button type="submit">signup new user</button>
-  {{captcha}}
-  {% if messages %}
-      {% for message in messages %}
-          {{message}}
-      {% endfor %}
-  {% endif %}
-</form>
+</html>

@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.views.generic import FormView, CreateView
-from .forms import CustomUserCreation,OtpForm
+from .forms import CustomUserCreation,OtpForm,EmailForm
 from django.views.generic import TemplateView
 import time
 import random
@@ -54,16 +54,6 @@ class OtpVerifyView(FormView):
         else:
             print(self.request.session.get('code'))
             return redirect(self.request.path_info)
-
-
-
-
-
-
-
-
-
-
 
 
 

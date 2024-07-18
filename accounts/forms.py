@@ -7,9 +7,11 @@ class CustomUserCreation(UserCreationForm):
 
     class Meta:
         model = CustomeUser
-        fields = ["email","username","password1","password2"]
+        fields = ["email"]
 
 
 class OtpForm(forms.Form):
     otp_code =forms.CharField(max_length=4)
+
+
 
