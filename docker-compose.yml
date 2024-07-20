@@ -9,6 +9,7 @@ services:
    - .:/core
   ports:
    - "8000:8000"
+  
 
  smtp4dev:
     image: rnwood/smtp4dev:v3
@@ -21,6 +22,7 @@ services:
         - smtp4dev-data:/smtp4dev
     environment:
       - ServerOptions__HostName=smtp4dev
+
 
 volumes:
   smtp4dev-data:
