@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.views.generic import FormView, CreateView
-from .forms import CustomUserCreation,OtpForm,EmailForm
+from .forms import CustomUserCreation,OtpForm
 from django.views.generic import TemplateView
 import time
 import random

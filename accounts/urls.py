@@ -7,6 +7,10 @@ urlpatterns = [
     path('signup/',SignUpView.as_view(), name='signup'),
     path('otp-verify/', OtpVerifyView.as_view(), name='otp-verify'),
     path('login/', LoginView.as_view(), name='login'),
+
+
+    # path('api/V1/',include("accounts.api.V1.urls")),
+
 ]
 
 
