@@ -10,10 +10,13 @@ from .multi_threading import SendEmailWithThreading
 from accounts.models import CustomeUser,Profail
 
 class  RegistrationView(GenericAPIView):
+    
     serializer_class = RegisterationSerializer
 
     def post(self, request,*args,**kwargs):
+
         serializer = RegisterationSerializer(data=request.data)
+
         if serializer.is_valid():
             serializer.save()
             user = get_object_or_404(CustomeUser , email = serializer.validated_data["email"])

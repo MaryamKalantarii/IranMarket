@@ -33,3 +33,12 @@ class RegisterationSerializer(serializers.ModelSerializer):
                 validate_password.pop("password1",None)
                 return CustomeUser.objects.create_user(**validated_data)
 
+class  ResendEmailSerializer(serializers.Serializer):
+     
+    email = serializers.CharField(label = ("Email"), write_only=True)
+     
+    def validate(self, attrs):
+
+        user = get_object_or_404(CustomeUser,email = attrs.get("email"))
+        attrs["user"] = user
+        return attrs
