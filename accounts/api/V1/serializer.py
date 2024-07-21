@@ -33,4 +33,3 @@ class RegisterationSerializer(serializers.ModelSerializer):
                 validate_password.pop("password1",None)
                 return CustomeUser.objects.create_user(**validated_data)
 
-                

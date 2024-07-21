@@ -9,8 +9,9 @@ from rest_framework_simplejwt.views import (
 app_name = "api-v1-accounts"
 
 urlpatterns = [
-    
-     path("registration/", RegistrationView.as_view(), name="registration"),
+
+    path("registration/", RegistrationView.as_view(), name="registration"),
+    path("is-verified/<str:token>", IsVerifiedView.as_view(), name="is-verification"),
     
     # jwt token
     path("token/create/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
