@@ -21,6 +21,7 @@ class RegisterationSerializer(serializers.ModelSerializer):
         password2 = attrs.get("password")
 
         if password1 != password2:
+
             raise serializers.ValidationError({"detail": "password dose not confirmed"})
 
         try:
@@ -28,7 +29,6 @@ class RegisterationSerializer(serializers.ModelSerializer):
             validate_password(password1)
 
         except exceptions.ValidationError as e:
-
             raise serializers.ValidationError({"detail": list(e.messages)})
 
         return super().validate(attrs)
@@ -38,7 +38,7 @@ class RegisterationSerializer(serializers.ModelSerializer):
         return CustomeUser.objects.create_user(**validated_data)
 
 
-class  ResendEmailSerializer(serializers.Serializer):
+class ResendEmailSerializer(serializers.Serializer):
      
     email = serializers.CharField(label = ("Email"), write_only=True)
      

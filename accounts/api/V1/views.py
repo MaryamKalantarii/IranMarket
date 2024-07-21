@@ -61,7 +61,7 @@ class ResendEmailView(GenericAPIView):
     def post(self, request, *args, **kwargs):
 
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exceptions=True)
+        serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
 
         if user.is_verified:
