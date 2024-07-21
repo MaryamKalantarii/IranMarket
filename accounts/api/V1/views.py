@@ -10,7 +10,7 @@ from .multi_threading import SendEmailWithThreading
 from accounts.models import CustomeUser,Profail
 
 class  RegistrationView(GenericAPIView):
-    
+
     serializer_class = RegisterationSerializer
 
     def post(self, request,*args,**kwargs):
@@ -52,3 +52,29 @@ class IsVerifiedView(GenericAPIView):
                     "resend email": "http://127.0.0.1:8000/accounts/api/V1/resend",
                 }
             )
+
+
+class ResendEmailView(GenericAPIView):
+
+    serializer_class = ResendEmailSerializer
+
+    def post(self, request, *args, **kwargs):
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exceptions=True)
+        user = serializer.validated_data["user"]
+
+        if user.is_verified:
+            return Response({"detail":"email already verified"})
+        
+        token = self.get_token_for_user(user)
+        message = EmailMessage("email/email.html",{"token":token},"maryam@admin.com",to=[user.email],)
+        email = SendEmailWithThreading(message)
+        email.start()
+        return Response({"detail":"email Resend for your verification"})
+
+    def get_token_for_user(self,user):
+
+        refresh = RefreshToken.for_user(user)
+        return str(refresh.access_token)
+        
