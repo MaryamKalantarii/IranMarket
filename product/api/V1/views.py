@@ -97,3 +97,8 @@ class Category_Child_and_babyView(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = Category_Child_and_baby_Serializer
     queryset = Category_Child_and_baby.objects.all()
+
+class Category_brandView(viewsets.ModelViewSet):
+    permission_classes = [IsAdminOrReadOnly]
+    serializer_class = Category_brand_Serializer
+    queryset = Category_brand.objects.all()

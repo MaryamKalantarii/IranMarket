@@ -14,7 +14,7 @@ router.register('child',Child_and_babyView ,basename='child')
 
 
 
-
+router.register('category_brand',Category_brandView , basename='category_brand')
 router.register('category_Dijitalgoods',Category_DijitalgoodsView , basename='category_Dijitalgoods')
 router.register('category_clothing',Category_clothingView , basename='category_clothing')
 router.register('category_Homeappliances',Category_HomeappliancesView , basename='category_Homeappliances')

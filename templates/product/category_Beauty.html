@@ -73,28 +73,25 @@
         <!-- SLIDER -->
         <div class="containerPSlider swiper">
           <div class="slide-container1 px-2">
-            <div class="card-wrapper swiper-wrapper pb-4" id="products">
+            <div class="card-wrapper swiper-wrapper pb-4" id="beauty">
              
               <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script>
-        $(document).ready(function() {
-            $.get("http://127.0.0.1:8000/product/api/V1/beauty/", function(data) {
-                var productsContainer = $("#products");
-
-                data.forEach(function(product) {
-                    var imageUrl = product.image1; // Assuming 'image1' contains the image URL
-
-                    var productHtml = ` <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
+             
+              <script>
+                $.get( "http://127.0.0.1:8000/product/api/V1/beauty/", function( data ) {
+                  
+                  beauty = $("#beauty")
+                  for ( beautys of data){
+                    beauty.append(` <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
                 <div class="image-box mb-6 ">
                   <div>
-                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="${imageUrl}" alt="" />
+                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="${beautys.image1}" alt="" />
                   </div>
                 </div>
                 <div class="space-y-3 text-center">
                   <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
                     <div>
-                       ${product.title}
+                       ${beautys.title}
                     </div>
                   </span>
                   <div class="flex justify-center text-xs opacity-75">
@@ -106,14 +103,11 @@
                     <div>تومان</div>
                   </div>
                 </div>
-              </a>
-                        `;
-                    
-                    productsContainer.append(productHtml);
+              </a>`)
+                  }
                 });
-            });
-        });
-    </script> 
+          
+          </script>
             </div>
           </div>
           <div class="swiper-button-next swiper-navBtn"></div>
@@ -135,31 +129,21 @@
           <div class="border-b-2 border-red-500 pb-1">دسته بندی های محبوب</div>
           <a href="search.html"><div class="transition px-4 py-2 rounded-xl flex justify-center items-center text-red-500 hover:text-red-600">دیدن همه<img class="w-4" src="{% static 'assets/image/arrow-left.png' %}" alt=""></div></a>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-2 gap-y-4 md:gap-x-4 2xl:gap-x-5 px-3 md:px-8 lg:px-28">
-          <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
-            <img src="{% static 'assets/image/category-index/cat1.png' %}" alt="">
-            <div class="text-sm opacity-90">اپل</div>
-          </a>
-          <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
-            <img src="{% static 'assets/image/category-index/cat2.png' %}" alt="">
-            <div class="text-sm opacity-90">ایسر</div>
-          </a>
-          <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
-            <img src="{% static 'assets/image/category-index/cat3.png' %}" alt="">
-            <div class="text-sm opacity-90">ایسوس</div>
-          </a>
-          <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
-            <img src="{% static 'assets/image/category-index/cat4.png' %}" alt="">
-            <div class="text-sm opacity-90">اچ پی</div>
-          </a>
-          <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
-            <img src="{% static 'assets/image/category-index/cat5.png' %}" alt="">
-            <div class="text-sm opacity-90">لنوو</div>
-          </a>
-          <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
-            <img src="{% static 'assets/image/category-index/cat6.png' %}" alt="">
-            <div class="text-sm opacity-90">ام اس آی</div>
-          </a>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-2 gap-y-4 md:gap-x-4 2xl:gap-x-5 px-3 md:px-8 lg:px-28" id="berands">
+         
+          <script>
+            $.get( "http://127.0.0.1:8000/product/api/V1/category_brand/", function( data ) {
+              
+              berands = $("#berands")
+              for ( berand of data){
+                berands.append(` <a href="search.html" class="flex justify-center items-center flex-col gap-y-3 hover:scale-105 transition">
+            <img src="${berand.image}" alt="">
+            <div class="text-sm opacity-90">${berand.name}</div>
+          </a>`)
+              }
+            });
+      
+      </script>
         </div>
       </div>
       <!-- PRODUCT SLIDER 2 -->
@@ -195,116 +179,7 @@
                   </div>
                 </div>
               </a>
-              <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
-                <div class="image-box mb-6 ">
-                  <div>
-                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets/image/category-index/p2.webp' %}" alt="" />
-                  </div>
-                </div>
-                <div class="space-y-3 text-center">
-                  <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                    <div>
-                      لپ تاپ TUF5
-                    </div>
-                  </span>
-                  <div class="flex justify-center text-xs opacity-75">
-                    <div class="line-through">1.350.000</div>
-                    <div class="line-through">تومان</div>
-                  </div>
-                  <div class="flex justify-center mt-1 mb-2 text-sm">
-                    <div>1.100.000</div>
-                    <div>تومان</div>
-                  </div>
-                </div>
-              </a>
-              <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
-                <div class="image-box mb-6 ">
-                  <div>
-                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets/image/category-index/p3.webp' %}" alt="" />
-                  </div>
-                </div>
-                <div class="space-y-3 text-center">
-                  <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                    <div>
-                      لپ تاپ ایسوس مدل f12
-                    </div>
-                  </span>
-                  <div class="flex justify-center text-xs opacity-75">
-                    <div class="line-through">1.350.000</div>
-                    <div class="line-through">تومان</div>
-                  </div>
-                  <div class="flex justify-center mt-1 mb-2 text-sm">
-                    <div>1.100.000</div>
-                    <div>تومان</div>
-                  </div>
-                </div>
-              </a>
-              <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
-                <div class="image-box mb-6 ">
-                  <div>
-                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets/image/category-index/p4.webp' %}" alt="" />
-                  </div>
-                </div>
-                <div class="space-y-3 text-center">
-                  <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                    <div>
-                      لپ تاپ ایسوس مدل m1
-                    </div>
-                  </span>
-                  <div class="flex justify-center text-xs opacity-75">
-                    <div class="line-through">1.350.000</div>
-                    <div class="line-through">تومان</div>
-                  </div>
-                  <div class="flex justify-center mt-1 mb-2 text-sm">
-                    <div>1.100.000</div>
-                    <div>تومان</div>
-                  </div>
-                </div>
-              </a>
-              <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
-                <div class="image-box mb-6 ">
-                  <div>
-                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets/image/category-index/p5.webp' %}" alt="" />
-                  </div>
-                </div>
-                <div class="space-y-3 text-center">
-                  <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                    <div>
-                      لپ تاپ ایسوس مدل sh3
-                    </div>
-                  </span>
-                  <div class="flex justify-center text-xs opacity-75">
-                    <div class="line-through">1.350.000</div>
-                    <div class="line-through">تومان</div>
-                  </div>
-                  <div class="flex justify-center mt-1 mb-2 text-sm">
-                    <div>1.100.000</div>
-                    <div>تومان</div>
-                  </div>
-                </div>
-              </a>
-              <a href="single-product.html" class="card swiper-slide my-2 p-2 md:p-3 ">
-                <div class="image-box mb-6 ">
-                  <div>
-                    <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets/image/category-index/p6.webp' %}" alt="" />
-                  </div>
-                </div>
-                <div class="space-y-3 text-center">
-                  <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                    <div>
-                      لپ تاپ لنوو مدل 2m2
-                    </div>
-                  </span>
-                  <div class="flex justify-center text-xs opacity-75">
-                    <div class="line-through">1.350.000</div>
-                    <div class="line-through">تومان</div>
-                  </div>
-                  <div class="flex justify-center mt-1 mb-2 text-sm">
-                    <div>1.100.000</div>
-                    <div>تومان</div>
-                  </div>
-                </div>
-              </a>
+              
             </div>
           </div>
           <div class="swiper-button-next swiper-navBtn"></div>
