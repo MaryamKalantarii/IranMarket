@@ -77,3 +77,5 @@ class ResendEmailView(GenericAPIView):
 
         refresh = RefreshToken.for_user(user)
         return str(refresh.access_token)
+
+
