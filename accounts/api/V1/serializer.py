@@ -60,3 +60,48 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         validated_data["id"] = self.user.id
         validated_data["email"] = self.user.email
         return validated_data
+
+
+class PasswordChangeSerializer(serializers.Serializer):
+
+    old_password = serializers.CharField(max_length=20)
+    new_password1 = serializers.CharField(max_length=20)
+    new_password2 = serializers.CharField(max_length=20)
+
+    def validate(self, attrs):
+        pass1 = attrs.get("new_password1")
+        pass2 = attrs.get("new_password2")
+
+        if pass1 != pass2:
+            raise serializers.ValidationError({"detail": "password dose not confirmed"})
+        
+        return super().validate(attrs)
+    
+    def check_old_password(self,request,attrs:dict):
+
+        old_pass = attrs.get("old_password")
+        pass1 = attrs.get("new_password1")
+        user = request.user
+
+        if not user.check_password(old_pass):
+            raise serializers.ValidationError({"detail": "old password is not correct"})
+        
+        if old_pass == pass1:
+            raise serializers.ValidationError({"detail": "old password and new password are same"})
+        
+        return attrs
+
+        def set_new_password(self,request,attrs:dict):
+            pass1 = attrs.get("new_password1")
+            user = request.user
+
+            try:
+                validate_password(pass1)
+            except exceptions.ValidationError as e:
+                raise serializers.ValidationError({"detail": list(e.messages)})
+            
+            user.set_password(pass1)
+            user.save()
+            return attrs    
+
+        

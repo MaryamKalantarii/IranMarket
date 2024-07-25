@@ -14,7 +14,7 @@ urlpatterns = [
     path("resend/", ResendEmailView.as_view(), name="resend"),
     
     # jwt token
-    path("token/login/", CustomeTokenObtainPairView, name="token_obtain_pair"),
+    path("token/login/", CustomeTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
 ]
