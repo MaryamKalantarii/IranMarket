@@ -5,9 +5,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
 from mail_templated import EmailMessage
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
-from .serializer import RegisterationSerializer,ResendEmailSerializer,CustomTokenObtainPairSerializer        
+from .serializer import RegisterationSerializer,ResendEmailSerializer,CustomTokenObtainPairSerializer,PasswordChangeSerializer        
 from .multi_threading import SendEmailWithThreading
 from accounts.models import CustomeUser,Profail
+from rest_framework.permissions import IsAuthenticated
 
 class  RegistrationView(GenericAPIView):
 
@@ -49,7 +50,7 @@ class IsVerifiedView(GenericAPIView):
             return Response(
                 {
                     "detail": "your token may be expired or changed structure",
-                    "resend email": "http://127.0.0.1:8000/accounts/api/V1/resend",
+                    "resend email": "http://127.0.0.1:8000/accounts/api/V1/resend-email",
                 }
             )
 
@@ -81,3 +82,21 @@ class ResendEmailView(GenericAPIView):
 
 class CustomeTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+
+class ChangePasswordView(GenericAPIView):
+     
+    permission_classes = [IsAuthenticated]
+    serializer_class = PasswordChangeSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.check_old_password(request,serializer.validated_data)
+        serializer.set_new_password(request,serializer.validated_data)
+
+        return Response({"detail":"password changed successfully"},
+        status=status.HTTP_200_OK,
+        
+        )
