@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
 from mail_templated import EmailMessage
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
-from .serializer import RegisterationSerializer,ResendEmailSerializer,CustomTokenObtainPairSerializer,PasswordChangeSerializer        
+from .serializer import RegisterationSerializer,ResendEmailSerializer,CustomTokenObtainPairSerializer,PasswordChangeSerializer,ProfailSerializer        
 from .multi_threading import SendEmailWithThreading
 from accounts.models import CustomeUser,Profail
 from rest_framework.permissions import IsAuthenticated
@@ -100,3 +100,22 @@ class ChangePasswordView(GenericAPIView):
         status=status.HTTP_200_OK,
         
         )
+
+class ProfileView(GenericAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ProfailSerializer
+    queryset = Profail.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profail = get_object_or_404(Profail, user=user)
+        serializer = self.serializer_class(profail)
+        return Response(data = serializer.data , status=status.HTTP_200_OK)
+
+    def put(self,request,*args,**kwargs):
+        user = request.user
+        profail = get_object_or_404(Profail,user=user)
+        serializer = self.serializer_class(profail, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(data = serializer.data , status=status.HTTP_200_OK)

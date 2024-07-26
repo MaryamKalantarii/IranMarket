@@ -105,3 +105,11 @@ class PasswordChangeSerializer(serializers.Serializer):
             return attrs    
 
         
+class ProfailSerializer(serializers.ModelSerializer):
+
+    email = serializers.CharField(max_length = 100 , source="user.email" , read_only=True)
+
+    class Meta:
+        model = Profail
+        fields = ["email", "first_name", "last_name", "image", "phone", "address"]
+        

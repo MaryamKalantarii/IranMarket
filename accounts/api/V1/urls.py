@@ -13,6 +13,7 @@ urlpatterns = [
     path("is-verified/<str:token>", IsVerifiedView.as_view(), name="is-verification"),
     path("resend-email/", ResendEmailView.as_view(), name="resend-email"),
     path("change-password/", ChangePasswordView.as_view(), name="change-password"),
+    path("profile/", ProfileView.as_view(), name="profile"),
     
     # jwt token
     path("token/login/", CustomeTokenObtainPairView.as_view(), name="token_obtain_pair"),
