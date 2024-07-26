@@ -91,18 +91,18 @@ class PasswordChangeSerializer(serializers.Serializer):
         
         return attrs
 
-        def set_new_password(self,request,attrs:dict):
-            pass1 = attrs.get("new_password1")
-            user = request.user
+    def set_new_password(self, request, attrs: dict):
+        pass1 = attrs.get("new_password1")
+        user = request.user
 
-            try:
-                validate_password(pass1)
-            except exceptions.ValidationError as e:
-                raise serializers.ValidationError({"detail": list(e.messages)})
+        try:
+            validate_password(pass1)
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError({"detail": list(e.messages)})
             
-            user.set_password(pass1)
-            user.save()
-            return attrs    
+        user.set_password(pass1)
+        user.save()
+        return attrs    
 
         
 class ProfailSerializer(serializers.ModelSerializer):
@@ -112,4 +112,3 @@ class ProfailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profail
         fields = ["email", "first_name", "last_name", "image", "phone", "address"]
-        
