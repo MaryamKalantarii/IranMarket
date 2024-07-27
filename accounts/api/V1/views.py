@@ -135,17 +135,12 @@ class ResetPasswordEmailView(GenericAPIView):
     serializer_class = ResetPasswordEmailSerializer
 
     def post(self, request, *args, **kwargs):
+        
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token = self.get_tokens_for_user(user)
-        message = EmailMessage(
-            "email/reset_password.html",
-            {"token": token},
-            "maryam@admin.com",
-            to = [serializer.validated_data["email"]],
-        )
-
+        message = EmailMessage("email/reset_password.html",{"token": token},"maryam@admin.com",to = [serializer.validated_data["email"]],)
         email = SendEmailWithThreading(message)
         email.start()
         return Response({"detail":"email send for you"})
