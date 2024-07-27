@@ -164,10 +164,8 @@ class ResetPasswordView(GenericAPIView):
             serializer = self.serializer_class(data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.set_new_password(request,serializer.validated_data)
-            token = serializer.create_new_token(request,serializer.validated_data)
-
             return Response(
-                data={"detail":"password changed successfully","token":token.key},
+                data={"detail":"password changed successfully"},
                 status = status.HTTP_200_OK
             )
         except Exception:
