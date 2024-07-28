@@ -140,7 +140,7 @@ class ResetPasswordEmailView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token = self.get_tokens_for_user(user)
-        message = EmailMessage("email/reset_password.html",{"token": token},"maryam@admin.com",to = [serializer.validated_data["email"]],)
+        message = EmailMessage("email/reset-email.html",{"token": token},"maryam@admin.com",to = [serializer.validated_data["email"]],)
         email = SendEmailWithThreading(message)
         email.start()
         return Response({"detail":"email send for you"})
@@ -157,21 +157,20 @@ class ResetPasswordView(GenericAPIView):
     serializer_class = ResetPasswordSerializer
 
     def post(self, request, *args, **kwargs):
-
         try:
-            user_data = AccessToken(kwargs.get("token"))
-            user_id = user_data["user_id"]
             serializer = self.serializer_class(data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.set_new_password(request,serializer.validated_data)
+
             return Response(
-                data={"detail":"password changed successfully"},
-                status = status.HTTP_200_OK
+                data={"detail": "password change successfully."},
+                status=status.HTTP_200_OK,
             )
         except Exception:
-            (
-            {
-                "detail": "your token may be expired or changed structure...",
-                "resend email": "http://127.0.0.1:8000/accounts/api/V1/resend-email",
-            }
-        ) 
+            return Response(
+                {
+                    "detail": "your token may be expired or changed structure...",
+                    "resend email": "http://127.0.0.1:8000/accounts/api/V1/resend-email",
+                }
+            )
+            
