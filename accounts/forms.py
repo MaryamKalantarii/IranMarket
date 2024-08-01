@@ -14,4 +14,5 @@ class OtpForm(forms.Form):
     otp_code =forms.CharField(max_length=4)
 
 
-
+class LoginForm(forms.Form):
+    email = forms.EmailField()

@@ -169,7 +169,7 @@ class ResetPasswordView(GenericAPIView):
         except Exception:
             return Response(
                 {
-                    "detail": "your token may be expired or changed structure...",
+                    "detail": "your token expired or changed structure...",
                     "resend email": "http://127.0.0.1:8000/accounts/api/V1/resend-email",
                 }
             )

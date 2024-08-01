@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
 app_name = "api-v1-accounts"
 
 urlpatterns = [
-
+    
     path("registration/", RegistrationView.as_view(), name="registration"),
     path("is-verified/<str:token>", IsVerifiedView.as_view(), name="is-verification"),
     path("resend-email/", ResendEmailView.as_view(), name="resend-email"),
