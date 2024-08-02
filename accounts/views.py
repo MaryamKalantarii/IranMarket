@@ -70,16 +70,16 @@ class LoginView(FormView):
         self.request.session.pop('code')
         self.request.session.save()
 
-    def form_valid(self, form, request):
+    def form_valid(self, form):
         global redirection
         try : 
-            user = CustomeUser.objects.get(email=request.POST.get('email'))
+            user = CustomeUser.objects.get(email=self.request.POST['email'])
             assert user.password != ""
             redirection = 0
         except AssertionError:
             redirection = 1
         except ObjectDoesNotExist:
-            user = CustomeUser.objects.create_user(email=request.POST.get('email'), username = uuid.uuid4 )
+            user = CustomeUser.objects.create_user(email=self.request.POST.get['email'], username = uuid.uuid4 )
             redirection = 1
        
         code = random.randint(1000, 10000)
@@ -87,7 +87,7 @@ class LoginView(FormView):
         # print(self.request.session.get('code'))
         # tr1 = threading.Thread(target=self.delete_code)
         # tr1.start()
-        message = EmailMessage("email/email.html",{"code":code},"maryam@admin.com",to=[user.email],)
+        message = EmailMessage("email/email2.html",{"code":code},"maryam@admin.com",to=[user.email],)
         email = SendEmailWithThreading(message)
         email.start()
         return redirect("accounts:otp-verify")
