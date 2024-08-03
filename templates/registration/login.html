@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -63,4 +63,10 @@
     </div>
   </div>
 </body>
-</html>
+</html> -->
+
+<form method="post">
+  {% csrf_token %}
+  {{form}}
+  <button type="submit">signup</button>
+</button>

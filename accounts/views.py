@@ -1,7 +1,6 @@
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.views.generic import FormView, CreateView
 from .forms import CustomUserCreation,OtpForm,LoginForm
-from django.views.generic import TemplateView
 import time
 import random
 import threading
@@ -10,6 +9,9 @@ import uuid
 from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
 from .models import CustomeUser
+from django.contrib.auth import login , password_validation
+# from django.contrib.auth.password_validation import validate_password
+
 # # Create your views here.
 
 # class LoginView(TemplateView):
@@ -48,12 +50,12 @@ from .models import CustomeUser
 class OtpVerifyView(FormView):
     template_name = "registration/otp.html"
     form_class = OtpForm
-    success_url = "/"
+    success_url = "/accounts/signup/"
 
     def form_valid(self, form):
         code = self.request.POST['otp_code']
         if (self.request.session.get('code')) and (int(code) == self.request.session['code']):
-            return redirect('/')
+            return redirect("accounts:signup")
         else:
             print(self.request.session.get('code'))
             return redirect(self.request.path_info)
@@ -73,24 +75,55 @@ class LoginView(FormView):
     def form_valid(self, form):
         global redirection
         try : 
-            user = CustomeUser.objects.get(email=self.request.POST['email'])
+            user = CustomeUser.objects.get(email=self.request.POST.get('email'))
             assert user.password != ""
             redirection = 0
         except AssertionError:
             redirection = 1
         except ObjectDoesNotExist:
-            user = CustomeUser.objects.create_user(email=self.request.POST.get['email'], username = uuid.uuid4 )
+            user = CustomeUser.objects.create(email=self.request.POST.get('email'), username = uuid.uuid4 )
             redirection = 1
        
         code = random.randint(1000, 10000)
         self.request.session['code'] = code
-        # print(self.request.session.get('code'))
-        # tr1 = threading.Thread(target=self.delete_code)
-        # tr1.start()
-        message = EmailMessage("email/email2.html",{"code":code},"maryam@admin.com",to=[user.email],)
-        email = SendEmailWithThreading(message)
-        email.start()
+        print(self.request.session.get('code'))
+        tr1 = threading.Thread(target=self.delete_code)
+        tr1.start()
+        # message = EmailMessage("email/email2.html",{"code":code},"maryam@admin.com",to=[user.email],)
+        # email = SendEmailWithThreading(message)
+        # email.start()
         return redirect("accounts:otp-verify")
 
     def form_invalid(self, form):
         return redirect(self.request.path_info)
+    
+
+def signup(request):
+    user = request.user
+    if redirection == 0:
+        login(request, user)
+        return redirect("root:home")
+    else:
+        form = CustomUserCreation()
+        context = {
+                'form': form,
+            }
+        if request.method == "GET" : 
+            return render(request, 'registration/login.html', context=context)
+        elif request.method == "POST" :
+            form = CustomUserCreation(request.POST)
+            if form.is_valid():
+                username = form.cleaned_data['username']
+                password1 = form.cleaned_data['password1']
+                password2 = form.cleaned_data['password2']
+                if password1 == password2:
+                    user.username = username
+                    password_validation.validate_password(password1)
+                    user.set_password(password1)
+                    user.save()
+                    login(request, user)
+                    return redirect('root:home')
+
+
+
+
