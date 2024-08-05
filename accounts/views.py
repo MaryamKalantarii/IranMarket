@@ -9,41 +9,7 @@ import uuid
 from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
 from .models import CustomeUser
-from django.contrib.auth import login , password_validation
-# from django.contrib.auth.password_validation import validate_password
-
-# # Create your views here.
-
-# class LoginView(TemplateView):
-#     template_name = 'registration/login.html'
-
-
-
-
-
-
-# class SignUpView(CreateView):
-#     template_name = 'registration/login-register.html'
-#     form_class = CustomUserCreation
-#     success_url = '/accounts/login/' #'registration/login'
-
-#     def delete_code(self):
-#         time.sleep(15)
-#         self.request.session.pop('code')
-#         self.request.session.save()
-
-#     def form_valid(self, form):
-#         user = form.save()
-#         code = random.randint(1000, 10000)
-#         self.request.session['code'] = code
-#         print(self.request.session.get('code'))
-#         tr1 = threading.Thread(target=self.delete_code)
-#         tr1.start()
-#         return redirect("accounts:otp-verify")
-
-#     def form_invalid(self, form):
-#         return redirect(self.request.path_info)
-       
+from django.contrib.auth import login ,password_validation,authenticate
 
 
 
@@ -124,6 +90,8 @@ def signup(request):
                     login(request, user)
                     return redirect('root:home')
 
+            return render(request, 'registration/login.html', context={'form': form})
 
+        return render(request, 'registration/login.html', context=context)
 
 
