@@ -9,7 +9,7 @@ import uuid
 from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
 from .models import CustomeUser
-from django.contrib.auth import login ,password_validation,authenticate
+from django.contrib.auth import login ,password_validation
 
 
 
@@ -39,7 +39,7 @@ class LoginView(FormView):
         self.request.session.save()
 
     def form_valid(self, form):
-        global redirection
+        global redirection, email
         try : 
             user = CustomeUser.objects.get(email=self.request.POST.get('email'))
             assert user.password != ""
@@ -47,9 +47,10 @@ class LoginView(FormView):
         except AssertionError:
             redirection = 1
         except ObjectDoesNotExist:
-            user = CustomeUser.objects.create(email=self.request.POST.get('email'), username = uuid.uuid4 )
             redirection = 1
-       
+            user = CustomeUser.objects.create(email=self.request.POST.get('email'), username = uuid.uuid4 )
+
+        email = form.cleaned_data['email']
         code = random.randint(1000, 10000)
         self.request.session['code'] = code
         print(self.request.session.get('code'))
@@ -65,7 +66,7 @@ class LoginView(FormView):
     
 
 def signup(request):
-    user = request.user
+    user = CustomeUser.objects.get(email=email)
     if redirection == 0:
         login(request, user)
         return redirect("root:home")
