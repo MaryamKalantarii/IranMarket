@@ -16,3 +16,13 @@ class OtpForm(forms.Form):
 
 class LoginForm(forms.Form):
     email = forms.EmailField()
+
+
+class AuthenticationForm(forms.Form):
+    
+    email = forms.EmailField()
+    password = forms.CharField(
+        label=("Password"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}),
+    )

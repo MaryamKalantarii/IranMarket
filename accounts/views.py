@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView, CreateView, TemplateView
-from .forms import CustomUserCreation,OtpForm,LoginForm
+from .forms import CustomUserCreation,OtpForm,LoginForm,AuthenticationForm
 import time
 import random
 import threading
@@ -9,7 +9,7 @@ import uuid
 from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
 from .models import CustomeUser
-from django.contrib.auth import login ,password_validation,logout
+from django.contrib.auth import login ,password_validation,logout,authenticate
 
 
 
@@ -48,7 +48,7 @@ class LoginView(FormView):
             redirection = 1
         except ObjectDoesNotExist:
             redirection = 1
-            user = CustomeUser.objects.create(email=self.request.POST.get('email'), username = uuid.uuid4 )
+            user = CustomeUser.objects.create(email=self.request.POST.get('email'), username = uuid.uuid4() )
 
         email = form.cleaned_data['email']
         code = random.randint(1000, 10000)
@@ -101,3 +101,17 @@ class Logout(TemplateView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect("/")
+    
+
+class Login_password(FormView):
+     template_name = 'registration/login-password.html'
+     form_class = AuthenticationForm
+     success_url = '/'
+
+     def form_valid(self, form):
+         email = self.request.POST.get('email')
+         password = self.request.POST.get('password')
+         user = authenticate(email=email, password=password)
+         if user is not None:
+              login(self.request, user)
+              return super().form_valid(form)
