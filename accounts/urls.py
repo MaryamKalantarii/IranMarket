@@ -7,6 +7,7 @@ urlpatterns = [
     path('signup/',signup, name='signup'),
     path('otp-verify/', OtpVerifyView.as_view(), name='otp-verify'),
     path('login/', LoginView.as_view(), name='login'),
+    path('logout/', Logout.as_view(), name='logout'),
     
     path('api/V1/',include("accounts.api.V1.urls")),
 

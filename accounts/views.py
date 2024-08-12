@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import FormView, CreateView
+from django.views.generic import FormView, CreateView, TemplateView
 from .forms import CustomUserCreation,OtpForm,LoginForm
 import time
 import random
@@ -9,7 +9,7 @@ import uuid
 from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
 from .models import CustomeUser
-from django.contrib.auth import login ,password_validation
+from django.contrib.auth import login ,password_validation,logout
 
 
 
@@ -96,3 +96,8 @@ def signup(request):
         return render(request, 'registration/login.html', context=context)
 
 
+class Logout(TemplateView):
+    
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect("/")
