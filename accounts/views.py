@@ -10,6 +10,7 @@ from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
 from .models import CustomeUser
 from django.contrib.auth import login ,password_validation,logout,authenticate
+from django.contrib import messages
 
 
 
@@ -62,7 +63,8 @@ class LoginView(FormView):
         return redirect("accounts:otp-verify")
 
     def form_invalid(self, form):
-        return redirect(self.request.path_info)
+        messages.add_message(self.request, messages.ERROR, 'دوباره ایمیل خود را وارد کنید')
+        return super().form_invalid(form)
     
 
 def signup(request):
@@ -91,7 +93,9 @@ def signup(request):
                     login(request, user)
                     return redirect('root:home')
 
-            return render(request, 'registration/login.html', context={'form': form})
+            else:
+                messages.add_message(request, messages.ERROR, 'لطفا رمز عبور یا نام کاربری را درست وارد کنید')
+                return redirect(request.path_info)
 
         return render(request, 'registration/login.html', context=context)
 
@@ -104,14 +108,17 @@ class Logout(TemplateView):
     
 
 class Login_password(FormView):
-     template_name = 'registration/login-password.html'
-     form_class = AuthenticationForm
-     success_url = '/'
+    template_name = 'registration/login-password.html'
+    form_class = AuthenticationForm
+    success_url = '/'
 
-     def form_valid(self, form):
-         email = self.request.POST.get('email')
-         password = self.request.POST.get('password')
-         user = authenticate(email=email, password=password)
-         if user is not None:
-              login(self.request, user)
-              return super().form_valid(form)
+    def form_valid(self, form):
+        email = self.request.POST.get('email')
+        password = self.request.POST.get('password')
+        user = authenticate(email=email, password=password)
+        if user is not None:
+            login(self.request, user)
+            return super().form_valid(form)
+        
+        messages.add_message(self.request, messages.ERROR, 'ایمیل یا رمز عبور اشتباه است')
+        return super().form_invalid(form)

@@ -49,6 +49,11 @@
         <div class="mb-2">
           <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="password" name="password2">
         </div>
+        {% if messages %}
+          {% for message in messages %}
+            {{message}}
+          {% endfor %}
+          {% endif %}
         <div class="text-center mt-5 mb-3">
           <button class="bg-red-500 hover:bg-red-600 transition text-white opacity-80 rounded-2xl w-full py-2" type="submit">
             ورود
