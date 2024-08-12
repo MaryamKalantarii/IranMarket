@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import FormView, CreateView, TemplateView
 from .forms import CustomUserCreation,OtpForm,LoginForm,AuthenticationForm
@@ -20,14 +21,16 @@ class OtpVerifyView(FormView):
     success_url = "/accounts/signup/"
 
     def form_valid(self, form):
-        code = self.request.POST['otp_code']
-        if (self.request.session.get('code')) and (int(code) == self.request.session['code']):
-            return redirect("accounts:signup")
-        else:
-            print(self.request.session.get('code'))
-            return redirect(self.request.path_info)
-
-
+        try:
+            code = self.request.POST['otp_code']
+            if (self.request.session.get('code')) and (int(code) == self.request.session['code']):
+                return redirect("accounts:signup")
+            else:
+                print(self.request.session.get('code'))
+                return redirect(self.request.path_info)
+        except:
+            return render(self.request, 'registration/otp.html')
+    
 
 class LoginView(FormView):
     template_name = 'registration/login-register.html'
