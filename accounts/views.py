@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import FormView, CreateView, TemplateView
+from django.views.generic import FormView, CreateView, TemplateView,UpdateView
 from .forms import CustomUserCreation,OtpForm,LoginForm,AuthenticationForm
 import time
 import random
@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import uuid
 from accounts.api.V1.multi_threading import SendEmailWithThreading
 from mail_templated import EmailMessage
-from .models import CustomeUser
+from .models import CustomeUser,Profail
 from django.contrib.auth import login ,password_validation,logout,authenticate
 from django.contrib import messages
 
@@ -125,3 +125,10 @@ class Login_password(FormView):
         
         messages.add_message(self.request, messages.ERROR, 'ایمیل یا رمز عبور اشتباه است')
         return super().form_invalid(form)
+
+
+class Profile_View(UpdateView):
+    template_name = 'profile/profil.html'
+    model = Profail
+    fields = ['user','first_name','last_name','phone','address','image']
+    success_url="/"
