@@ -128,7 +128,8 @@ class Login_password(FormView):
 
 
 class Profile_View(UpdateView):
-    template_name = 'profile/profil.html'
+    template_name = 'registration/profile.html'
     model = Profail
     fields = ['user','first_name','last_name','phone','address','image']
     success_url="/"
+

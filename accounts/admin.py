@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomeUser
+from .models import CustomeUser,Profail
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -38,3 +38,4 @@ class CustomeUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomeUser, CustomeUserAdmin)
+admin.site.register(Profail)
