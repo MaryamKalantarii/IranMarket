@@ -1,6 +1,7 @@
+from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import FormView, CreateView, TemplateView,UpdateView
+from django.views.generic import FormView, CreateView, TemplateView,UpdateView,ListView,DetailView
 from .forms import CustomUserCreation,OtpForm,LoginForm,AuthenticationForm
 import time
 import random
@@ -127,9 +128,16 @@ class Login_password(FormView):
         return super().form_invalid(form)
 
 
-class Profile_View(UpdateView):
-    template_name = 'registration/profile.html'
+
+
+
+class Profile_Edit(UpdateView):
+    template_name = 'profile/profile-personal-info.html'
     model = Profail
     fields = ['user','first_name','last_name','phone','address','image']
     success_url="/"
 
+class Profile_View(DetailView):
+    model = Profail
+    template_name = 'registration/profile.html'
+    context_object_name = 'profile'

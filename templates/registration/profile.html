@@ -9,7 +9,7 @@
           <div class="border rounded-3xl shadow-lg flex flex-col justify-center items-center py-4 gap-y-5">
             <img class="border rounded-full w-24" src="{% static 'assets/image/team-2.jpg' %}" alt="">
             <span class="font-semibold opacity-80">
-              امیررضا کریمی
+              {{request.user.username}}
             </span>
             <span class="text-xs opacity-70">
               عضویت 2 سال
@@ -19,10 +19,10 @@
                 شماره تلفن: 
               </div>
               <div>
-                09304444444
+                {{profile.phone}}
               </div>
             </span>
-            <a href="" class="text-sm opacity-80 border-t w-full pt-2 flex justify-center flex-row-reverse items-center hover:text-red-600 transition">
+            <a href="{% url 'accounts:logout' %}" class="text-sm opacity-80 border-t w-full pt-2 flex justify-center flex-row-reverse items-center hover:text-red-600 transition">
               خروج از حساب
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#474747" viewBox="0 0 256 256"><path d="M110,216a6,6,0,0,1-6,6H48a14,14,0,0,1-14-14V48A14,14,0,0,1,48,34h56a6,6,0,0,1,0,12H48a2,2,0,0,0-2,2V208a2,2,0,0,0,2,2h56A6,6,0,0,1,110,216Zm110.24-92.24-40-40a6,6,0,0,0-8.48,8.48L201.51,122H104a6,6,0,0,0,0,12h97.51l-29.75,29.76a6,6,0,1,0,8.48,8.48l40-40A6,6,0,0,0,220.24,123.76Z"></path></svg>
             </a>
@@ -48,7 +48,7 @@
               نظرات من
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#474747" viewBox="0 0 256 256"><path d="M138,128a10,10,0,1,1-10-10A10,10,0,0,1,138,128ZM84,118a10,10,0,1,0,10,10A10,10,0,0,0,84,118Zm88,0a10,10,0,1,0,10,10A10,10,0,0,0,172,118Zm58,10A102,102,0,0,1,79.31,217.65L44.44,229.27a14,14,0,0,1-17.71-17.71l11.62-34.87A102,102,0,1,1,230,128Zm-12,0A90,90,0,1,0,50.08,173.06a6,6,0,0,1,.5,4.91L38.12,215.35a2,2,0,0,0,2.53,2.53L78,205.42a6.2,6.2,0,0,1,1.9-.31,6.09,6.09,0,0,1,3,.81A90,90,0,0,0,218,128Z"></path></svg>
             </a>
-            <a href="profile-personal-info.html" class="text-sm opacity-80 w-full flex justify-end pr-5 flex-row-reverse items-center hover:text-red-600 transition hover:bg-gray-100 py-3 rounded-2xl">
+            <a href="{% url 'accounts:profile' request.user.id %}" class="text-sm opacity-80 w-full flex justify-end pr-5 flex-row-reverse items-center hover:text-red-600 transition hover:bg-gray-100 py-3 rounded-2xl">
               اطلاعات حساب
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#474747" viewBox="0 0 256 256"><path d="M142,176a6,6,0,0,1-6,6,14,14,0,0,1-14-14V128a2,2,0,0,0-2-2,6,6,0,0,1,0-12,14,14,0,0,1,14,14v40a2,2,0,0,0,2,2A6,6,0,0,1,142,176ZM124,94a10,10,0,1,0-10-10A10,10,0,0,0,124,94Zm106,34A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128Z"></path></svg>
             </a>
@@ -60,28 +60,28 @@
             <div class="flex border-b pb-2">
               <div class="w-1/2">
                 <div class="text-xs opacity-80 mb-1">
-                  نام و نام خانوادگی:
+                  نام :
                 </div>
                 <div class="text-sm opacity-90">
-                  امیرررر
+                  {{profile.first_name}}
                 </div>
               </div>
               <div class="w-1/2">
                 <div class="text-xs opacity-80 mb-1">
-                  ایمیل:
+                  نام خانوادگی:
                 </div>
                 <div class="text-sm opacity-90">
-                  aaaaaaaa@gmail.com
+                  {{profile.last_name}}
                 </div>
               </div>
             </div>
             <div class="flex border-b pb-2">
               <div class="w-1/2">
                 <div class="text-xs opacity-80 mb-1">
-                  شماره تلفن همراه:
+                  ایمیل:
                 </div>
                 <div class="text-sm opacity-90">
-                  0999999999
+                  {{request.user.email}}
                 </div>
               </div>
               <div class="w-1/2">
@@ -89,30 +89,23 @@
                   تاریخ عضویت:
                 </div>
                 <div class="text-sm opacity-90">
-                  1402/12/01
+                  {{request.user.created_date}}
                 </div>
               </div>
             </div>
             <div class="flex border-b pb-2">
               <div class="w-1/2">
                 <div class="text-xs opacity-80 mb-1">
-                  احراز هویت:
+                  شماره تلفن:
                 </div>
                 <div class="text-sm opacity-90">
-                  خیر
+                  {{profile.phone}}
                 </div>
               </div>
-              <div class="w-1/2">
-                <div class="text-xs opacity-80 mb-1">
-                  کدملی:
-                </div>
-                <div class="text-sm opacity-90">
-                  0888888888
-                </div>
-              </div>
+              
             </div>
             <span class="opacity-90">
-              <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">ویرایش اطلاعات</button>
+              <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm" type="submit">ویرایش اطلاعات</button>
             </span>
           </div>
         </div>
