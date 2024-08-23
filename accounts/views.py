@@ -1,5 +1,3 @@
-from django.db.models.query import QuerySet
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import FormView, CreateView, TemplateView,UpdateView,ListView,DetailView
 from .forms import CustomUserCreation,OtpForm,LoginForm,AuthenticationForm
@@ -13,6 +11,8 @@ from mail_templated import EmailMessage
 from .models import CustomeUser,Profail
 from django.contrib.auth import login ,password_validation,logout,authenticate
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+
 
 
 
@@ -137,7 +137,22 @@ class Profile_Edit(UpdateView):
     fields = ['user','first_name','last_name','phone','address','image']
     success_url="/"
 
+    def get(self, request, *args, **kwargs):
+    
+        return render(request, 'profile/profile-personal-info.html')
+
+
 class Profile_View(DetailView):
     model = Profail
     template_name = 'registration/profile.html'
     context_object_name = 'profile'
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile = get_object_or_404(Profail, user=user)
+        context = {
+            'profile': profile
+        }
+        
+        return render(request, 'registration/profile.html',context=context)
+        
