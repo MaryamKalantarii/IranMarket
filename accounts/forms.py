@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomeUser
+from .models import CustomeUser,Profail
 
 
 class CustomUserCreation(UserCreationForm):
@@ -28,3 +28,8 @@ class AuthenticationForm(forms.Form):
     )
 
 
+class Profile_Form(forms.ModelForm):
+
+    class Meta:
+        model = Profail
+        fields = ['user','first_name','last_name','phone','address','image']

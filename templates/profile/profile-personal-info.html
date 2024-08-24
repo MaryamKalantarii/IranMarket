@@ -54,37 +54,32 @@
             </a>
           </div>
         </div>
+        
         <div class="md:w-8/12 lg:w-9/12 flex flex-col gap-y-5">
+          <form method="post">
+            {% csrf_token %}
           <div class="border rounded-3xl shadow-lg flex flex-col p-5 gap-y-5">
             <div class="sm:grid grid-cols-2 gap-x-5">
               <div class="mb-4">
                 <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نام</label>
-                <input type="text" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
+                <input type="text" name="first_name" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div>
               <div class="mb-4">
                 <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نام خانوادگی</label>
-                <input type="text" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
+                <input type="text" name="last_name" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div>
               <div class="mb-4">
                 <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">شماره همراه</label>
-                <input type="number" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
+                <input type="number" name="phone" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div>
               <div class="mb-4">
-                <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">ایمیل</label>
-                <input type="email" class="text-sm block w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
+                <input type="hidden" name="user" value={{request.user.id}} class="text-sm block w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div>
               <div class="mb-4">
-                <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">رمز عبور قبلی</label>
-                <input type="text" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
+                <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">آدرس</label>
+                <input type="text" name="address" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div>
-              <div class="mb-4">
-                <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">رمز عبور جدید</label>
-                <input type="password" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
-              </div>
-              <div class="mb-4">
-                <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">تکرار رمز عبور جدید</label>
-                <input type="password" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
-              </div>
+        
               <div class="flex items-center pt-7 h-16">
                 <span class="w-auto ml-2 font-semibold text-xs text-slate-700">
                   تغییر عکس پروفایل
@@ -95,16 +90,18 @@
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                     </svg>
                   </div>
-                  <input id="dropzone-file" type="file" class="hidden" />
+                  <input id="dropzone-file" type="file" class="hidden" name="image" />
                 </label>
               </div> 
             </div>
             <span class="opacity-90">
-              <button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm">ثبت</button>
+              <button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm" type="submit">ثبت</button>
               <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">لغو</button>
             </span>
           </div>
+        </form>
         </div>
+      
       </div>
     </div>
   </div>

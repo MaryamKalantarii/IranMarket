@@ -1,6 +1,7 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import FormView, CreateView, TemplateView,UpdateView,ListView,DetailView
-from .forms import CustomUserCreation,OtpForm,LoginForm,AuthenticationForm
+from .forms import *
 import time
 import random
 import threading
@@ -131,15 +132,32 @@ class Login_password(FormView):
 
 
 
-class Profile_Edit(UpdateView):
-    template_name = 'profile/profile-personal-info.html'
-    model = Profail
-    fields = ['user','first_name','last_name','phone','address','image']
-    success_url="/"
+# class Profile_Edit(UpdateView):
+#     template_name = 'profile/profile-personal-info.html'
+#     model = Profail
+#     fields = ['user','first_name','last_name','phone','address','image']
+#     success_url="/"
 
-    def get(self, request, *args, **kwargs):
-    
-        return render(request, 'profile/profile-personal-info.html')
+#     def get(self, request, *args, **kwargs):
+#         return render(request, 'profile/profile-personal-info.html')
+#     def post(self, request, *args, **kwargs) :
+        
+#         return redirect('root:home')
+
+def profile_Edit(request,pk):
+
+    if request.method == 'GET':
+        form = Profile_Form()
+        return render (request,'profile/profile-personal-info.html',{'form':form})
+    elif request.method == 'POST':
+        profile = Profail.objects.get(user=pk)
+        form = Profile_Form(request.POST,request.FILES ,instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('root:home')
+        else:
+            return render (request,'profile/profile-personal-info.html',{'form':form})
+
 
 
 class Profile_View(DetailView):
