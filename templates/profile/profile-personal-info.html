@@ -9,7 +9,7 @@
           <div class="border rounded-3xl shadow-lg flex flex-col justify-center items-center py-4 gap-y-5">
             <img class="border rounded-full w-24" src="{% static 'assets/image/team-2.jpg' %}" alt="">
             <span class="font-semibold opacity-80">
-              امیررضا کریمی
+             {{request.user.username}}
             </span>
             <span class="text-xs opacity-70">
               عضویت 2 سال
@@ -19,16 +19,16 @@
                 شماره تلفن: 
               </div>
               <div>
-                09304444444
+                {{profile.phone}}
               </div>
             </span>
-            <a href="" class="text-sm opacity-80 border-t w-full pt-2 flex justify-center flex-row-reverse items-center hover:text-red-600 transition">
+            <a href="{% url 'accounts:logout' %}" class="text-sm opacity-80 border-t w-full pt-2 flex justify-center flex-row-reverse items-center hover:text-red-600 transition">
               خروج از حساب
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#474747" viewBox="0 0 256 256"><path d="M110,216a6,6,0,0,1-6,6H48a14,14,0,0,1-14-14V48A14,14,0,0,1,48,34h56a6,6,0,0,1,0,12H48a2,2,0,0,0-2,2V208a2,2,0,0,0,2,2h56A6,6,0,0,1,110,216Zm110.24-92.24-40-40a6,6,0,0,0-8.48,8.48L201.51,122H104a6,6,0,0,0,0,12h97.51l-29.75,29.76a6,6,0,1,0,8.48,8.48l40-40A6,6,0,0,0,220.24,123.76Z"></path></svg>
             </a>
           </div>
           <div class="border rounded-3xl shadow-lg flex flex-col justify-center items-center p-2 gap-y-2">
-            <a href="./profile.html" class="text-sm opacity-80 w-full flex justify-end pr-5 flex-row-reverse items-center hover:text-red-600 transition hover:bg-gray-100 py-3 rounded-2xl">
+            <a href="{% url 'accounts:profile-view' request.user.id %}" class="text-sm opacity-80 w-full flex justify-end pr-5 flex-row-reverse items-center hover:text-red-600 transition hover:bg-gray-100 py-3 rounded-2xl">
               پروفایل
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#474747" viewBox="0 0 256 256"><path d="M229.19,213c-15.81-27.32-40.63-46.49-69.47-54.62a70,70,0,1,0-63.44,0C67.44,166.5,42.62,185.67,26.81,213a6,6,0,1,0,10.38,6C56.4,185.81,90.34,166,128,166s71.6,19.81,90.81,53a6,6,0,1,0,10.38-6ZM70,96a58,58,0,1,1,58,58A58.07,58.07,0,0,1,70,96Z"></path></svg>            
             </a>
@@ -56,10 +56,11 @@
         </div>
         
         <div class="md:w-8/12 lg:w-9/12 flex flex-col gap-y-5">
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
           <div class="border rounded-3xl shadow-lg flex flex-col p-5 gap-y-5">
             <div class="sm:grid grid-cols-2 gap-x-5">
+              
               <div class="mb-4">
                 <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نام</label>
                 <input type="text" name="first_name" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
@@ -72,9 +73,7 @@
                 <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">شماره همراه</label>
                 <input type="number" name="phone" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div>
-              <div class="mb-4">
-                <input type="hidden" name="user" value={{request.user.id}} class="text-sm block w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
-              </div>
+              
               <div class="mb-4">
                 <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">آدرس</label>
                 <input type="text" name="address" class="text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
@@ -92,6 +91,9 @@
                   </div>
                   <input id="dropzone-file" type="file" class="hidden" name="image" />
                 </label>
+              </div>
+              <div class="mb-4">
+                <input type="hidden" name="user" value={{request.user.id}} class="text-sm block w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
               </div> 
             </div>
             <span class="opacity-90">

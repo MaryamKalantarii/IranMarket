@@ -130,20 +130,6 @@ class Login_password(FormView):
 
 
 
-
-
-# class Profile_Edit(UpdateView):
-#     template_name = 'profile/profile-personal-info.html'
-#     model = Profail
-#     fields = ['user','first_name','last_name','phone','address','image']
-#     success_url="/"
-
-#     def get(self, request, *args, **kwargs):
-#         return render(request, 'profile/profile-personal-info.html')
-#     def post(self, request, *args, **kwargs) :
-        
-#         return redirect('root:home')
-
 def profile_Edit(request,pk):
 
     if request.method == 'GET':
