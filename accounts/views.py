@@ -134,12 +134,20 @@ def profile_Edit(request,pk):
 
     if request.method == 'GET':
         form = Profile_Form()
-        return render (request,'profile/profile-personal-info.html',{'form':form})
+        user = request.user
+        profile = get_object_or_404(Profail, user=user)
+        context = {
+            'form':form,
+            'profile': profile
+        }
+        return render (request,'profile/profile-personal-info.html',context=context)
     elif request.method == 'POST':
         profile = Profail.objects.get(user=pk)
         form = Profile_Form(request.POST,request.FILES ,instance=profile)
         if form.is_valid():
             form.save()
+            request.user.is_verified = True
+            request.user.save()
             return redirect('root:home')
         else:
             return render (request,'profile/profile-personal-info.html',{'form':form})
