@@ -4,18 +4,20 @@ from django.db import models
 
 class Category_clothing(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
     
 class Category_Dijitalgoods(models.Model):
     name = models.CharField(max_length=255)
-
+    slug = models.SlugField(allow_unicode=True,unique=True)
     def __str__(self):
         return self.name
 
 class Category_Homeappliances(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
@@ -30,12 +32,14 @@ class Category_Beauty(models.Model):
 
 class Category_Appliances(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
     
 class Category_Supermarket(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
@@ -43,6 +47,7 @@ class Category_Supermarket(models.Model):
 
 class Category_Child_and_baby(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
@@ -50,6 +55,7 @@ class Category_Child_and_baby(models.Model):
 class Category_brand(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='Brandimage')
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
@@ -58,6 +64,7 @@ class Category_brand(models.Model):
 class Category_color(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='colors')
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     def __str__(self):
         return self.name
@@ -75,6 +82,7 @@ class Clothing(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='clothings')
     image2 = models.ImageField(upload_to='clothings', null=True ,blank=True)
@@ -116,6 +124,7 @@ class Dijitalgoods(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='dititalgoods')
     image2 = models.ImageField(upload_to='dititalgoods', null=True ,blank=True)
@@ -160,6 +169,7 @@ class Homeappliances(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='homeappliances')
     image2 = models.ImageField(upload_to='homeappliances', null=True ,blank=True)
@@ -204,6 +214,7 @@ class Beauty(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='beauty')
     image2 = models.ImageField(upload_to='beauty', null=True ,blank=True)
@@ -250,6 +261,7 @@ class Appliances(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='appliances')
     image2 = models.ImageField(upload_to='appliances', null=True ,blank=True)
@@ -294,6 +306,7 @@ class Supermarket(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='supermarkets')
     image2 = models.ImageField(upload_to='supermarkets', null=True ,blank=True)
@@ -336,6 +349,7 @@ class Child_and_baby(models.Model):
     content3= models.CharField(max_length=255,null=True,blank=True)
     content4= models.CharField(max_length=255,null=True,blank=True)
     content5= models.CharField(max_length=255,null=True,blank=True)
+    slug = models.SlugField(allow_unicode=True,unique=True)
 
     image1 = models.ImageField(upload_to='child_and_baby')
     image2 = models.ImageField(upload_to='child_and_baby', null=True ,blank=True)
