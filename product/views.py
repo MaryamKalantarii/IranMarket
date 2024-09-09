@@ -4,15 +4,15 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 class ClothingView(TemplateView):
-    template_name = 'product/category_clothing.html'
+    template_name = 'product/product_clothing/category_clothing.html'
 
 
 class DijitalgoodsView(TemplateView):
-    template_name = 'product/category_Dijitalgoods.html'
+    template_name = 'product/product_dijitalgoods/category_Dijitalgoods.html'
 
 
 class HomeappliancesView(TemplateView):
-    template_name = 'product/category_Homeappliances.html'
+    template_name = 'product/product_homeappliances/category_Homeappliances.html'
 
 
 class BeautyView(TemplateView):

@@ -13,6 +13,7 @@ urlpatterns =[
     path("category-supermarket/",SupermarketView.as_view(),name="category-supermarket"),
     path("category-child/",Child_and_babyView.as_view(),name="category-child"),
 
+    
 
 
     
