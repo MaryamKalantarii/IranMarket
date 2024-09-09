@@ -1,11 +1,20 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,ListView
 
 # Create your views here.
 
 class ClothingView(TemplateView):
     template_name = 'product/product_clothing/category_clothing.html'
 
+class ClothingGrid(TemplateView):
+    template_name = 'product/product_clothing/category.html'
+
+class Clothing_detaile(TemplateView):
+    template_name = 'product/product_clothing/single-product.html'
+
+
+
+#########################
 
 class DijitalgoodsView(TemplateView):
     template_name = 'product/product_dijitalgoods/category_Dijitalgoods.html'

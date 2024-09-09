@@ -6,6 +6,10 @@ app_name = 'product'
 urlpatterns =[
     # path("",ProductView.as_view(),name="products"),
     path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
+    path("category-grid/",ClothingGrid.as_view(),name="category-grid"),
+    path("categoy-detaile/",Clothing_detaile.as_view(),name="categoy-detaile"),
+
+
     path("category-dijitalgoods/",DijitalgoodsView.as_view(),name="category-dijitalgoods"),
     path("category-homeappliances/",HomeappliancesView.as_view(),name="category-homeappliances"),
     path("category-beauty/", BeautyView.as_view(),name="category-beauty"),
