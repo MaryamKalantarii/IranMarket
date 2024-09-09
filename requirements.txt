@@ -7,6 +7,7 @@ django-mail-templated==2.6.5
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
+Faker==28.4.1
 inflection==0.5.1
 jsonschema==4.22.0
 jsonschema-specifications==2023.12.1
@@ -14,11 +15,13 @@ Markdown==3.6
 packaging==24.0
 pillow==10.3.0
 PyJWT==2.8.0
+python-dateutil==2.9.0.post0
 pytz==2024.1
 PyYAML==6.0.1
 referencing==0.35.1
 rpds-py==0.18.1
 setuptools==69.1.0
+six==1.16.0
 sqlparse==0.5.0
 swagger-spec-validator==3.0.3
 typing_extensions==4.11.0
