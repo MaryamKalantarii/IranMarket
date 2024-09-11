@@ -1,6 +1,6 @@
 from django.urls import path,include
 from .views import *
-
+from . import views
 
 app_name = 'product'
 urlpatterns =[
@@ -8,6 +8,7 @@ urlpatterns =[
     path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
     path("category-grid/",ClothingGrid.as_view(),name="category-grid"),
     path("categoy-detaile/",Clothing_detaile.as_view(),name="categoy-detaile"),
+    
 
 
     path("category-dijitalgoods/",DijitalgoodsView.as_view(),name="category-dijitalgoods"),

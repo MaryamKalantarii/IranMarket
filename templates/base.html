@@ -32,12 +32,18 @@
         </a>
         <div class="order-3 w-full mt-3 lg:mt-0 lg:w-5/12 lg:mr-[10%]">
           <div class="relative">
-            <input
-              type="search"
+            <form action="" >
+            <input 
+              name="q"
+              type="text"
               id="default-search"
               class="sm:block w-full px-4 py-3 sm:pl-12 text-sm sm:text-base pl-8 text-red-900 placeholder:text-red-600 rounded-2xl text-right placeholder:text-sm focus:outline-red-400 border-2 border-red-400"
-              placeholder="جستجو محصول"
-              onfocus="showModalSearch()"/>
+              placeholder="جستجو محصول" 
+              onfocus="showModalSearch()"
+              onkeydown="if(event.key === 'Enter'){ this.form.submit(); }"  
+            />
+           
+            </form>
             <div
               class="absolute inset-y-0 left-0 flex items-center pl-4">
               <img class="w-5 h-5 text-gray-500" src="{% static 'assets/image/search.png' %}" alt="" />
@@ -143,7 +149,9 @@
               </div>
             </div>
           </div>
+        
         </div>
+
         <div class="order-4 hidden lg:flex">
           <span
             class="block relative"
@@ -370,6 +378,8 @@
           </button>
         </div>
       </nav>
+
+      
       <!-- DOWN -->
       <div class="w-full">
         <div class="py-2 px-5 bg-white shadow-stone-50 shadow-md hidden lg:block">
@@ -387,7 +397,7 @@
                 x-data="{showChildren:false}"
                 >
                 <a
-                  href="{% url 'product:category-grid' %}"
+                  href="{% url 'product:category-clothing' %}"
                   class="flex items-center h-10 leading-10 px-3 text-sm mx-1 transition text-gray-700 hover:text-red-500"
                   
                   @mouseenter="showChildren=true"
@@ -419,7 +429,7 @@
                   poshak.append(`<li
                             class="relative">
                             <a
-                              href="{% url 'product:category-clothing' %}"
+                              href="/product/category-grid/?category=${poshaks.slug}"
                               class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                               <span class="flex-1">${poshaks.name}</span>
                             </a>

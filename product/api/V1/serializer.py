@@ -9,7 +9,7 @@ class ClothingSerializer(serializers.ModelSerializer):
         fields = ["title","content1","content2","content3","content4","content5",
                     "image1", "image2", "image3","image4",
                     "more_details","category_clothing","category_color",
-                    "price","number" ,"off","size","status","amazing_offer"
+                    "price","number" ,"off","size","status","amazing_offer","slug"
                    ]
 
     def to_representation(self, instance):
@@ -149,7 +149,7 @@ class Category_clothing_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category_clothing
-        fields = ["id", "name"]
+        fields = ["id", "name","slug"]
 
 class Category_Dijitalgoods_Serializer(serializers.ModelSerializer):
 
