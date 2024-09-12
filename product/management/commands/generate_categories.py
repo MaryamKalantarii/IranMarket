@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from faker import Faker
-from product.models import Category_clothing
+from product.models import Category_clothing,Category_color
 from django.utils.text import slugify
 
 
@@ -16,3 +16,4 @@ class Command(BaseCommand):
             slug = slugify(name, allow_unicode=True)
             Category_clothing.objects.get_or_create(name=name, slug=slug)
         self.stdout.write(self.style.SUCCESS('Successfully generated 10 fake categories'))
+
