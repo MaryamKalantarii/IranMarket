@@ -30,8 +30,8 @@ class ClothingGrid(ListView):
         print(f"Category slug: {category_slug}")
         if category_slug:
             queryset = queryset.filter(category_clothing__slug=category_slug)
-        print(f"Queryset after filtering: {queryset}")
-
+       
+    
         return queryset
 
 
