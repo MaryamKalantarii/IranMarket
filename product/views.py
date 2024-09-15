@@ -7,18 +7,15 @@ class ClothingView(TemplateView):
     template_name = 'product/product_clothing/category_clothing.html'
 
 
-# class ClothingGrid(TemplateView):
-#     template_name = 'product/product_clothing/category.html'
-
 
 
 
 class ClothingGrid(ListView):
-    model = Clothing
+    
     template_name = 'product/product_clothing/category-grid.html'
-
+    
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Clothing.objects.filter(status=True)
 
         # دریافت پارامتر جستجو
         search_q = self.request.GET.get("q")
@@ -27,12 +24,17 @@ class ClothingGrid(ListView):
 
         # فیلتر بر اساس کتگوری
         category_slug = self.request.GET.get("category")
-        print(f"Category slug: {category_slug}")
         if category_slug:
             queryset = queryset.filter(category_clothing__slug=category_slug)
-       
-    
+
+        
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category_clothing.objects.all()  # ارسال لیست همه کتگوری‌ها به تمپلیت
+        context['selected_category'] = self.request.GET.get('category')
+        return context
 
 
 

@@ -418,27 +418,18 @@
                   x-transition:leave-end="opacity-0 translate-y-4"
                   style="display: none" @mouseenter="showChildren=true"
                   @mouseleave="showChildren=false">
-                  <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="poshak">
-                    <ul class="list-reset" >
 
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script>
-                $.get( "http://127.0.0.1:8000/product/api/V1/category_clothing/", function( data ) {
-                poshak = $("#poshak")
-                for ( poshaks of data){
-                  poshak.append(`<li
-                            class="relative">
-                            <a
-                              href="/product/category-grid/?category=${poshaks.slug}"
-                              class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                              <span class="flex-1">${poshaks.name}</span>
-                            </a>
-                          </li>`)
-                }
-              });
-    
-    </script>  
-                      
+                  <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset" >
+                      {% for category in categories %}
+              
+                      <li class="relative">
+                        <a href="/product/category-grid/?category={{ category.slug }}"
+                        class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer {% if category.slug == selected_category %}bg-red-200{% endif %}">
+                        <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -472,21 +463,16 @@
                   style="display: none">
                   <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="kaladijital">
                     <ul class="list-reset">
-                  <script>
-                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Dijitalgoods/", function( data ) {
-                          kaladijital = $("#kaladijital")
-                        for ( kaladijitals of data){
-                          kaladijital.append(`<li
+                      {% for category in categories %}
+                  <li
                                     class="relative">
                                     <a
                                       href="{% url 'product:category-dijitalgoods' %}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1">${kaladijitals.name}</span>
+                                      <span class="flex-1">{{category.name}}</span>
                                     </a>
-                                  </li>`)
-                        }
-                      });
-                  </script>  
+                                  </li>
+                                  {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -519,22 +505,16 @@
                   @mouseleave="showChildren=false"
                   style="display: none">
                   <div
-                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="lavazemkhonegi">
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" >
                     <ul class="list-reset">
-                    <script>
-                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Homeappliances/", function( data ) {
-                          lavazemkhonegi = $("#lavazemkhonegi")
-                        for ( lavazemkhonegis of data){
-                          lavazemkhonegi.append(`<li
+                  <li
                                     class="relative">
                                     <a
                                       href="{% url 'product:category-homeappliances' %}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1">${lavazemkhonegis.name}</span>
+                                      <span class="flex-1"></span>
                                     </a>
-                                  </li>`)
-                        }
-                      });
+                                  </li>
             
                     </script>  
                     </ul>
@@ -571,22 +551,14 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="arayeshi">
                     <ul class="list-reset">
-                    <script>
-                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Beauty/", function( data ) {
-                          arayeshi = $("#arayeshi")
-                        for ( arayeshis of data){
-                          arayeshi.append(`<li
+                  <li
                                     class="relative">
                                     <a
                                       href="{% url 'product:category-beauty' %}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1">${arayeshis.name}</span>
+                                      <span class="flex-1"></span>
                                     </a>
-                                  </li>`)
-                        }
-                      });
-            
-                    </script>  
+                                  </li>
                     </ul>
                   </div>
                 </div>
@@ -621,22 +593,14 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="lavazembarqi">
                     <ul class="list-reset">
-                      <script>
-                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Appliances/", function( data ) {
-                          lavazembarqi = $("#lavazembarqi")
-                        for ( lavazembarqis of data){
-                          lavazembarqi.append(`<li
+                     <li
                                     class="relative">
                                     <a
                                       href="{% url 'product:category-appliances' %}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1">${lavazembarqis.name}</span>
+                                      <span class="flex-1"></span>
                                     </a>
-                                  </li>`)
-                        }
-                      });
-            
-                    </script>  
+                                  </li>
                     </ul>
                   </div>
                 </div>
@@ -671,22 +635,14 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="supermarket">
                     <ul class="list-reset">
-                      <script>
-                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Supermarket/", function( data ) {
-                          supermarket = $("#supermarket")
-                        for ( supermarkets of data){
-                          supermarket.append(`<li
+                    <li
                                     class="relative">
                                     <a
                                       href="{% url 'product:category-supermarket' %}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1">${supermarkets.name}</span>
+                                      <span class="flex-1"></span>
                                     </a>
-                                  </li>`)
-                        }
-                      });
-            
-                    </script>  
+                                  </li>
                     </ul>
                   </div>
                 </div>
@@ -721,22 +677,15 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="baby">
                     <ul class="list-reset">
-                      <script>
-                        $.get( "http://127.0.0.1:8000/product/api/V1/category_Child_and_baby/", function( data ) {
-                          baby = $("#baby")
-                        for ( babys of data){
-                          baby.append(`<li
+                      <li
                                     class="relative">
                                     <a
                                       href="{% url 'product:category-child' %}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1">${babys.name}</span>
+                                      <span class="flex-1"></span>
                                     </a>
-                                  </li>`)
-                        }
-                      });
-            
-                    </script>  
+                                  </li>
+                   
                     </ul>
                   </div>
                 </div>
