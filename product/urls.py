@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path,include,re_path
 from .views import *
 from . import views
 
@@ -7,7 +7,7 @@ urlpatterns =[
     # path("",ProductView.as_view(),name="products"),
     path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
     path("category-grid/",ClothingGrid.as_view(),name="category-grid"),
-    path("categoy-detaile/",Clothing_detaile.as_view(),name="categoy-detaile"),
+    re_path(r"categoy-detaile/(?P<slug>[-\w]+)/",Clothing_detaile.as_view(),name="categoy-detaile"),
     
 
 

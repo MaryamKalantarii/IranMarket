@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView,ListView,DetailView
 from product.models import *
 # Create your views here.
 
@@ -39,8 +39,13 @@ class ClothingGrid(ListView):
 
 
 
-class Clothing_detaile(TemplateView):
+class Clothing_detaile(DetailView):
+
     template_name = 'product/product_clothing/single-product.html'
+    queryset = Clothing.objects.filter(status=True)
+   
+
+
 
 
 

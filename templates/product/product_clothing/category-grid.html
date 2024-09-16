@@ -132,7 +132,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 px-1 rounded-2xl py-5" >
               
               {% for object in object_list %}
-              <a href="{% url 'product:categoy-detaile' %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
+              <a href="{% url 'product:categoy-detaile' slug=object.slug %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
                 <div class="image-box sm:mb-6">
                   <div>
                     <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="{{object.image1.url}}" alt="" />
@@ -150,6 +150,9 @@
                   <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
                     {% for category in object.category_clothing.all %}
                    <div>{{category.name}}</div> 
+                   {% if not forloop.last %}
+                    ,
+                  {% endif %}
                    {% endfor %}
                   </div>
                   

@@ -59,11 +59,18 @@
           </div>
           <div class="w-full lg:w-2/3 mt-5 md:mt-0">
             <div class="opacity-80 text-lg font-semibold">
-              گوشی موبایل اپل مدل iPhone 13 Pro تک سیم کارت ظرفیت یک ترابایت و رم 6 گیگابایت
+              {{object.title}}
             </div>
-            <div class="opacity-50 text-xs mt-2 mb-4">
-              Apple iPhone 13 Pro Single SIM 1TB And 6GB RAM Mobile Phone
-            </div>
+            
+              {% for category in object.category_clothing.all %}
+             <a href="#">{{category.name}}</a> 
+             {% if not forloop.last %}
+              ,
+            {% endif %}
+             {% endfor %}
+            
+
+            
             <div class="md:flex sm:pr-7">
               <div class="md:w-2/3">
                 <div class="flex items-center">
@@ -154,53 +161,33 @@
                   <div class="flex flex-col gap-y-2 text-xs">
                     <div class=" flex items-center">
                       <h3 class="opacity-60 ml-1">
-                        پردازنده:
+                        {{object.content1}}
                       </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          AM 32x new design
-                        </div>
-                      </div>
+                      
                     </div>
                     <div class=" flex items-center">
                       <h3 class="opacity-70 ml-1">
-                        سیستم عامل:
+                        {{object.content2}}
                       </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          IOS
-                        </div>
-                      </div>
+                      
                     </div>
                     <div class=" flex items-center">
                       <h3 class="opacity-70 ml-1">
-                        فناوری ساخت:
+                        {{object.content3}}
                       </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          A2C
-                        </div>
-                      </div>
+                      
                     </div>
                     <div class=" flex items-center">
                       <h3 class="opacity-70 ml-1">
-                        دوربین عقب:
+                        {{object.content4}}
                       </h3>
-                      <div class="opacity-80 ">
-                        <div class="text-right">
-                          64
-                        </div>
-                      </div>
+                     
                     </div>
                     <div class=" flex items-center">
                       <h3 class="opacity-70 ml-1">
-                        دوربین جلو:
+                        {{object.content5}}
                       </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          32
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -210,7 +197,7 @@
                   <div class="flex justify-between px-3 py-5">
                     <div class="text-right opacity-80 text-sm flex flex-col gap-y-6">
                       <div>
-                        گارانتی:
+                        اندازه:
                       </div>
                       <div>
                         موجود در انبار:
@@ -224,14 +211,14 @@
                     </div>
                     <div class="text-left opacity-70 text-sm flex flex-col gap-y-6">
                       <div>
-                        6 ماهه تمام
+                        {{object.size}}
                       </div>
                       <div>
-                        7 عدد
+                        {{object.number}}
                       </div>
                       <div class="flex text-red-500">
                         <div>
-                          21,000,000
+                          {{object.price}}
                         </div>
                         <div>
                           تومان
@@ -315,8 +302,8 @@
                 معرفی کوتاه محصول
               </span>
               <p class="text-gray-500 text-sm leading-7 mt-3">
-                اپل همواره توانسته است گوشی‌های هوشمند قدرتمند و بسیار باکیفیتی را روانه بازار کند و پرچمداران سری 13 هم توانستند با بهره بردن از مشخصات فنی قدرتمند، نه‌تنها به نسبت نسل قبلی یعنی خانواده iPhone12، بلکه به نسبت پرچمداران مدعی دیگر هم عملکرد بسیار درخشانی داشته باشند. iPhone 13 Pro از لحاظ مشخصات فنی در نظر گرفته شده چیزی کم از گل سرسبد این سری یعنی iPhone 13 Pro Max ندارد. در نمای روبه‌رویی این گوشی به صفحه‌نمایش با ابعاد 6.1 اینچ و رزولوشن 2532x1170 از نوع Super Retina XDR OLED مجهز شده است. صفحه‌نمایش بسیار باکیفیت که از جمله قابلیت‌های قدرتمند آن، می‌توانیم به نرخ بروزرسانی 120 هرتز و البته حداکثر روشنایی 1200 نیت (nits) اشاره کنیم. در بخش سنسور‌های دوربین هم قرارگیری سه سنسور با رزولوشن 12 مگاپیکسل به ترتیب از نوع عریض، تله‌فوتو و فوق عریض یا همان ultrawide هستیم که البته سنسور TOF 3D LiDAR هم با عملکردی مشابه با سنسورهای سنجش عمق و البته بهتر، این گوشی را همراه می‌کنند. برای دوربین سلفی هم سنسور با رزولوشن 12 مگاپیکسل در نظر گرفته شده است. در بخش فیلمبرداری هم مثل همیشه این بار اما به لطف توانایی ضبط ویدیو با نهایت کیفیت 4K و سرعت 60 فریم در ثانیه برای سنسور عریض و سلفی، این گوشی عملکرد بی‌نظیری را به شما ارائه می‌کند که کمتر پرچمداری توانایی رقابت با آن را دارد.
-              </p>
+                {{object.more_details}}  
+            </p>
             </div>
             <div class="bg-gray-50 p-4 rounded-xl" id="test" role="tabpanel" aria-labelledby="test-tab">
               <div class="flex flex-col items-start gap-y-4">
