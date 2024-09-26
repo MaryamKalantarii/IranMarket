@@ -4,8 +4,7 @@ class CartSession():
         self.session = session
         self._cart = self.session.setdefault("cart",
                     {
-                        "items":[],
-                        
+                    "items":[],
                     })
         
         
@@ -26,8 +25,7 @@ class CartSession():
     def clear(self):
          self._cart = self.session["cart"] ={
                     "items":[],
-    
-                        }
+                    }
 
     def get_cart_dict(self):
         return self._cart
