@@ -7,4 +7,7 @@ from .cart import CartSession
 class SessionAddProduct(View):
     def post(self, request,*args, **kwargs):
         cart = CartSession(request.session)
-        return JsonResponse({"cart":cart.get_cart.items()})
+        product_id = request.POST.get("product_id")
+        if product_id:
+            cart.add_product(product_id)
+        return JsonResponse({"cart":cart.get_cart_dict()})

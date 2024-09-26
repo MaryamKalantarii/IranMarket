@@ -2,7 +2,7 @@
 class CartSession():
     def __init__(self,session):
         self.session = session
-        self.cart = self.session.setdefault("cart",
+        self._cart = self.session.setdefault("cart",
                     {
                         "items":[],
                         
@@ -29,5 +29,7 @@ class CartSession():
     
                         }
 
+    def get_cart_dict(self):
+        return self._cart
     def save(self):
         self.session.modified = True

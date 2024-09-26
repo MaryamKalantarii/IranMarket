@@ -226,7 +226,7 @@
                     </div>
                   </div>
                   <span class="flex justify-center items-center opacity-90">
-                    <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">افزودن به سبد خرید</button>
+                    <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm" onclick="addToCart('{{object.id}}')">افزودن به سبد خرید</button>
                   </span>
                 </div>
               </div>
@@ -582,8 +582,29 @@
   <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
   <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
   <!-- INPUTS ADD NUMBER -->
-  <script src="{% static 'assets//js/jquery.min.js' %}"></script>
-  <script src="{% static 'assets//js/main.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    function addToCart(product_id) {
+      console.log(product_id)
+      $.ajax({
+        url: "{% url 'cart:session-add-product' %}", 
+        type: "POST",
+        data: {
+          product_id: product_id,
+          csrfmiddlewaretoken: '{{ csrf_token }}',  // تصحیح نام توکن CSRF
+        },
+        success: function (response) {
+          console.log(response)
+            // زمانی که درخواست موفق است
+        },
+        error: function (err) {
+          console.log(err);  // نمایش جزئیات ارور
+        }
+      });
+    }
+</script>
+
 </html>
 
 {% endblock 'content' %}
