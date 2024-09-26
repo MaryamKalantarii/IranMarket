@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django_filters',
     "corsheaders",
     'rest_framework_simplejwt',
-    'mail_templated'
+    'mail_templated',
+    'cart',
 ]
 
 ALLOWED_HOSTS = ['*']

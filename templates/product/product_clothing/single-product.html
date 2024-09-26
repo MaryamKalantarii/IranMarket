@@ -63,15 +63,6 @@
               {{object.title}}
             </div>
             
-              {% for category in object.category_clothing.all %}
-             <a href="#">{{category.name}}</a> 
-             {% if not forloop.last %}
-              ,
-            {% endif %}
-             {% endfor %}
-            
-
-            
             <div class="md:flex sm:pr-7">
               <div class="md:w-2/3">
                 <div class="flex items-center">
