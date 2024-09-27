@@ -30,13 +30,13 @@
             </tr>
           </thead>
           <tbody class="grid grid-cols-1 sm:grid-cols-2 md:contents gap-5">
-            {% for item in cart.get_cart_dict.items %}
+            {% for item in cart_items %}
             <tr class="bg-white border-b hover:bg-gray-50 grid grid-cols-1 justify-items-center md:table-row">
               <td class="p-4">
-                <img src="{% static 'assets/image/productSlider/2.jpg' %}" class="w-48 md:w-32 max-w-full max-h-full rounded-lg" alt="">
+                <img src="{{item.product_obj.image.url}}" class="w-48 md:w-32 max-w-full max-h-full rounded-lg" alt="">
               </td>
               <td class="md:pr-6 py-4 text-sm opacity-90 text-gray-900">
-                ساعت اپل مدل a32s پلاس
+                {{item.product_obj.title}}
               </td>
               <td class="px-6 py-4">
                 <div class="quantity flex items-center">
@@ -44,7 +44,7 @@
                 </div>
               </td>
               <td class="px-6 py-4 text-sm opacity-90 text-gray-900">
-                4,000,000 تومان
+                {{item.total_price}}
               </td>
               <td class="px-6 py-4">
                 <a href="#" class=" text-red-600">حذف</a>
@@ -61,7 +61,7 @@
           </div>
           <div class="flex gap-x-1">
             <div>
-              1,240,000
+              {{total_payment_price}}
             </div>
             <div>
               تومان
