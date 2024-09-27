@@ -41,46 +41,44 @@ class Command(BaseCommand):
         ]
 
         categories = Category_clothing.objects.all()
-        categories_color = Category_color.objects.all()
+        
 
         for _ in range(10):  # Adjust the range for the number of records you want to create
             num_categories = random.randint(1, 2)
-            num_categories_color = random.randint(1, 2)  # Added this for color categories
             category_clothing = random.sample(list(categories), num_categories)
-            category_color = random.sample(list(categories_color), num_categories_color)
 
             title = fake.word()  # Remove the comma to prevent tuple creation
-            content1 = fake.text()
-            content2 = fake.text()
-            content3 = fake.text()
-            content4 = fake.text()
-            content5 = fake.text()
+            description = fake.text()
+            brief_description = fake.text()
+            
 
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)  # Remove the comma to prevent tuple creation
-            more_details = fake.text()
             size = random.choice(['S', 'M', 'L', 'XL'])
+            price = fake.random_int(min=10000, max=100000)
+            discount_percent = fake.random_int(min=0, max=50)
+            stock = fake.random_int(min=0, max=10)
             status = True  # You can randomize this if needed
             
             # Creating the product
             product = Clothing.objects.create(
                 title=title,
+                description=description,
+                brief_description=brief_description,
                 slug=slug,
                 image1=image_obj,
-                more_details=more_details,
                 size=size,
+                stock=stock,
+                price=price,
+                discount_percent=discount_percent,
                 status=status,
-                content1=content1,
-                content2=content2,
-                content3=content3,
-                content4=content4,
-                content5=content5,
+                
             )
 
             # Setting category fields
             product.category_clothing.set(category_clothing)
-            product.category_color.set(category_color)
+            
 
         self.stdout.write(self.style.SUCCESS('Successfully generated 10 fake products.'))
 
