@@ -584,27 +584,7 @@
   <!-- INPUTS ADD NUMBER -->
   <script src="{% static 'assets/js/jquery.min.js' %}"></script>
   <script src="{% static 'assets/js/main.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    function addToCart(product_id) {
-      console.log(product_id)
-      $.ajax({
-        url: "{% url 'cart:session-add-product' %}", 
-        type: "POST",
-        data: {
-          product_id: product_id,
-          csrfmiddlewaretoken: '{{ csrf_token }}',  // تصحیح نام توکن CSRF
-        },
-        success: function (response) {
-          console.log(response)
-            // زمانی که درخواست موفق است
-        },
-        error: function (err) {
-          console.log(err);  // نمایش جزئیات ارور
-        }
-      });
-    }
-</script>
+  
 
 </html>
 

@@ -256,7 +256,7 @@
             @mouseenter="showChildren=true"
             @mouseleave="showChildren=false">
             <a
-              href="cart.html"
+              href="{% url 'cart:session-cart-summary' %}"
               class="flex items-center h-10 leading-10 px-3 cursor-pointer no-underline hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100">
               <img
                 class="inline ml-1 w-5"
@@ -1189,5 +1189,29 @@
   <script src="{% static 'assets/js/bigSlider.js' %}"></script>
   <!-- FOR TIMER OFF -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+  function addToCart(product_id) {
+     
+    //console.log(product_id)
+    $.ajax({
+        url: "{%  url 'cart:session-add-product' %}",
+        method: 'POST',
+        data: {
+            product_id: product_id,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+
+        },
+        success: function (response) {
+            $("#total-cart-item-count").html(response.total_quantity)
+            console.log(response);
+            // do something with the response data
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+            // handle the error case
+        }
+    });
+}
+</script>
 </html>
 
