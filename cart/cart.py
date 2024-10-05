@@ -1,3 +1,4 @@
+from django.apps import apps
 
 class CartSession():
     def __init__(self, session):
@@ -28,27 +29,27 @@ class CartSession():
         self._cart = self.session["cart"] = {"items": []}
         self.save()
 
-    def get_cart_dict(self):
-        """دریافت دیکشنری سبد خرید"""
-        return self._cart
-    
     def get_cart_items(self):
         """دریافت آیتم‌های سبد خرید همراه با اطلاعات مدل و قیمت کل"""
         for item in self._cart["items"]:
             model_name = item.get("model_name")  # دریافت نام مدل برای هر آیتم
             if model_name:
-                # واکشی مدل بر اساس نام
-                model_class = globals().get(model_name)
-                if model_class:
+                try:
+                    # واکشی مدل از اپلیکیشن product و نام مدل
+                    model_class = apps.get_model('product', model_name)
+                    
                     # واکشی محصول از مدل مشخص
                     product_obj = model_class.objects.get(id=item["product_id"], status=True)
+                    
                     # محاسبه قیمت کل برای آیتم
                     item.update({
                         "product_obj": product_obj,
                         "total_price": item["quantity"] * product_obj.get_price()
                     })
-                else:
-                    raise ValueError(f"Model {model_name} not found")
+                except LookupError:
+                    raise ValueError(f"Model {model_name} not found in app 'product'")
+                except model_class.DoesNotExist:
+                    raise ValueError(f"Product with ID {item['product_id']} not found in model {model_name}")
             else:
                 raise ValueError("Model name not specified in cart item")
         

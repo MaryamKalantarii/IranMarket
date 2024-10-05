@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
 from faker import Faker
-from product.models import Category_clothing,Category_color
+from product.models import Category_clothing
 from django.utils.text import slugify
 
 
-class Command(BaseCommand):
+class Command(BaseCommand): 
     help = 'Generate fake categories'
 
     def handle(self, *args, **options):

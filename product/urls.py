@@ -23,5 +23,5 @@ urlpatterns =[
 
     
     path("singleProduct/", Product_single_View.as_view(),name="singleProduct"),
-    path('api/V1/',include("product.api.V1.urls")),
+    # path('api/V1/',include("product.api.V1.urls")),
 ]

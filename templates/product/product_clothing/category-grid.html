@@ -155,15 +155,22 @@
                   {% endif %}
                    {% endfor %}
                   </div>
-                  
+                  {% if object.is_discounted %}
                   <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
-                    {{object.price}}
+                    {{object.get_price}}
                     <div>تومان</div>
                   </div>
+                  
                   <div class="flex justify-end text-xs opacity-75 pl-3 md:pl-0">
-                    <div class="line-through">1.350.000</div>
+                    <div class="line-through">{{object.price}}</div>
                     <div class="line-through">تومان</div>
+                    {% else %}
+                    <div class="flex justify-end text-xs opacity-75 pl-3 md:pl-0">
+                      <div class="line-through">{{object.price}}</div>
+                      <div class="line-through">تومان</div>
+                    {% endif %}
                   </div>
+                 
                 </div>
               </a>
                         {% endfor %}

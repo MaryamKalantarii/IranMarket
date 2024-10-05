@@ -2,7 +2,7 @@ import random
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 from faker import Faker
-from product.models import Clothing, Category_clothing, Category_color
+from product.models import Clothing, Category_clothing
 from pathlib import Path
 from django.core.files import File
  

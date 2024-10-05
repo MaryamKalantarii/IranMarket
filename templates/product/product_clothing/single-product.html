@@ -153,34 +153,11 @@
                   <div class="flex flex-col gap-y-2 text-xs">
                     <div class=" flex items-center">
                       <h3 class="opacity-60 ml-1">
-                        {{object.content1}}
+                        {{object.description}}
                       </h3>
                       
                     </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        {{object.content2}}
-                      </h3>
-                      
-                    </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        {{object.content3}}
-                      </h3>
-                      
-                    </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        {{object.content4}}
-                      </h3>
-                     
-                    </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        {{object.content5}}
-                      </h3>
-                      
-                    </div>
+                 
                   </div>
                 </div>
               </div>
@@ -206,7 +183,7 @@
                         {{object.size}}
                       </div>
                       <div>
-                        {{object.number}}
+                        {{object.stock}}
                       </div>
                       <div class="flex text-red-500">
                         <div>
@@ -297,102 +274,14 @@
                 معرفی کوتاه محصول
               </span>
               <p class="text-gray-500 text-sm leading-7 mt-3">
-                {{object.more_details}}  
+                {{object.brief_description}}  
             </p>
             </div>
             <div class="bg-gray-50 p-4 rounded-xl" id="test" role="tabpanel" aria-labelledby="test-tab">
-              <div class="flex flex-col items-start gap-y-4">
-                <span class="border-b-red-500 border-b">
-                  بررسی تخصصی محصول
-                </span>
-                <span class="border-b-red-500 border-b text-sm">
-                  طراحی کاربر پسند
-                </span>
-              </div>
-              <div class="md:flex gap-3">
-                <p class="text-gray-500 text-sm leading-7 mt-3">
-                  آیفون SE 2020 به عنوان جدید‌ترین گوشی هوشمند مقرون ‌به ‌صرفه این شرکت معرفی شده بود که در قسمت‌های کناری برخلاف پرچمداران خانواده آیفون 11 که فریمی منحنی شکل داشتند، فریم تخت داشت. این طراحی یادآور طراحی‌های قدیمی‌ این شرکت بود و حس نوستالژی را به کاربر منتقل می‌کرد. برای اولین بار، از این طراحی در گوشی‌های هوشمند خانواده آیفون 12 نیز استفاده شد که استقبال بی نظیر کاربران را به همراه داشت. همین امر سبب شد تا پرچمداران خانواده آیفون 13 نیز از این طراحی نوستالژی و جذاب بهره ببرند. در نگاه اولیه شاید طراحی در نظر گرفته شده برای آیفون 13 پرو تفاوت چندانی با آیفون 12 پرو نداشته باشد، اما اپل توانست با تغییرات هرچند اندک و تنوع رنگی جدید، ظاهری به مراتب جذاب‌تر و همه پسندتر به آن بدهد.               
-                </p>
-                <img class="max-w-[320px] w-full mx-auto rounded-3xl" src="{% static 'assets//image/product/good.jpg' %}" alt="">
-              </div>
+              
             </div>
             <div class="bg-gray-50 p-4 rounded-xl hidden" id="details" role="tabpanel" aria-labelledby="details-tab">
-              <span class="border-b-red-500 border-b">
-                مشخصات فنی محصول
-              </span>
-              <div class="text-gray-500 text-sm grid grid-cols-1 gap-x-3 md:grid-cols-2">
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    پردازنده:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    AM32x new product
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    فرکانس پردازنده:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    32HR
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    وزن:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    230 گرم
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    نسخه بلوتوث:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    7r
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    نسخه وای فای:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    3prm new test
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    سیستم عامل:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    IOS
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    پردازنده گرافیکی:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    Hiliston 7200
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    دوربین جلو:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    12 MP
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    دوربین عقب:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    24MP
-                  </div>
-                </div>
+        
               </div>
             </div>
             <div class="bg-gray-50 p-4 rounded-xl hidden" id="commentsBuy" role="tabpanel" aria-labelledby="commentsBuy-tab">
