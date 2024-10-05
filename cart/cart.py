@@ -29,6 +29,9 @@ class CartSession():
         self._cart = self.session["cart"] = {"items": []}
         self.save()
 
+    def get_cart_dict(self):
+        return self._cart
+
     def get_cart_items(self):
         """دریافت آیتم‌های سبد خرید همراه با اطلاعات مدل و قیمت کل"""
         for item in self._cart["items"]:
