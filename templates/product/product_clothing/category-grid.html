@@ -158,18 +158,18 @@
 
                   
                   {% if object.is_discounted %}
-                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
+                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0 formatted-price">
                     {{object.get_price}}
-                    <div>تومان</div>
+                    
                   </div>
-                  <div class="flex justify-end text-xs opacity-75 pl-3 md:pl-0">
-                    <div class="line-through">{{object.price}}</div>
-                    <div class="line-through">تومان</div>
+                  <div class="flex justify-end text-xs opacity-75 pl-3 md:pl-0 ">
+                    <div class="line-through formatted-price">{{object.price}}</div>
+                    
                   </div>
                   {% else %}
-                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
+                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0 formatted-price">
                     {{object.price}}
-                    <div>تومان</div>
+                    
                   </div>
                   {% endif %}
 

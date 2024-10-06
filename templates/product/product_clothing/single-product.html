@@ -186,23 +186,18 @@
                         {{object.stock}}
                       </div>
                       {% if object.is_discounted %}
-                      <div class="flex text-red-500">
+                      <div class="flex text-red-500 formatted-price">
                         <div>
                           {{object.get_price}} 
                         </div>
-                        <div>
-                          تومان
-                        </div>
-                        <span class="line-through">{{object.price}}</span>
+
                       </div>
                       {% else %}
-                      <div class="flex text-red-500">
+                      <div class="flex text-red-500 formatted-price">
                         <div>
                           {{object.price}} 
                         </div>
-                        <div>
-                          تومان
-                        </div>
+                       
                       </div>
                       {% endif %}
                       
