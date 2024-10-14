@@ -24,6 +24,15 @@ class CartSession():
         
         self.save()  # ذخیره سشن بعد از هر تغییر
 
+    def update_product_quantity(self,product_id,quantity):
+        for item in self._cart["items"]:
+            if product_id == item["product_id"]:
+                item["quantity"] = int(quantity)
+                break
+        else:
+            return
+        self.save()
+
     def clear(self):
         """پاک کردن کامل سبد خرید"""
         self._cart = self.session["cart"] = {"items": []}
@@ -69,3 +78,5 @@ class CartSession():
     def save(self):
         """ذخیره تغییرات سبد خرید در session"""
         self.session.modified = True
+
+    

@@ -23,15 +23,21 @@
                   {{similar_clothings.title}}
                 </a>
               </span>
-              <div class="flex justify-center text-xs opacity-75">
-                <div class="line-through">1.350.000</div>
-                <div class="line-through">تومان</div>
+              {% if similar_clothings.is_discounted %}
+              <div class="flex justify-center text-xs opacity-75 ">
+                <div class="line-through formatted-price">{{similar_clothings.price}}</div>
+                
               </div>
-              <div class="flex justify-center mt-1 mb-2 text-sm">
+              <div class="flex justify-center mt-1 mb-2 text-sm formatted-price">
+                <div>{{similar_clothings.get_price}}</div>
+              </div>
+              {% else %}
+              <div class="flex justify-center mt-1 mb-2 text-sm formatted-price">
                 <div>{{similar_clothings.price}}</div>
-                <div>تومان</div>
               </div>
+              {% endif %}
             </div>
+            
           </span>
           {% endfor %}
           

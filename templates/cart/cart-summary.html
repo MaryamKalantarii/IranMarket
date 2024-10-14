@@ -39,10 +39,20 @@
                 {{item.product_obj.title}}
               </td>
               <td class="px-6 py-4">
-                <div class="quantity flex items-center">
-                  <input class="w-12 h-8 mx-2 text-center border focus:outline-none rounded-lg" type="number" min="1" step="1" value="1" readonly>
+                <div>
+                    <button class="decrement-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none" 
+                            onclick="updateQuantity('{{ item.product_obj.id }}', -1)">−</button>
+                    <input class="quantity-input w-12 h-8 mx-2 text-center border rounded-lg focus:outline-none" 
+                           type="number" 
+                           min="1" 
+                           max="{{ item.product_obj.stock }}" 
+                           value="{{ item.quantity }}" 
+                           data-product-id="{{ item.product_obj.id }}"
+                           readonly>
+                    <button class="increment-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none" 
+                            onclick="updateQuantity('{{ item.product_obj.id }}', 1)">+</button>
                 </div>
-              </td>
+            </td>
               <td class="px-6 py-4 text-sm opacity-90 text-gray-900 formatted-price">
                 {{item.total_price}}
               </td>
@@ -123,6 +133,43 @@
   <!-- INPUTS ADD NUMBER -->
   <script src="{% static 'assets/js/jquery.min.js' %}"></script>
   <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    function updateQuantity(product_id, change) {
+        const input = document.querySelector(`input[data-product-id="${product_id}"]`);
+        let currentQuantity = parseInt(input.value, 10);
+        const maxQuantity = parseInt(input.max, 10);
+        const newQuantity = currentQuantity + change;
+
+        if (newQuantity >= 1 && newQuantity <= maxQuantity) {
+            // به‌روزرسانی مقدار جدید در ورودی
+            input.value = newQuantity;
+
+            // فراخوانی ایجکس برای به‌روزرسانی در سرور
+            changeProductQuantity(product_id, newQuantity);
+        }
+    }
+
+    function changeProductQuantity(product_id, quantity) {
+      console.log(product_id, quantity);
+        $.ajax({
+            url: "{% url 'cart:session-update-product-quantity' %}",
+            method: 'POST',
+            data: {
+                product_id: product_id,
+                quantity: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log(response);
+                window.location.reload();
+                // می‌توانید اینجا بدون بارگذاری مجدد، صفحه را به‌روزرسانی کنید
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+</script>
 </html>
 
 {% endblock 'content' %}
