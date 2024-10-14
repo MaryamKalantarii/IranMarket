@@ -33,6 +33,15 @@ class CartSession():
             return
         self.save()
 
+    def remove_product(self,product_id):
+        for item in self._cart["items"]:
+            if product_id == item["product_id"]:
+                self._cart["items"].remove(item)
+                break
+        else:
+            return
+        self.save()
+
     def clear(self):
         """پاک کردن کامل سبد خرید"""
         self._cart = self.session["cart"] = {"items": []}

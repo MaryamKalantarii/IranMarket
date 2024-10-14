@@ -40,3 +40,12 @@ class SessionUpdateProductQuantityView(View):
         if product_id and quantity:
             cart.update_product_quantity(product_id, quantity)
         return JsonResponse({"cart": cart.get_cart_dict(), "total_quantity": cart.get_total_quantity()})
+
+class SessionRemoveProductView(View):
+
+    def post(self, request, *args, **kwargs):
+        cart = CartSession(request.session)
+        product_id = request.POST.get("product_id")
+        if product_id:
+            cart.remove_product(product_id)
+        return JsonResponse({"cart": cart.get_cart_dict(), "total_quantity": cart.get_total_quantity()})

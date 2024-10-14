@@ -57,7 +57,7 @@
                 {{item.total_price}}
               </td>
               <td class="px-6 py-4">
-                <a href="#" class=" text-red-600">حذف</a>
+                <button  class=" text-red-600" onclick="removeProduct('{{item.product_id}}')">حذف</button>
               </td>
             </tr>
          {% endfor %}
@@ -166,6 +166,27 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
+            }
+        });
+    }
+
+  function removeProduct(product_id){
+        $.ajax({
+            url: "{%  url 'cart:session-remove-product' %}",
+            method: 'POST',
+            data: {
+                product_id: product_id,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+    
+            },
+            success: function (response) {
+                console.log(response);
+                window.location.reload();
+                // do something with the response data
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                // handle the error case
             }
         });
     }
