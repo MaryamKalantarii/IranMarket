@@ -156,7 +156,7 @@ def profile_Edit(request,pk):
 
 class Profile_View(DetailView):
     model = Profail
-    template_name = 'registration/profile.html'
+    template_name = 'profile/profile.html'
     context_object_name = 'profile'
 
     def get(self, request, *args, **kwargs):
@@ -166,5 +166,5 @@ class Profile_View(DetailView):
             'profile': profile
         }
         
-        return render(request, 'registration/profile.html',context=context)
+        return render(request,'profile/profile.html',context=context)
         

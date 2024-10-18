@@ -10,10 +10,11 @@ var x = setInterval(function () {
     seconds = 59;
   }
 
-  document.getElementById("verify-code").innerHTML = "ارسال مجدد کد بعد از " + "ثانیه " + seconds;
+
+  document.getElementById("verify-code").innerHTML = "ارسال مجدد کد بعد از " + seconds + " ثانیه ";
   if (seconds == 0 && minutes == 0) {
     clearInterval(x);
-    document.getElementById("block-verify-code").innerHTML =
+    document.getElementById("verify-code").innerHTML =
       "<a href='#'>ارسال مجدد</a>";
   }
 }, 1000);
