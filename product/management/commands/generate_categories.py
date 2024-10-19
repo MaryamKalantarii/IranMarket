@@ -33,6 +33,11 @@ class Command(BaseCommand):
         category_models = [
             'Category_clothing',
             'Category_Dijitalgoods',
+            'Category_Homeappliances',
+            # 'Category_Beauty',
+            'Category_Appliances',
+            'Category_Supermarket',
+            'Category_Child_and_baby',
             # مدل‌های دیگر را اینجا اضافه کنید
         ]
 

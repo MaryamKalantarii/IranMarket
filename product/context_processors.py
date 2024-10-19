@@ -22,7 +22,7 @@ def categories_processor(request):
         'categories': category_clothing,
         'category_dijitalgoods': category_dijitalgoods,
         'category_homeappliances': category_homeappliances,
-        'category_beauty': category_beauty,
+        # 'category_beauty': category_beauty,
         'category_appliances': Category_Appliances.objects.all(),
         'category_supermarket': Category_Supermarket.objects.all(),
         'category_child': Category_Child_and_baby.objects.all(),
