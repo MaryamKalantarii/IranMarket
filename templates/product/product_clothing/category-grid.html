@@ -13,60 +13,6 @@
       <div class="md:flex">
         <div class="md:w-4/12 lg:w-3/12">
           <div class="bg-white mx-5 mb-4 px-3 py-3 border rounded-xl">
-            <div>
-              <div class="opacity-80 mb-1">
-                برند:
-              </div>
-              <div class="space-y-1">
-                <div class="flex items-center rounded-lg hover:bg-gray-100 opacity-80">
-                  <input id="checkbox-item-21" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-21" class="w-full text-xs text-gray-900 rounded pr-1 py-2">ایسر</label>
-                </div>
-                <div class="flex items-center rounded-lg hover:bg-gray-100 opacity-80">
-                  <input id="checkbox-item-22" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-22" class="w-full text-xs text-gray-900 rounded pr-1 py-2">هوآوی</label>
-                </div>
-                <div class="flex items-center rounded-lg hover:bg-gray-100 opacity-80">
-                  <input id="checkbox-item-23" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-23" class="w-full text-xs text-gray-900 rounded pr-1 py-2">ایسوس</label>
-                </div>
-                <div class="flex items-center rounded-lg hover:bg-gray-100 opacity-80">
-                  <input id="checkbox-item-24" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-24" class="w-full text-xs text-gray-900 rounded pr-1 py-2">لنوو</label>
-                </div>
-                <div class="flex items-center rounded-lg hover:bg-gray-100 opacity-80">
-                  <input id="checkbox-item-25" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-25" class="w-full text-xs text-gray-900 rounded pr-1 py-2">سونی</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white mx-5 mb-4 px-3 py-3 border rounded-xl">
-            <div>
-              <div class="opacity-80 mb-1">
-                رنگ:
-              </div>
-              <div class="space-y-1 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="flex items-center rounded-lg opacity-80 bg-black text-white">
-                  <input id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-1" class="w-full text-xs rounded pr-1 py-2">مشکی</label>
-                </div>
-                <div class="flex items-center rounded-lg opacity-80 bg-white border">
-                  <input id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 mr-3">
-                  <label for="checkbox-item-2" class="w-full text-xs text-gray-900 rounded pr-1 py-2">سفید</label>
-                </div>
-                <div class="flex items-center rounded-lg opacity-80 bg-green-600 text-white">
-                  <input id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 border-gray-300 mr-3">
-                  <label for="checkbox-item-3" class="w-full text-xs rounded pr-1 py-2">سبز</label>
-                </div>
-                <div class="flex items-center rounded-lg opacity-80 bg-gray-400 text-white">
-                  <input id="checkbox-item-4" type="checkbox" value="" class="w-4 h-4 border-gray-300 mr-3">
-                  <label for="checkbox-item-4" class="w-full text-xs rounded pr-1 py-2">خاکستری</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white mx-5 mb-4 px-3 py-3 border rounded-xl">
             <div class="wrapper">
               <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
                 <div class="field">
@@ -132,7 +78,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 px-1 rounded-2xl py-5" >
               
               {% for object in object_list %}
-              <a href="{% url 'product:categoy-detaile' slug=object.slug %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
+              <a href="{% url 'product:clothing:categoy-detaile' slug=object.slug %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
                 <div class="image-box sm:mb-6">
                   <div>
                     <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="{{object.image1.url}}" alt="" />

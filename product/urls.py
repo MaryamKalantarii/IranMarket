@@ -5,11 +5,12 @@ from . import views
 app_name = 'product'
 urlpatterns =[
     # path("",ProductView.as_view(),name="products"),
-    path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
-    path("category-grid/",ClothingGrid.as_view(),name="category-grid"),
-    re_path(r"categoy-detaile/(?P<slug>[-\w]+)/",Clothing_detaile.as_view(),name="categoy-detaile"),
+    # path("category-clothing/",ClothingView.as_view(),name="category-clothing"),
+    # path("category-grid/",ClothingGrid.as_view(),name="category-grid"),
+    # re_path(r"categoy-detaile/(?P<slug>[-\w]+)/",Clothing_detaile.as_view(),name="categoy-detaile"),
     
-
+    # include admin urls
+    path("clothing/",include('product.clothing.urls')),
 
     path("category-dijitalgoods/",DijitalgoodsView.as_view(),name="category-dijitalgoods"),
     path("category-homeappliances/",HomeappliancesView.as_view(),name="category-homeappliances"),
