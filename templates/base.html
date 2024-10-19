@@ -441,7 +441,7 @@
                 x-data="{showChildren:false}"
                 @click.away="showChildren=false">
                 <a
-                  href="{% url 'product:category-dijitalgoods' %}"
+                  href="{% url 'product:dijitalgoods:category-dijitalgoods' %}"
                   class="flex items-center h-10 leading-10 px-3 cursor-pointer text-sm no-underline hover:no-underline duration-100 mx-1 transition text-gray-700 hover:text-red-500"
                  
                   @mouseenter="showChildren=true"
@@ -465,11 +465,11 @@
                   style="display: none">
                   <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="kaladijital">
                     <ul class="list-reset">
-                      {% for category in categories %}
+                      {% for category in category_dijitalgoods %}
                   <li
                                     class="relative">
                                     <a
-                                      href="{% url 'product:category-dijitalgoods' %}"
+                                      href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
                                       class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
                                       <span class="flex-1">{{category.name}}</span>
                                     </a>
