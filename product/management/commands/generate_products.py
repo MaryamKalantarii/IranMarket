@@ -44,7 +44,7 @@ class Command(BaseCommand):
         # Generate fake data for DigitalGoods model
         self.generate_fake_digital_goods(fake, image_list)
         self.generate_fake_Homeappliances(fake,image_list)
-        # self.generate_fake_Beauty(fake, image_list)
+        self.generate_fake_Beauty(fake, image_list)
         self.generate_fake_Appliances(fake, image_list)
         self.generate_fake_Supermarket(fake, image_list)
         self.generate_fake_Child_and_baby(fake, image_list)
@@ -65,6 +65,12 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Clothing.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             size = random.choice(['S', 'M', 'L', 'XL'])
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
@@ -102,6 +108,12 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Dijitalgoods.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             warranty = random.choice(['یک ماه', 'دو ماه', 'سه ماه', 'چهار ماه'])
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
@@ -138,6 +150,12 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Homeappliances.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             warranty = random.choice(['یک ماه', 'دو ماه', 'سه ماه', 'چهار ماه'])
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
@@ -145,7 +163,7 @@ class Command(BaseCommand):
             status = True
 
             # Creating the product
-            product = Dijitalgoods.objects.create(
+            product = Homeappliances.objects.create(
                 title=title,
                 description=description,
                 brief_description=brief_description,
@@ -174,9 +192,16 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Beauty.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
-            stock = fake.random_int(min=0, max=10)
+            stock = fake.random_int(min=0, max=100)
+            exception_date = random.choice(['یک ماه', 'دو ماه', 'سه ماه', 'چهار ماه'])
             status = True
             # Creating the product
             product = Beauty.objects.create(
@@ -184,14 +209,16 @@ class Command(BaseCommand):
                 description=description,
                 brief_description=brief_description,
                 slug=slug,
+                stock=stock,
                 image1=image_obj,
                 price=price,
                 discount_percent=discount_percent,
+                exception_date = exception_date,
                 status=status,
             )
 
             # Setting category fields
-            product.category_beauty.set(category_Beauty)
+            product.category_Beauty.set(category_Beauty)
     def generate_fake_Appliances(self, fake, image_list):
         categories = Category_Appliances.objects.all()
 
@@ -206,9 +233,17 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Appliances.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
             stock = fake.random_int(min=0 , max=100)
+            warranty = random.choice(['یک ماه', 'دو ماه', 'سه ماه', 'چهار ماه'])
+
             status = True
             # Creating the product
             product = Appliances.objects.create(
@@ -218,12 +253,14 @@ class Command(BaseCommand):
                 slug=slug,
                 image1=image_obj,
                 price=price,
+                stock = stock,
+                warranty=warranty,
                 discount_percent=discount_percent,
                 status=status,
             )
 
             # Setting category fields
-            product.category_appliances.set(category_Appliances)
+            product.category_Appliances.set(category_Appliances)
     def generate_fake_Supermarket(self, fake, image_list):
         categories = Category_Supermarket.objects.all()
 
@@ -238,9 +275,17 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Supermarket.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
             stock = fake.random_int(min=0, max=100)
+            exception_date = random.choice(['یک ماه', 'دو ماه', 'سه ماه', 'چهار ماه'])
+
             status = True
             # Creating the product
             product = Supermarket.objects.create(
@@ -250,12 +295,14 @@ class Command(BaseCommand):
                 slug=slug,
                 image1=image_obj,
                 price=price,
+                stock=stock,
                 discount_percent=discount_percent,
                 status=status,
+                exception_date=exception_date,
             )
 
             # Setting category fields
-            product.category_supermarket.set(category_Supermarket)
+            product.category_Supermarket.set(category_Supermarket)
     def generate_fake_Child_and_baby(self, fake, image_list):
         categories = Category_Child_and_baby.objects.all()
 
@@ -270,6 +317,12 @@ class Command(BaseCommand):
             selected_image = random.choice(image_list)
             image_obj = File(file=open(BASE_DIR / selected_image, "rb"), name=Path(selected_image).name)
             slug = slugify(title, allow_unicode=True)
+            # Ensure unique slug
+            base_slug = slug
+            counter = 1
+            while Child_and_baby.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
             size = random.choice(['S', 'M', 'L', 'XL'])
             price = fake.random_int(min=10000, max=100000)
             discount_percent = fake.random_int(min=0, max=50)
@@ -277,7 +330,7 @@ class Command(BaseCommand):
             status = True
 
             # Creating the product
-            product = Clothing.objects.create(
+            product = Child_and_baby.objects.create(
                 title=title,
                 description=description,
                 brief_description=brief_description,
