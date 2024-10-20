@@ -19,7 +19,7 @@ class DijitalgoodsGrid(ListView):
         # فیلتر بر اساس کتگوری
         category_slug = self.request.GET.get("category")
         if category_slug:
-            queryset = queryset.filter(category_dijitalgoods__slug=category_slug)
+            queryset = queryset.filter(category_Dijitalgoods__slug=category_slug)
 
         
         return queryset

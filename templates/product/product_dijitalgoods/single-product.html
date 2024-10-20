@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load product_tags %}
 {% block 'title' %}single product{% endblock 'title' %}
 {% block 'content' %}
   <!-- MAIN -->
@@ -36,7 +37,7 @@
             </div>
             <div>
               <div class="max-w-[300px] mx-auto">
-                <img class="mySlides rounded-xl md:rounded-3xl" src="{% static 'assets//image/productSlider/1.jpg' %}" style="width:100%">
+                <img class="mySlides rounded-xl md:rounded-3xl" src="{{object.image1.url}}" style="width:100%">
                 <img class="mySlides rounded-xl md:rounded-3xl" src="{% static 'assets//image/productSlider/2.jpg' %}" style="width:100%;display:none">
                 <img class="mySlides rounded-xl md:rounded-3xl" src="{% static 'assets//image/productSlider/3.jpg' %}" style="width:100%;display:none">
                 <img class="mySlides rounded-xl md:rounded-3xl" src="{% static 'assets//image/productSlider/4.jpg' %}" style="width:100%;display:none">
@@ -59,11 +60,9 @@
           </div>
           <div class="w-full lg:w-2/3 mt-5 md:mt-0">
             <div class="opacity-80 text-lg font-semibold">
-              گوشی موبایل اپل مدل iPhone 13 Pro تک سیم کارت ظرفیت یک ترابایت و رم 6 گیگابایت
+              {{object.title}}
             </div>
-            <div class="opacity-50 text-xs mt-2 mb-4">
-              Apple iPhone 13 Pro Single SIM 1TB And 6GB RAM Mobile Phone
-            </div>
+            
             <div class="md:flex sm:pr-7">
               <div class="md:w-2/3">
                 <div class="flex items-center">
@@ -154,54 +153,11 @@
                   <div class="flex flex-col gap-y-2 text-xs">
                     <div class=" flex items-center">
                       <h3 class="opacity-60 ml-1">
-                        پردازنده:
+                        {{object.description}}
                       </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          AM 32x new design
-                        </div>
-                      </div>
+                      
                     </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        سیستم عامل:
-                      </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          IOS
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        فناوری ساخت:
-                      </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          A2C
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        دوربین عقب:
-                      </h3>
-                      <div class="opacity-80 ">
-                        <div class="text-right">
-                          64
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" flex items-center">
-                      <h3 class="opacity-70 ml-1">
-                        دوربین جلو:
-                      </h3>
-                      <div class="opacity-80">
-                        <div class="text-right">
-                          32
-                        </div>
-                      </div>
-                    </div>
+                 
                   </div>
                 </div>
               </div>
@@ -224,19 +180,27 @@
                     </div>
                     <div class="text-left opacity-70 text-sm flex flex-col gap-y-6">
                       <div>
-                        6 ماهه تمام
+                        {{object.warranty}}
                       </div>
                       <div>
-                        7 عدد
+                        {{object.stock}}
                       </div>
-                      <div class="flex text-red-500">
+                      {% if object.is_discounted %}
+                      <div class="flex text-red-500 formatted-price">
                         <div>
-                          21,000,000
+                          {{object.get_price}} 
                         </div>
-                        <div>
-                          تومان
-                        </div>
+
                       </div>
+                      {% else %}
+                      <div class="flex text-red-500 formatted-price">
+                        <div>
+                          {{object.price}} 
+                        </div>
+                       
+                      </div>
+                      {% endif %}
+                      
                       <div class="flex text-sm sm:text-sm items-center justify-center lg:justify-start">
                         <div class="flex items-center justify-center select-none">
                           <div class="quantity flex items-center">
@@ -247,8 +211,11 @@
                     </div>
                   </div>
                   <span class="flex justify-center items-center opacity-90">
-                    <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">افزودن به سبد خرید</button>
-                  </span>
+                    <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
+                    onclick="addToCart(this)"
+                    data-product-id="{{ object.id }}"
+                    data-model-name="Dijitalgoods">افزودن به سبد خرید</button>
+                              </span>
                 </div>
               </div>
             </div>
@@ -315,102 +282,14 @@
                 معرفی کوتاه محصول
               </span>
               <p class="text-gray-500 text-sm leading-7 mt-3">
-                اپل همواره توانسته است گوشی‌های هوشمند قدرتمند و بسیار باکیفیتی را روانه بازار کند و پرچمداران سری 13 هم توانستند با بهره بردن از مشخصات فنی قدرتمند، نه‌تنها به نسبت نسل قبلی یعنی خانواده iPhone12، بلکه به نسبت پرچمداران مدعی دیگر هم عملکرد بسیار درخشانی داشته باشند. iPhone 13 Pro از لحاظ مشخصات فنی در نظر گرفته شده چیزی کم از گل سرسبد این سری یعنی iPhone 13 Pro Max ندارد. در نمای روبه‌رویی این گوشی به صفحه‌نمایش با ابعاد 6.1 اینچ و رزولوشن 2532x1170 از نوع Super Retina XDR OLED مجهز شده است. صفحه‌نمایش بسیار باکیفیت که از جمله قابلیت‌های قدرتمند آن، می‌توانیم به نرخ بروزرسانی 120 هرتز و البته حداکثر روشنایی 1200 نیت (nits) اشاره کنیم. در بخش سنسور‌های دوربین هم قرارگیری سه سنسور با رزولوشن 12 مگاپیکسل به ترتیب از نوع عریض، تله‌فوتو و فوق عریض یا همان ultrawide هستیم که البته سنسور TOF 3D LiDAR هم با عملکردی مشابه با سنسورهای سنجش عمق و البته بهتر، این گوشی را همراه می‌کنند. برای دوربین سلفی هم سنسور با رزولوشن 12 مگاپیکسل در نظر گرفته شده است. در بخش فیلمبرداری هم مثل همیشه این بار اما به لطف توانایی ضبط ویدیو با نهایت کیفیت 4K و سرعت 60 فریم در ثانیه برای سنسور عریض و سلفی، این گوشی عملکرد بی‌نظیری را به شما ارائه می‌کند که کمتر پرچمداری توانایی رقابت با آن را دارد.
-              </p>
+                {{object.brief_description}}  
+            </p>
             </div>
             <div class="bg-gray-50 p-4 rounded-xl" id="test" role="tabpanel" aria-labelledby="test-tab">
-              <div class="flex flex-col items-start gap-y-4">
-                <span class="border-b-red-500 border-b">
-                  بررسی تخصصی محصول
-                </span>
-                <span class="border-b-red-500 border-b text-sm">
-                  طراحی کاربر پسند
-                </span>
-              </div>
-              <div class="md:flex gap-3">
-                <p class="text-gray-500 text-sm leading-7 mt-3">
-                  آیفون SE 2020 به عنوان جدید‌ترین گوشی هوشمند مقرون ‌به ‌صرفه این شرکت معرفی شده بود که در قسمت‌های کناری برخلاف پرچمداران خانواده آیفون 11 که فریمی منحنی شکل داشتند، فریم تخت داشت. این طراحی یادآور طراحی‌های قدیمی‌ این شرکت بود و حس نوستالژی را به کاربر منتقل می‌کرد. برای اولین بار، از این طراحی در گوشی‌های هوشمند خانواده آیفون 12 نیز استفاده شد که استقبال بی نظیر کاربران را به همراه داشت. همین امر سبب شد تا پرچمداران خانواده آیفون 13 نیز از این طراحی نوستالژی و جذاب بهره ببرند. در نگاه اولیه شاید طراحی در نظر گرفته شده برای آیفون 13 پرو تفاوت چندانی با آیفون 12 پرو نداشته باشد، اما اپل توانست با تغییرات هرچند اندک و تنوع رنگی جدید، ظاهری به مراتب جذاب‌تر و همه پسندتر به آن بدهد.               
-                </p>
-                <img class="max-w-[320px] w-full mx-auto rounded-3xl" src="{% static 'assets//image/product/good.jpg' %}" alt="">
-              </div>
+              
             </div>
             <div class="bg-gray-50 p-4 rounded-xl hidden" id="details" role="tabpanel" aria-labelledby="details-tab">
-              <span class="border-b-red-500 border-b">
-                مشخصات فنی محصول
-              </span>
-              <div class="text-gray-500 text-sm grid grid-cols-1 gap-x-3 md:grid-cols-2">
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    پردازنده:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    AM32x new product
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    فرکانس پردازنده:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    32HR
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    وزن:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    230 گرم
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    نسخه بلوتوث:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    7r
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    نسخه وای فای:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    3prm new test
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    سیستم عامل:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    IOS
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    پردازنده گرافیکی:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    Hiliston 7200
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    دوربین جلو:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    12 MP
-                  </div>
-                </div>
-                <div class="flex items-center justify-between bg-gray-100 p-3 w-full my-3 mx-auto rounded-xl">
-                  <div class="text-xs opacity-80">
-                    دوربین عقب:
-                  </div>
-                  <div class="text-xs opacity-70">
-                    24MP
-                  </div>
-                </div>
+        
               </div>
             </div>
             <div class="bg-gray-50 p-4 rounded-xl hidden" id="commentsBuy" role="tabpanel" aria-labelledby="commentsBuy-tab">
@@ -579,155 +458,7 @@
             </div>
           </div>
         </div>
-        <!-- SLIDER -->
-        <div class="bg-white rounded-2xl pt-10">
-          <!-- TOP SLIDER -->
-          <div class="flex justify-between px-5 md:px-10 items-center">
-            <div class="border-b-2 border-red-500 pb-1">مرتبط ترین ها</div>
-            <a href="#"><div class="transition px-4 py-2 rounded-xl flex justify-center items-center text-red-500 hover:text-red-600">دیدن همه<img class="w-4" src="{% static 'assets//image/arrow-left.png' %}" alt=""></div></a>
-          </div>
-          <!-- SLIDER -->
-          <div class="containerPSlider swiper">
-            <div class="slide-container1 px-2">
-              <div class="card-wrapper swiper-wrapper py-4">
-                <span class="card swiper-slide my-2 p-2 md:p-3 ">
-                  <div class="image-box mb-6 ">
-                    <a href="">
-                      <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets//image/productSlider/1.jpg' %}" alt="" />
-                    </a>
-                  </div>
-                  <div class="space-y-3 text-center">
-                    <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                      <a href="">
-                        گوشی شیائومی m11
-                      </a>
-                    </span>
-                    <div class="flex justify-center text-xs opacity-75">
-                      <div class="line-through">1.350.000</div>
-                      <div class="line-through">تومان</div>
-                    </div>
-                    <div class="flex justify-center mt-1 mb-2 text-sm">
-                      <div>1.100.000</div>
-                      <div>تومان</div>
-                    </div>
-                  </div>
-                </span>
-                <span class="card swiper-slide my-2 p-2 md:p-3 ">
-                  <div class="image-box mb-6 ">
-                    <a href="">
-                      <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets//image/productSlider/2.jpg' %}" alt="" />
-                    </a>
-                  </div>
-                  <div class="space-y-3 text-center">
-                    <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                      <a href="">
-                        اپل واچ m32
-                      </a>
-                    </span>
-                    <div class="flex justify-center text-xs opacity-75">
-                      <div class="line-through">1.350.000</div>
-                      <div class="line-through">تومان</div>
-                    </div>
-                    <div class="flex justify-center mt-1 mb-2 text-sm">
-                      <div>1.100.000</div>
-                      <div>تومان</div>
-                    </div>
-                  </div>
-                </span>
-                <span class="card swiper-slide my-2 p-2 md:p-3 ">
-                  <div class="image-box mb-6 ">
-                    <a href="">
-                      <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets//image/productSlider/3.jpg' %}" alt="" />
-                    </a>
-                  </div>
-                  <div class="space-y-3 text-center">
-                    <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                      <a href="">
-                        ریش تراش دایاک
-                      </a>
-                    </span>
-                    <div class="flex justify-center text-xs opacity-75">
-                      <div class="line-through">1.350.000</div>
-                      <div class="line-through">تومان</div>
-                    </div>
-                    <div class="flex justify-center mt-1 mb-2 text-sm">
-                      <div>1.100.000</div>
-                      <div>تومان</div>
-                    </div>
-                  </div>
-                </span>
-                <span class="card swiper-slide my-2 p-2 md:p-3 ">
-                  <div class="image-box mb-6 ">
-                    <a href="">
-                      <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets//image/productSlider/4.jpg' %}" alt="" />
-                    </a>
-                  </div>
-                  <div class="space-y-3 text-center">
-                    <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                      <a href="">
-                        تلویزیون 40 اینچ سامسونگ
-                      </a>
-                    </span>
-                    <div class="flex justify-center text-xs opacity-75">
-                      <div class="line-through">1.350.000</div>
-                      <div class="line-through">تومان</div>
-                    </div>
-                    <div class="flex justify-center mt-1 mb-2 text-sm">
-                      <div>1.100.000</div>
-                      <div>تومان</div>
-                    </div>
-                  </div>
-                </span>
-                <span class="card swiper-slide my-2 p-2 md:p-3 ">
-                  <div class="image-box mb-6 ">
-                    <a href="">
-                      <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets//image/productSlider/5.jpg' %}" alt="" />
-                    </a>
-                  </div>
-                  <div class="space-y-3 text-center">
-                    <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                      <a href="">
-                        کاپشن زمستانه
-                      </a>
-                    </span>
-                    <div class="flex justify-center text-xs opacity-75">
-                      <div class="line-through">1.350.000</div>
-                      <div class="line-through">تومان</div>
-                    </div>
-                    <div class="flex justify-center mt-1 mb-2 text-sm">
-                      <div>1.100.000</div>
-                      <div>تومان</div>
-                    </div>
-                  </div>
-                </span>
-                <span class="card swiper-slide my-2 p-2 md:p-3 ">
-                  <div class="image-box mb-6 ">
-                    <a href="">
-                      <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{% static 'assets//image/productSlider/6.jpg' %}" alt="" />
-                    </a>
-                  </div>
-                  <div class="space-y-3 text-center">
-                    <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
-                      <a href="">
-                        هنذفری بلوتوثی شیائومی
-                      </a>
-                    </span>
-                    <div class="flex justify-center text-xs opacity-75">
-                      <div class="line-through">1.350.000</div>
-                      <div class="line-through">تومان</div>
-                    </div>
-                    <div class="flex justify-center mt-1 mb-2 text-sm">
-                      <div>1.100.000</div>
-                      <div>تومان</div>
-                    </div>
-                  </div>
-                </span>
-              </div>
-            </div>
-            <div class="swiper-button-next swiper-navBtn"></div>
-            <div class="swiper-button-prev swiper-navBtn"></div>
-          </div>
-        </div>
+       
       </div>
     </div>
   </div>
@@ -751,8 +482,11 @@
   <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
   <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
   <!-- INPUTS ADD NUMBER -->
-  <script src="{% static 'assets//js/jquery.min.js' %}"></script>
-  <script src="{% static 'assets//js/main.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  
+
 </html>
 
 {% endblock 'content' %}
+
