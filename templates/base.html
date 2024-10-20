@@ -509,16 +509,17 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" >
                     <ul class="list-reset">
-                  <li
-                                    class="relative">
-                                    <a
-                                      href="{% url 'product:category-homeappliances' %}"
-                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1"></span>
-                                    </a>
-                                  </li>
-            
-                    </script>  
+                    {% for category in category_homeappliances %}
+              <li
+                      class="relative">
+                        <a
+                        href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
+                        class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                        <span class="flex-1">{{category.name}}</span>
+                        </a>
+                        </li>
+                    {% endfor %}
+                  
                     </ul>
                   </div>
                 </div>
@@ -553,14 +554,16 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="arayeshi">
                     <ul class="list-reset">
-                  <li
-                                    class="relative">
-                                    <a
-                                      href="{% url 'product:category-beauty' %}"
-                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1"></span>
-                                    </a>
-                                  </li>
+                      {% for category in category_beauty %}
+                      <li
+                        class="relative">
+                          <a
+                          href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                          </a>
+                            </li>
+                            {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -595,14 +598,16 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="lavazembarqi">
                     <ul class="list-reset">
-                     <li
-                                    class="relative">
-                                    <a
-                                      href="{% url 'product:category-appliances' %}"
-                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1"></span>
-                                    </a>
-                                  </li>
+                      {% for category in category_appliances %}
+                      <li
+                      class="relative">
+                        <a
+                        href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
+                        class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                        <span class="flex-1">{{category.name}}</span>
+                        </a>
+                        </li>
+                    {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -637,14 +642,16 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="supermarket">
                     <ul class="list-reset">
-                    <li
-                                    class="relative">
-                                    <a
-                                      href="{% url 'product:category-supermarket' %}"
-                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1"></span>
-                                    </a>
-                                  </li>
+                      {% for category in category_supermarket %}
+                      <li
+                        class="relative">
+                        <a
+                        href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
+                        class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                        <span class="flex-1">{{category.name}}</span>
+                        </a>
+                        </li>
+                        {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -679,14 +686,16 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2" id="baby">
                     <ul class="list-reset">
+                      {% for category in category_child %}
                       <li
-                                    class="relative">
-                                    <a
-                                      href="{% url 'product:category-child' %}"
-                                      class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                                      <span class="flex-1"></span>
-                                    </a>
-                                  </li>
+                        class="relative">
+                        <a
+                       href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
+                        class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                        <span class="flex-1">{{category.name}}</span>
+                        </a>
+                        </li>
+                        {% endfor %}
                    
                     </ul>
                   </div>
