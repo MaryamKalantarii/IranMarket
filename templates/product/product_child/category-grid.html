@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Product{% endblock 'title' %}
+{% block 'content' %}
+  <!-- MAIN -->
+  <div class="max-w-[1440px] mx-auto px-3">
+    <div class="bg-white shadow-xl my-5 lg:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
+      <div class="bg-white mx-5 rounded-2xl mb-4">
+        <div class="py-3">
+          <h3 class="text-xl font-semibold text-gray-800">لپ تاپ و کامپیوتر</h3>
+        </div>
+      </div>
+      <div class="md:flex">
+        <div class="md:w-4/12 lg:w-3/12">
+          <div class="bg-white mx-5 mb-4 px-3 py-3 border rounded-xl">
+            <div class="wrapper">
+              <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
+                <div class="field">
+                  <span>تا</span>
+                  <input type="number" value="1000000">
+                  <span>تومان</span>
+                </div>
+                <div class="field">
+                  <span>از</span>
+                  <input type="number" value="0">
+                  <span>تومان</span>
+                </div>
+              </div>
+              <div class="slider">
+                <!-- <div class="progress"></div> -->
+              </div>
+              <div class="range-input">
+                <input type="range" class="range-min" min="0" max="1000000" value="0" step="100">
+                <input type="range" class="range-max" min="0" max="1000000" value="1000000" step="100">
+              </div>
+              <div class="flex justify-between opacity-70 text-xs my-3">
+                <span>
+                  ارزان ترین
+                </span>
+                <span>
+                  گران ترین
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-8/12 lg:w-9/12">
+          <div class="bg-white mx-1 rounded-2xl grid place-items-center">
+            <div class="w-full">
+              <div class="py-3 border-b">
+                <div class="opacity-80 text-sm mb-2">
+                  مرتب سازی:
+                </div>
+                <div class="flex flex-wrap gap-5 justify-start items-center">
+                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer text-red-600">
+                    محبوب ترین
+                  </div>
+                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                    پرفروش ترین
+                  </div>
+                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                    ارزان ترین
+                  </div>
+                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                    گران ترین
+                  </div>
+                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                    جدیدترین
+                  </div>
+                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                    پربازدیدترین
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 px-1 rounded-2xl py-5" >
+              
+              {% for object in object_list %}
+              <a href="{% url 'product:dijitalgoods:categoy-detaile' slug=object.slug %}" class="my-2 py-2 md:p-3 border rounded-xl flex items-center sm:inline hover:shadow-lg transition">
+                <div class="image-box sm:mb-6">
+                  <div>
+                    <img class="hover:scale-105 transition rounded-md sm:rounded-3xl w-24 sm:w-full mx-auto" src="{{object.image1.url}}" alt="" />
+                  </div>
+                </div>
+                <div class="flex flex-col w-full">
+                  <span class="text-xs sm:text-sm opacity-90 mb-5">
+                    <div class="leading-7 h-auto">
+                      {{object.title}}
+                    </div>
+                  </span>
+
+                  <!-- نمایش دسته‌بندی‌ها -->
+                 
+                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0">
+                    {% for category in object.category_Dijitalgoods.all %}
+                   <div>{{category.name}}</div> 
+                   {% if not forloop.last %}
+                    ,
+                  {% endif %}
+                   {% endfor %}
+                  </div>
+
+                  
+                  {% if object.is_discounted %}
+                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0 formatted-price">
+                    {{object.get_price}}
+                    
+                  </div>
+                  <div class="flex justify-end text-xs opacity-75 pl-3 md:pl-0 ">
+                    <div class="line-through formatted-price">{{object.price}}</div>
+                    
+                  </div>
+                  {% else %}
+                  <div class="flex justify-end mb-2 text-sm opacity-80 pl-3 md:pl-0 formatted-price">
+                    {{object.price}}
+                    
+                  </div>
+                  {% endif %}
+
+                </div>
+              </a>
+              {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+
+{% endblock 'content' %}
