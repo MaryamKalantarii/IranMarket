@@ -1,0 +1,2 @@
+from .clothingviews import *
+
