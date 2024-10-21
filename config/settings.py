@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'mail_templated',
     'cart',
+    'dashboard',
 ]
 
 ALLOWED_HOSTS = ['*']
