@@ -1,41 +1,81 @@
 from django.contrib import admin
-from .models import CustomeUser,Profail
 from django.contrib.auth.admin import UserAdmin
+from .models import Profile
+from django.contrib.auth import get_user_model
+
+CustomeUser = get_user_model()
 
 
-class CustomeUserAdmin(UserAdmin):
-    list_display = ("email", "is_staff", "is_active", "is_superuser", "is_verified")
-    list_filter = ("is_verified",)
-    search_fields = ("email",)
+class CustomUserAdmin(UserAdmin):
+    """
+    Custom admin panel for user management with add and change forms plus password
+    """
+
+    model = CustomeUser
+    list_display = ("id","email", "is_superuser", "is_active", "is_verified")
+    list_filter = ("email", "is_superuser", "is_active", "is_verified")
+    searching_fields = ("email",)
     ordering = ("email",)
-
     fieldsets = (
-        ("Basic data", {"fields": ("email", "username", "password")}),
         (
-            "Permissions",
+            "Authentication",
+            {
+                "fields": ("email", "password"),
+            },
+        ),
+        (
+            "permissions",
             {
                 "fields": (
                     "is_staff",
                     "is_active",
                     "is_superuser",
                     "is_verified",
-                    "groups",
-                    "user_permissions",
-                )
+                ),
+            },
+        ),
+        (
+            "group permissions",
+            {
+                "fields": ("groups", "user_permissions","type"),
+            },
+        ),
+        (
+            "important date",
+            {
+                "fields": ("last_login",),
             },
         ),
     )
-
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "username", "password1", "password2"),
+                "fields": (
+                    "email",
+                    "password1",
+                    "password2",
+                    "is_staff",
+                    "is_active",
+                    "is_superuser",
+                    "is_verified",
+                    "type"
+                ),
             },
         ),
     )
 
+class CustomProfileAdmin(admin.ModelAdmin):
+    list_display = ("id","user", "first_name","last_name","phone_number")
+    searching_fields = ("user","first_name","last_name","phone_number")
 
-admin.site.register(CustomeUser, CustomeUserAdmin)
-admin.site.register(Profail)
+
+admin.site.register(Profile,CustomProfileAdmin)
+admin.site.register(CustomeUser, CustomUserAdmin)
+
+
+
+
+
+
