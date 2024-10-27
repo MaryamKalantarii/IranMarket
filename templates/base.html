@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/font.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-
+    <link rel="stylesheet" href="{% static 'assets/vendor/toastify/toastify.css' %}">
 
     <!-- SLIDER HERO -->
     <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}" />
@@ -197,7 +197,7 @@
                       href=""
                       class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span
-                        class="flex justify-center items-center opacity-90"><img class="w-8 ml-2" src="{% static 'assets/image/userNotImage.png' %}" alt="" >{{request.user.username}}</span>
+                        class="flex justify-center items-center opacity-90"><img class="w-8 ml-2" src="{% static 'assets/image/userNotImage.png' %}" alt="" >{{request.user.email}}</span>
                     </a>
                   </li>
                   <li
@@ -1201,7 +1201,7 @@
   <!-- FOR TIMER OFF -->
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script src="{% static 'assets/js/custom.js' %}"></script>
-
+  <script src="{% static 'assets/vendor/toastify/toastify.js' %}"></script>
   <script>
  function addToCart(buttonElement) {
     var product_id = $(buttonElement).data("product-id"); // گرفتن product_id
@@ -1230,7 +1230,7 @@
 
 
   </script>
-  
+{% include 'messages.html' %}  
 
 </html>
 

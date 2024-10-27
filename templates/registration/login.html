@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block 'content' %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -20,7 +22,7 @@
 <body class="bg-gray-50">
   <div class="flex justify-center items-center text-right h-screen w-96 mx-auto">
     <div class="shadow-xl rounded-2xl p-8 bg-white">
-      <form action="" method="post">
+      <form action="{% url 'accounts:login' %}" method="post">
         {% csrf_token %}
         <div class="mb-2">
           <a href="index.html">
@@ -34,21 +36,15 @@
           نام کاربری خود را وارد کنید:
         </div>
         <div class="mb-2">
-          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="text" name="username">
+          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="email" name="username">
         </div>
       
         <div class="text-xs opacity-70 mb-2">
           رمز عبور
         </div>
         <div class="mb-2">
-          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="password" name="password1">
+          <input class="w-full drop-shadow-lg outline-none rounded-2xl py-2 text-center" type="password" name="password">
         </div>
-        
-        {% if messages %}
-          {% for message in messages %}
-            {{message}}
-          {% endfor %}
-          {% endif %}
         <div class="text-center mt-5 mb-3">
           <button class="bg-red-500 hover:bg-red-600 transition text-white opacity-80 rounded-2xl w-full py-2" type="submit">
             ورود
@@ -64,4 +60,4 @@
   </div>
 </body>
 </html> 
-
+{% endblock 'content' %}

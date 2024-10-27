@@ -1,5 +1,7 @@
 from django.contrib.auth import views as auth_views
 from accounts.forms import AuthenticationForm
+from django.shortcuts import redirect
+from django.contrib.auth import logout
 
 class LoginView(auth_views.LoginView):
     template_name = "registration/login.html"
@@ -8,8 +10,15 @@ class LoginView(auth_views.LoginView):
     
     
 class LogoutView(auth_views.LogoutView):
-    pass
-
+    def dispatch(self, request, *args, **kwargs):
+        # قبول کردن متد GET برای لاگ‌اوت
+        if request.method == 'GET':
+            # انجام لاگ‌اوت
+            logout(request)
+            # هدایت به صفحه مورد نظر
+            return redirect('/')  # مسیر مناسب خود را تنظیم کنید
+        # رفتار پیش‌فرض برای سایر متدها (مثل POST)
+        return super().dispatch(request, *args, **kwargs)
 
 
 
