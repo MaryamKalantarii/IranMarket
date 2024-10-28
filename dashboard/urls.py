@@ -1,9 +1,14 @@
 from django.urls import path,include
-from .views import *
-app_name = 'dashboard'
+from . import views
+
+app_name = "dashboard"
 
 urlpatterns = [
-    path("dashboard",DashboardHomeView.as_view(),name="dashboard"),
-
-
+    path("home/",views.DashboardHomeView.as_view(),name="home"),
+    
+    # include admin urls
+    # path("admin/",include('dashboard.admin.urls')),
+    
+    # include customer urls
+    path("customer/",include('dashboard.customer.urls')),
 ]

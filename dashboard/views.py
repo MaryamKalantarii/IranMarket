@@ -1,16 +1,19 @@
-from typing import Any
-from django.http import HttpRequest
-from django.http.response import HttpResponse as HttpResponse
-from django.shortcuts import render
 from django.views.generic import View
-from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-class DashboardHomeView(View,LoginRequiredMixin):
-    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        # if request.user.is_authenticated:
-        #     if request.user.type ==
+from accounts.models import UserType
 
-        # else:
-        #     redirect(reverse_lazy('accounts:login'))
+
+class DashboardHomeView(LoginRequiredMixin,View):
+    
+    def dispatch(self, request,*args, **kwargs):
+        if request.user.is_authenticated:
+            if request.user.type == UserType.customer.value:
+                return redirect(reverse_lazy('dashboard:customer:home'))
+            if request.user.type == UserType.admin.value:
+                return redirect(reverse_lazy('#'))
+        else:
+            return redirect(reverse_lazy('accounts:login'))
         return super().dispatch(request, *args, **kwargs)
+    
