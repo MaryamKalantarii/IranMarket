@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+  <!-- MAIN -->
+  <div class="max-w-[1440px] mx-auto px-3">
+    <div class="bg-white shadow-xl my-5 lg:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
+      <div class="flex flex-col md:flex-row gap-5">
+        {% include 'dashboard/customer/sidebar.html' %}
+        <div class="md:w-8/12 lg:w-9/12 flex flex-col gap-y-5">
+          <div class="border rounded-3xl shadow-lg flex flex-col p-5 gap-y-5">
+            <form action="." method="post" class="space-y-6">
+              {% csrf_token %}
+              <!-- Current Password -->
+              <div>
+                <label for="currentPasswordLabel" class="block mb-2 text-sm font-medium text-gray-700">رمز عبور فعلی</label>
+                <div>
+                  {{ form.old_password }}
+                </div>
+              </div>
+              <!-- New Password -->
+              <div>
+                <label for="newPassword" class="block mb-2 text-sm font-medium text-gray-700">رمز عبور جدید</label>
+                <div>
+                  {{ form.new_password1 }}
+                </div>
+              </div>
+              <!-- Confirm New Password -->
+              <div>
+                <label for="confirmNewPasswordLabel" class="block mb-2 text-sm font-medium text-gray-700">رمز عبور جدید را تایید کنید</label>
+                <div class="space-y-3">
+                  {{ form.new_password2 }}
+                  <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-md">
+                    <h5 class="font-semibold text-blue-800">الزامات رمز عبور:</h5>
+                    <p class="text-sm text-gray-700">اطمینان حاصل کنید که این الزامات برآورده شده است:</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                      <li>حداقل 8 کاراکتر - هر چه بیشتر باشد، بهتر است</li>
+                      <li>حداقل یک نویسه کوچک</li>
+                      <li>حداقل یک کاراکتر بزرگ</li>
+                      <li>حداقل یک عدد، نماد یا نویسه فضای خالی</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Submit and Cancel Buttons -->
+              
+            </form>
+            
+            <span class="opacity-90">
+              <button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm" type="submit">ثبت</button>
+              <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">لغو</button>
+            </span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}
