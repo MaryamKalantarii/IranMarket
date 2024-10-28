@@ -15,9 +15,28 @@ class CustomerPasswordChangeForm(auth_forms.PasswordChangeForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['old_password'].widget.attrs['class'] = 'form-control text-center'
-        self.fields['new_password1'].widget.attrs['class'] = 'form-control text-center'
-        self.fields['new_password2'].widget.attrs['class'] = 'form-control text-center'
+        self.fields['old_password'].widget.attrs['class'] = 'form-control text-center text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300'
+        self.fields['new_password1'].widget.attrs['class'] = 'form-control text-center text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300'
+        self.fields['new_password2'].widget.attrs['class'] = 'form-control text-center text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300'
         self.fields['old_password'].widget.attrs['placeholder'] = "پسورد قبلی خود را وارد نمایید"
         self.fields['new_password1'].widget.attrs['placeholder'] = "پسورد جایگزین خود را وارد نمایید"
         self.fields['new_password2'].widget.attrs['placeholder'] = "پسورد جایگزین خود را مجدد وارد نمایید"
+
+
+
+class CustomerProfileEditForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields =[
+            "first_name",
+            "last_name",
+            "phone_number"
+        ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs['class'] = 'form-control text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300'
+        self.fields['first_name'].widget.attrs['placeholder'] = 'نام خود را وارد نمایید'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'نام خانوادگی را وارد نمایید'
+        self.fields['phone_number'].widget.attrs['class'] = 'form-control text-center text-sm block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300'
+        self.fields['phone_number'].widget.attrs['placeholder'] = 'شماره همراه را وارد نمایید'
