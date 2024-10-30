@@ -58,12 +58,17 @@ class CustomeUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class Profile(models.Model):
-    user = models.ForeignKey(CustomeUser, on_delete=models.CASCADE,related_name="user_profile")
+    user = models.OneToOneField(CustomeUser,on_delete=models.CASCADE ,related_name="user_profile")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="users",default="profile/default.png")
+    image = models.ImageField(upload_to="profile/",default="profile/default.png")
     phone_number= models.CharField(max_length=20,validators=[validate_iranian_cellphone_number])
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    def get_fullname(self):
+        if self.first_name or self.last_name:
+            return self.first_name + " " + self.last_name
+        return "کاربر جدید"
 
    

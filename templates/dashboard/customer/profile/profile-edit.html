@@ -7,7 +7,7 @@
       <div class="flex flex-col md:flex-row gap-5">
         {% include 'dashboard/customer/sidebar.html' %}
         <div class="md:w-8/12 lg:w-9/12 flex flex-col gap-y-5">
-        <form action="">
+        <form action="{% url 'dashboard:customer:profile-edit' %}" method="post">
             {% csrf_token %}
           <div class="border rounded-3xl shadow-lg flex flex-col p-5 gap-y-5">
             <div class="sm:grid grid-cols-2 gap-x-5">
@@ -41,14 +41,15 @@
                   </div>
                   <input id="dropzone-file" type="file" class="hidden" />
                 </label>
-              </div> 
+              </div>
             </div>
             <span class="opacity-90">
-              <button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm">ثبت</button>
+              <button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm" type="submit">ثبت</button>
               <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">لغو</button>
             </span>
           </div>
         </form>
+        
         </div>
       </div>
     </div>

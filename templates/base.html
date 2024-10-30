@@ -163,14 +163,14 @@
             <a
               href="{% url 'accounts:login' %}"
               class="flex items-center h-10 leading-10 px-3 mx-1 transition rounded-xl hover:bg-red-50">
-              <img class="ml-1 w-6" src="{% static 'assets/image/user.png' %}" alt="" />
+              <img class="ml-1 w-6" src="{{request.user.user_profile.image.url}}" alt="" />
               <span
                 class="text-sm opacity-95"
                 >
                 ورود | ثبت نام
               </span>
               <span>
-                <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                <img class="w-4 mr-1" src="" alt="" />
               </span>
             </a>
             {% if request.user.is_authenticated %}
@@ -197,7 +197,7 @@
                       href="{% url 'dashboard:home' %}"
                       class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span
-                        class="flex justify-center items-center opacity-90"><img class="w-8 ml-2" src="{% static 'assets/image/userNotImage.png' %}" alt="" >{{request.user.email}}</span>
+                        class="flex justify-center items-center opacity-90"><img class="w-8 ml-2" src="{{request.user.user_profile.image.url}}" alt="" >{{request.user.email}}</span>
                     </a>
                   </li>
                   <li
