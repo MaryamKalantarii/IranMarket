@@ -13,6 +13,8 @@ urlpatterns =[
 
     path("homeappliances/",include('product.homeappliances.urls')),
 
+    path("search/",search_products,name="search_products"),
+
 
    
     

@@ -15,11 +15,7 @@ class ClothingGrid(ListView):
     def get_queryset(self):
         queryset = Clothing.objects.filter(status=True)
 
-        # دریافت پارامتر جستجو
-        search_q = self.request.GET.get("q")
-        if search_q:
-            queryset = queryset.filter(title__icontains=search_q)
-
+    
         # فیلتر بر اساس کتگوری
         category_slug = self.request.GET.get("category")
         if category_slug:

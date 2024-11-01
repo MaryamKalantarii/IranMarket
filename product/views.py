@@ -1,79 +1,33 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,DetailView
-from product.models import *
-# Create your views here.
+from django.db.models import Q
+from .models import Clothing, Dijitalgoods, Homeappliances
 
-# class ClothingView(TemplateView):
-#     template_name = 'product/product_clothing/category_clothing.html'
-
-
-
-# class ClothingGrid(ListView):
+def search_products(request):
+    query = request.GET.get('q')
+    results = []
     
-#     template_name = 'product/product_clothing/category-grid.html'
-    
-#     def get_queryset(self):
-#         queryset = Clothing.objects.filter(status=True)
+    if query:
+        clothing_results = list(Clothing.objects.filter(
+            Q(title__icontains=query) | Q(brief_description__icontains=query)
+        ).prefetch_related('category_clothing').distinct())
+        for item in clothing_results:
+            item.product_type = "Clothing"
+            item.namespace = "product:clothing:categoy-detaile"
 
-#         # دریافت پارامتر جستجو
-#         search_q = self.request.GET.get("q")
-#         if search_q:
-#             queryset = queryset.filter(title__icontains=search_q)
+        dijitalgoods_results = list(Dijitalgoods.objects.filter(
+            Q(title__icontains=query) | Q(brief_description__icontains=query)
+        ).prefetch_related('category_Dijitalgoods').distinct())
+        for item in dijitalgoods_results:
+            item.product_type = "Dijitalgoods"
+            item.namespace = "product:dijitalgoods:categoy-detaile"
 
-#         # فیلتر بر اساس کتگوری
-#         category_slug = self.request.GET.get("category")
-#         if category_slug:
-#             queryset = queryset.filter(category_clothing__slug=category_slug)
+        homeappliances_results = list(Homeappliances.objects.filter(
+            Q(title__icontains=query) | Q(brief_description__icontains=query)
+        ).prefetch_related('category_Homeappliances').distinct())
+        for item in homeappliances_results:
+            item.product_type = "Homeappliances"
+            item.namespace = "product:homeappliances:categoy-detaile"
 
-        
-#         return queryset
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['categories'] = Category_clothing.objects.all()  # ارسال لیست همه کتگوری‌ها به تمپلیت
-#         context['selected_category'] = self.request.GET.get('category')
-#         return context
+        results += clothing_results + dijitalgoods_results + homeappliances_results
 
-
-
-
-# class Clothing_detaile(DetailView):
-
-#     template_name = 'product/product_clothing/single-product.html'
-#     queryset = Clothing.objects.filter(status=True)
-   
-
-
-
-
-
-#########################
-
-class DijitalgoodsView(TemplateView):
-    template_name = 'product/product_dijitalgoods/category_Dijitalgoods.html'
-
-
-class HomeappliancesView(TemplateView):
-    template_name = 'product/product_homeappliances/category_Homeappliances.html'
-
-
-class BeautyView(TemplateView):
-    template_name = 'product/category_Beauty.html'
-
-
-class AppliancesView(TemplateView):
-    template_name = 'product/category_Appliances.html'
-
-
-class SupermarketView(TemplateView):
-    template_name = 'product/category_Supermarket.html'
-
-
-class Child_and_babyView(TemplateView):
-    template_name = 'product/category_Child_and_baby.html'
-
-
-
-
-class Product_single_View(TemplateView):
-    template_name = 'product/single-product.html'
+    return render(request, 'search/search.html', {'results': results})
