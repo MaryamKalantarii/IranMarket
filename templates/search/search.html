@@ -172,6 +172,22 @@
                         {% for category in product.category_Homeappliances.all %}
                             <span>{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
+                      {% elif product.product_type == "Beauty" %}
+                        {% for category in product.category_Beauty.all %}
+                            <span>{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      {% elif product.product_type == "Appliances" %}
+                        {% for category in product.category_Appliances.all %}
+                            <span>{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      {% elif product.product_type == "Supermarket" %}
+                        {% for category in product.category_Supermarket.all %}
+                            <span>{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      {% elif product.product_type == "Child_and_baby" %}
+                        {% for category in product.category_Child_and_baby.all %}
+                            <span>{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
                     {% endif %}
                 </div>
                   {% if product.is_discounted %}

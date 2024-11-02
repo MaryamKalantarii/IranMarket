@@ -58,6 +58,6 @@ def search_products(request):
             item.product_type = "Child_and_baby"
             item.namespace = "product:child:categoy-detaile"
 
-        results += clothing_results + dijitalgoods_results + homeappliances_results + beauty_results
+        results += clothing_results + dijitalgoods_results + homeappliances_results + beauty_results + appliances_results + supermarket_results + Child_and_baby_results 
 
     return render(request, 'search/search.html', {'results': results})
