@@ -1,2 +1,2 @@
-from .clothingviews import *
+from .child_view import *
 

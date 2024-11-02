@@ -16,7 +16,7 @@ urlpatterns =[
     path("beauty/",include('product.beauty.urls')),
 
 
-    # path("child/",include('product.child.urls')),
+    path("child/",include('product.child.urls')),
 
     path("supermarket/",include('product.supermarket.urls')),
 
