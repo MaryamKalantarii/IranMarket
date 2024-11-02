@@ -1,2 +1,2 @@
-from .clothingviews import *
+from .supermarket_view import *
 

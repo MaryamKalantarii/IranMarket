@@ -1,9 +1,9 @@
 from django.urls import path,include
 
-app_name = "clothing"
+app_name = "beauty"
 
 urlpatterns = [
-    path("",include("product.clothing.urls.clothingurls")),
+    path("",include("product.beauty.urls.beauty_url")),
  
  
 ]

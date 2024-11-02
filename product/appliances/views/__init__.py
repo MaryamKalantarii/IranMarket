@@ -1,2 +1,2 @@
-from .clothingviews import *
+from .appliances_view import *
 

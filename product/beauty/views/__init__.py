@@ -1,2 +1,2 @@
-from .clothingviews import *
+from .beauty_view import *
 
