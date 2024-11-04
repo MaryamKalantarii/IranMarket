@@ -4,36 +4,36 @@
     <!-- TOP SLIDER -->
     <div class="flex justify-between px-5 md:px-10 items-center">
       <div class="border-b-2 border-red-500 pb-1">مرتبط ترین ها</div>
-      <a href="/product/clothing/category-grid/"><div class="transition px-4 py-2 rounded-xl flex justify-center items-center text-red-500 hover:text-red-600">دیدن همه<img class="w-4" src="{% static 'assets//image/arrow-left.png' %}" alt=""></div></a>
+      <a href="/product/homeappliances/category-grid/"><div class="transition px-4 py-2 rounded-xl flex justify-center items-center text-red-500 hover:text-red-600">دیدن همه<img class="w-4" src="{% static 'assets//image/arrow-left.png' %}" alt=""></div></a>
     </div>
     <!-- SLIDER -->
     <div class="containerPSlider swiper">
       <div class="slide-container1 px-2">
         <div class="card-wrapper swiper-wrapper py-4">
-            {% for similar_clothings in similar_clothings %}
+            {% for similar_home in similar_home %}
           <span class="card swiper-slide my-2 p-2 md:p-3 ">
             <div class="image-box mb-6 ">
               <a href="">
-                <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{{similar_clothings.image1.url}}" alt="" />
+                <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{{similar_home.image1.url}}" alt="" />
               </a>
             </div>
             <div class="space-y-3 text-center">
               <span class="text-sm opacity-80 mb-2 h-8 md:h-10">
                 <a href="">
-                  {{similar_clothings.title}}
+                  {{similar_home.title}}
                 </a>
               </span>
-              {% if similar_clothings.is_discounted %}
+              {% if similar_home.is_discounted %}
               <div class="flex justify-center text-xs opacity-75 ">
-                <div class="line-through formatted-price">{{similar_clothings.price}}</div>
+                <div class="line-through formatted-price">{{similar_home.price}}</div>
                 
               </div>
               <div class="flex justify-center mt-1 mb-2 text-sm formatted-price">
-                <div>{{similar_clothings.get_price}}</div>
+                <div>{{similar_home.get_price}}</div>
               </div>
               {% else %}
               <div class="flex justify-center mt-1 mb-2 text-sm formatted-price">
-                <div>{{similar_clothings.price}}</div>
+                <div>{{similar_home.price}}</div>
               </div>
               {% endif %}
             </div>

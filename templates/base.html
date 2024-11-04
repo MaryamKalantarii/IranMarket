@@ -286,78 +286,44 @@
               @mouseleave="showChildren=false">
               <div class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
                 <ul class="list-reset flex flex-col gap-y-2">
+                  {% for item in cart_items %}
                   <li
                     class="relative">
                     <a
-                      href="single-product.html"
+                      href=""
                       class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center opacity-90">
                         <div class="flex">
                           <img
                           class="w-14 ml-2 rounded-lg"
-                          src="{% static 'assets/image/product/bag.png' %}"
+                          src="{{item.product_obj.image1.url}}"
                           alt="" />
                           <div class="flex flex-col flex-wrap gap-y-1 justify-center">
                             <div class="opacity-80 w-full text-sm">
-                              کوله پشتی مدل ایستاده
+                              {{item.product_obj.title}}
                             </div>
                             <div class="flex opacity-75 text-xs">
                               <div>
                                 قیمت:
                               </div>
-                              <div>
-                                700,000
+                              <div class="formatted-price">
+                                {{item.total_price}}
                               </div>
-                              <div>
-                                تومان
-                              </div>
+                             
                             </div>
                           </div>
-                          <span class="text-red-400 hover:text-red-500 bg-red-100 hover:bg-red-200 px-2 text-xl font-bold h-7 rounded-full cursor-pointer absolute left-2 top-5">
+                          <span class="text-red-400 hover:text-red-500 bg-red-100 hover:bg-red-200 px-2 text-xl font-bold h-7 rounded-full cursor-pointer absolute left-2 top-5" onclick="removeProduct('{{item.product_id}}')">
                             ×
                           </span>
                         </div>
                       </span>
                     </a>
                   </li>
+                  {% endfor %}
                   <li
                     class="relative">
                     <a
-                      href="single-product.html"
-                      class="px-2 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
-                      <span class="flex justify-center items-center opacity-90">
-                        <div class="flex">
-                          <img
-                          class="w-14 ml-2 rounded-lg"
-                          src="{% static 'assets/image/product/bag.png' %}"
-                          alt="" />
-                          <div class="flex flex-col flex-wrap gap-y-1 justify-center">
-                            <div class="opacity-80 w-full text-sm">
-                              کوله پشتی مدل ایستاده
-                            </div>
-                            <div class="flex opacity-75 text-xs">
-                              <div>
-                                قیمت:
-                              </div>
-                              <div>
-                                700,000
-                              </div>
-                              <div>
-                                تومان
-                              </div>
-                            </div>
-                          </div>
-                          <span class="text-red-400 hover:text-red-500 bg-red-100 hover:bg-red-200 px-2 text-xl font-bold h-7 rounded-full cursor-pointer absolute left-2 top-5">
-                            ×
-                          </span>
-                        </div>
-                      </span>
-                    </a>
-                  </li>
-                  <li
-                    class="relative">
-                    <a
-                      href="checkout.html"
+                      href="{% url 'cart:session-cart-summary' %}"
                       class="px-2 py-2 flex w-full items-start justify-center">
                       <span class="flex justify-center items-center opacity-90">
                         <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-xs">تسویه حساب</button>
@@ -1228,7 +1194,27 @@
     });
 }
 
-
+function removeProduct(product_id){
+        $.ajax({
+            url: "{%  url 'cart:session-remove-product' %}",
+            method: 'POST',
+            data: {
+                product_id: product_id,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+    
+            },
+            success: function (response) {
+                console.log(response);
+                window.location.reload();
+                // do something with the response data
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                // handle the error case
+            }
+        });
+    }
+</script>
   </script>
 {% include 'messages.html' %}  
 
