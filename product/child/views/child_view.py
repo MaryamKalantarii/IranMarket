@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Child_and_baby,Category_Child_and_baby
-
+from django.contrib import messages
 
 class ChildView(TemplateView):
     template_name = 'product/product_child/category_child.html'
@@ -36,5 +36,9 @@ class Child_detaile(DetailView):
 
     template_name = 'product/product_child/single-product.html'
     queryset = Child_and_baby.objects.filter(status=True)
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
+        return redirect(request.path_info)
    
 

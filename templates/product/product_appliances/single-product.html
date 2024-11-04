@@ -211,10 +211,13 @@
                     </div>
                   </div>
                   <span class="flex justify-center items-center opacity-90">
+                    <form action="" method="post">
+                      {% csrf_token %}
                     <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
                     onclick="addToCart(this)"
                     data-product-id="{{ object.id }}"
                     data-model-name="Appliances">افزودن به سبد خرید</button>
+                    </form>
                               </span>
                 </div>
               </div>

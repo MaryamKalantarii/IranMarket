@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Beauty,Category_Beauty
-
+from django.contrib import messages
 
 class BeautyView(TemplateView):
     template_name = 'product/product_beauty/category_beauty.html'
@@ -37,5 +37,9 @@ class Beauty_detaile(DetailView):
 
     template_name = 'product/product_beauty/single-product.html'
     queryset = Beauty.objects.filter(status=True)
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
+        return redirect(request.path_info)
    
 

@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Dijitalgoods , Category_Dijitalgoods
-
+from django.contrib import messages
 
 class DijitalgoodsView(TemplateView):
     template_name = 'product/product_dijitalgoods/category_dijitalgoods.html'
@@ -37,3 +37,7 @@ class Dijitalgoods_detaile(DetailView):
 
     template_name = 'product/product_dijitalgoods/single-product.html'
     queryset = Dijitalgoods.objects.filter(status=True)
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
+        return redirect(request.path_info)

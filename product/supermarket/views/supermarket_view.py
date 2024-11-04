@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Supermarket,Category_Supermarket
-
+from django.contrib import messages
 
 class SupermarketView(TemplateView):
     template_name = 'product/product_supermarket/category_supermarket.html'
@@ -37,5 +37,9 @@ class Supermarket_detaile(DetailView):
 
     template_name = 'product/product_supermarket/single-product.html'
     queryset = Supermarket.objects.filter(status=True)
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
+        return redirect(request.path_info)
    
 

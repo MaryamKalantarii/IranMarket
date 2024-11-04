@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Homeappliances,Category_Homeappliances
-
+from django.contrib import messages
 
 class HomeapplianceView(TemplateView):
     template_name = 'product/product_homeappliances/category_homeappliances.html'
@@ -39,3 +39,6 @@ class homeappliances_detaile(DetailView):
     queryset = Homeappliances.objects.filter(status=True)
    
 
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
+        return redirect(request.path_info)
