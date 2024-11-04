@@ -1,8 +1,8 @@
-from django.shortcuts import render
 from django.views.generic import View,TemplateView
 from django.http import JsonResponse
 from .cart import CartSession
 from typing import Any
+
 # Create your views here.
 
 class SessionAddProduct(View):
@@ -10,7 +10,7 @@ class SessionAddProduct(View):
         cart = CartSession(request.session)
         product_id = request.POST.get("product_id")
         model_name = request.POST.get("model_name")  # دریافت model_name از درخواست
-
+        
         if product_id and model_name:  # اطمینان از اینکه هر دو موجود باشند
             cart.add_product(product_id, model_name)  # ارسال product_id و model_name به متد add_product
 

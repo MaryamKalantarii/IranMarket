@@ -3,6 +3,7 @@
 {% load product_tags %}
 {% block 'title' %}single product{% endblock 'title' %}
 {% block 'content' %}
+
   <!-- MAIN -->
   <div class="max-w-[1440px] mx-auto px-3">
     <div class="flex gap-x-2 px-10 mt-5 md:mt-10">
@@ -211,11 +212,15 @@
                     </div>
                   </div>
                   <span class="flex justify-center items-center opacity-90">
-                    <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
+
+                    <form action="" method="post">
+                      {% csrf_token %}
+                    <button type="submit" class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
                     onclick="addToCart(this)"
                     data-product-id="{{ object.id }}"
                     data-model-name="Clothing">افزودن به سبد خرید</button>
-                              </span>
+                    </form>
+                    </span>
                 </div>
               </div>
             </div>

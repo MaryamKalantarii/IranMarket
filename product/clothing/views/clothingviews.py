@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Clothing,Category_clothing
-
+from django.contrib import messages
 
 class ClothingView(TemplateView):
     template_name = 'product/product_clothing/category_clothing.html'
@@ -33,9 +33,11 @@ class ClothingGrid(ListView):
 
 
 
-class Clothing_detaile(DetailView):
 
+class Clothing_detaile(DetailView):
     template_name = 'product/product_clothing/single-product.html'
     queryset = Clothing.objects.filter(status=True)
-   
 
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
+        return redirect(request.path_info)

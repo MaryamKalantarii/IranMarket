@@ -84,6 +84,7 @@ TEMPLATES = [
                 # اضافه کردن context processor جدید
                 'product.context_processors.categories_processor',
                 'cart.context_processors.cart_processor',
+                
 
             ],
         },
