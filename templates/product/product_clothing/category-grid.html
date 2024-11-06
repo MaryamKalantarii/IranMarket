@@ -1,48 +1,87 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block 'title' %}Product{% endblock 'title' %}
 {% block 'content' %}
   <!-- MAIN -->
   <div class="max-w-[1440px] mx-auto px-3">
     <div class="bg-white shadow-xl my-5 lg:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
       <div class="bg-white mx-5 rounded-2xl mb-4">
-        <div class="py-3">
-          <h3 class="text-xl font-semibold text-gray-800">لپ تاپ و کامپیوتر</h3>
-        </div>
       </div>
       <div class="md:flex">
         <div class="md:w-4/12 lg:w-3/12">
           <div class="bg-white mx-5 mb-4 px-3 py-3 border rounded-xl">
-            <div class="wrapper">
-              <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
-                <div class="field">
-                  <span>تا</span>
-                  <input type="number" value="1000000">
-                  <span>تومان</span>
+            <form id="price-filter-form" method="get" action="">
+                <div class="wrapper">
+                    <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
+                        <div class="field">
+                            <span>تا</span>
+                            <input type="number" id="max_price" name="max_price" value="1000000">
+                            <span>تومان</span>
+                        </div>
+                        <div class="field">
+                            <span>از</span>
+                            <input type="number" id="min_price" name="min_price" value="0">
+                            <span>تومان</span>
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <!-- <div class="progress"></div> -->
+                    </div>
+                    <div class="range-input">
+                        <input type="range" class="range-min" min="0" max="1000000" value="0" step="100" id="range-min">
+                        <input type="range" class="range-max" min="0" max="1000000" value="1000000" step="100" id="range-max">
+                    </div>
+                    <div class="flex justify-between opacity-70 text-xs my-3">
+                        <span>ارزان ترین</span>
+                        <span>گران ترین</span>
+                    </div>
                 </div>
-                <div class="field">
-                  <span>از</span>
-                  <input type="number" value="0">
-                  <span>تومان</span>
+                <div class="text-center mt-5 mb-3">
+                  <button class="bg-red-500 hover:bg-red-600 transition text-white opacity-80 rounded-2xl w-full py-2" type="submit">
+                    فیلتر
+                  </button>
                 </div>
-              </div>
-              <div class="slider">
-                <!-- <div class="progress"></div> -->
-              </div>
-              <div class="range-input">
-                <input type="range" class="range-min" min="0" max="1000000" value="0" step="100">
-                <input type="range" class="range-max" min="0" max="1000000" value="1000000" step="100">
-              </div>
-              <div class="flex justify-between opacity-70 text-xs my-3">
-                <span>
-                  ارزان ترین
-                </span>
-                <span>
-                  گران ترین
-                </span>
-              </div>
-            </div>
-          </div>
+            </form>
+        </div>
+        
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const minPriceInput = document.getElementById("min_price");
+            const maxPriceInput = document.getElementById("max_price");
+            const rangeMin = document.getElementById("range-min");
+            const rangeMax = document.getElementById("range-max");
+        
+            const minGap = 1000;  // حداقل فاصله بین دو اسلایدر
+        
+            // بروزرسانی input ها بر اساس اسلایدرها
+            rangeMin.addEventListener("input", function() {
+                if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
+                    rangeMin.value = parseInt(rangeMax.value) - minGap;
+                }
+                minPriceInput.value = rangeMin.value;
+            });
+        
+            rangeMax.addEventListener("input", function() {
+                if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
+                    rangeMax.value = parseInt(rangeMin.value) + minGap;
+                }
+                maxPriceInput.value = rangeMax.value;
+            });
+        
+            // بروزرسانی اسلایدرها بر اساس input ها
+            minPriceInput.addEventListener("input", function() {
+                if (parseInt(maxPriceInput.value) - parseInt(minPriceInput.value) >= minGap) {
+                    rangeMin.value = minPriceInput.value;
+                }
+            });
+        
+            maxPriceInput.addEventListener("input", function() {
+                if (parseInt(maxPriceInput.value) - parseInt(minPriceInput.value) >= minGap) {
+                    rangeMax.value = maxPriceInput.value;
+                }
+            });
+        });
+        </script>
+        
         </div>
         <div class="md:w-8/12 lg:w-9/12">
           <div class="bg-white mx-1 rounded-2xl grid place-items-center">

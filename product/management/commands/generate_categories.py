@@ -26,7 +26,7 @@ class Command(BaseCommand):
             # دریافت مدل بر اساس نام
             model = apps.get_model('product', model_name)
 
-            for _ in range(10):
+            for _ in range(5):
                 name = fake.word()
                 slug = slugify(name, allow_unicode=True)
                 # ایجاد یا دریافت دسته‌بندی فیک
