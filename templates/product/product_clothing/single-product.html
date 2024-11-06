@@ -161,6 +161,42 @@
                   </div>
                 </div>
               </div>
+              {% if object.is_out_of_stock %}
+              <div class="md:w-2/5 mt-5 md:mt-0">
+                <div class="pb-5 rounded-2xl shadow-xl border">
+                  <div class="flex justify-between px-3 py-5">
+                    <div class="text-right opacity-80 text-sm flex flex-col gap-y-6">
+                      <div>
+                        اندازه:
+                      </div>
+                      <div>
+                        موجود در انبار:
+                      </div>
+                      <div>
+                        قیمت:
+                      </div>
+                      <div>
+                        تعداد:
+                      </div>
+                    </div>
+                    <div class="text-left opacity-70 text-sm flex flex-col gap-y-6">
+                      <div>
+                        __
+                      </div>
+                      <div>
+                        0
+                      </div>
+                      <div class="flex text-red-500">
+                        ناموجود
+                      </div>
+                    </div>
+                  </div>
+                  <span class="flex justify-center items-center opacity-90">
+                    <button class="px-7 py-2 text-center text-white bg-gray-500 align-middle border-0 rounded-lg shadow-md text-sm">موجود شد به من اطلاع بده</button>
+                  </span>
+                </div>
+              </div>
+              {% else %}
               <div class="md:w-2/5 mt-5 md:mt-0">
                 <div class="pb-5 rounded-2xl shadow-xl border">
                   <div class="flex justify-between px-3 py-5">
@@ -222,6 +258,7 @@
                     </span>
                 </div>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>

@@ -103,7 +103,12 @@ class Clothing(models.Model):
     def is_discounted(self):
         return self.discount_percent != 0
  
-
+     # متد برای بررسی وضعیت موجودی
+    @property
+    def is_out_of_stock(self):
+        return self.stock == 0
+    
+    
 # کالای دیجیتال 
 class Dijitalgoods(models.Model):
     title = models.CharField(max_length=255)
