@@ -14,12 +14,12 @@
                     <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
                         <div class="field">
                             <span>تا</span>
-                            <input type="number" id="max_price" name="max_price" value="1000000">
+                            <input type="number" id="max_price" name="max_price">
                             <span>تومان</span>
                         </div>
                         <div class="field">
                             <span>از</span>
-                            <input type="number" id="min_price" name="min_price" value="0">
+                            <input type="number" id="min_price" name="min_price">
                             <span>تومان</span>
                         </div>
                     </div>
@@ -44,43 +44,62 @@
         </div>
         
         <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const minPriceInput = document.getElementById("min_price");
-            const maxPriceInput = document.getElementById("max_price");
-            const rangeMin = document.getElementById("range-min");
-            const rangeMax = document.getElementById("range-max");
-        
-            const minGap = 1000;  // حداقل فاصله بین دو اسلایدر
-        
-            // بروزرسانی input ها بر اساس اسلایدرها
-            rangeMin.addEventListener("input", function() {
-                if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
-                    rangeMin.value = parseInt(rangeMax.value) - minGap;
-                }
-                minPriceInput.value = rangeMin.value;
-            });
-        
-            rangeMax.addEventListener("input", function() {
-                if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
-                    rangeMax.value = parseInt(rangeMin.value) + minGap;
-                }
-                maxPriceInput.value = rangeMax.value;
-            });
-        
-            // بروزرسانی اسلایدرها بر اساس input ها
-            minPriceInput.addEventListener("input", function() {
-                if (parseInt(maxPriceInput.value) - parseInt(minPriceInput.value) >= minGap) {
-                    rangeMin.value = minPriceInput.value;
-                }
-            });
-        
-            maxPriceInput.addEventListener("input", function() {
-                if (parseInt(maxPriceInput.value) - parseInt(minPriceInput.value) >= minGap) {
-                    rangeMax.value = maxPriceInput.value;
-                }
-            });
-        });
-        </script>
+          document.addEventListener("DOMContentLoaded", function() {
+              const minPriceInput = document.getElementById("min_price");
+              const maxPriceInput = document.getElementById("max_price");
+              const rangeMin = document.getElementById("range-min");
+              const rangeMax = document.getElementById("range-max");
+              const minGap = 1000;
+          
+              // دریافت پارامترهای فعلی URL
+              const currentUrlParams = new URLSearchParams(window.location.search);
+              
+              // تنظیم مقادیر اولیه ورودی‌ها براساس URL فعلی
+              minPriceInput.value = currentUrlParams.get("min_price") || "";
+              maxPriceInput.value = currentUrlParams.get("max_price") || "";
+          
+              // بروزرسانی input ها بر اساس اسلایدرها
+              rangeMin.addEventListener("input", function() {
+                  if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
+                      rangeMin.value = parseInt(rangeMax.value) - minGap;
+                  }
+                  minPriceInput.value = rangeMin.value;
+              });
+          
+              rangeMax.addEventListener("input", function() {
+                  if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
+                      rangeMax.value = parseInt(rangeMin.value) + minGap;
+                  }
+                  maxPriceInput.value = rangeMax.value;
+              });
+          
+              // بروزرسانی اسلایدرها بر اساس input ها
+              minPriceInput.addEventListener("input", function() {
+                  if (parseInt(maxPriceInput.value) - parseInt(minPriceInput.value) >= minGap) {
+                      rangeMin.value = minPriceInput.value;
+                  }
+              });
+          
+              maxPriceInput.addEventListener("input", function() {
+                  if (parseInt(maxPriceInput.value) - parseInt(minPriceInput.value) >= minGap) {
+                      rangeMax.value = maxPriceInput.value;
+                  }
+              });
+          
+              // جلوگیری از پاک شدن پارامترها هنگام ارسال فرم
+              document.getElementById("price-filter-form").addEventListener("submit", function(event) {
+                  event.preventDefault();
+          
+                  // اضافه کردن پارامترهای قیمت به پارامترهای فعلی URL
+                  currentUrlParams.set("min_price", minPriceInput.value);
+                  currentUrlParams.set("max_price", maxPriceInput.value);
+          
+                  // انتقال کاربر به URL جدید با تمام پارامترها
+                  window.location.href = `${window.location.pathname}?${currentUrlParams.toString()}`;
+              });
+          });
+          </script>
+          
         
         </div>
         <div class="md:w-8/12 lg:w-9/12">
