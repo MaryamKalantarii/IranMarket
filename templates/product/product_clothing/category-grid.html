@@ -110,28 +110,57 @@
                   مرتب سازی:
                 </div>
                 <div class="flex flex-wrap gap-5 justify-start items-center">
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer text-red-600">
+                  <!-- <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer text-red-600" data-sort="popular">
                     محبوب ترین
-                  </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  </div> -->
+                  <!-- <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="best_selling">
                     پرفروش ترین
-                  </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  </div> -->
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="cheapest">
                     ارزان ترین
                   </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="most_expensive">
                     گران ترین
                   </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="newest">
                     جدیدترین
                   </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  <!-- <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="most_viewed">
                     پربازدیدترین
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
           </div>
+          <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                const sortOptions = document.querySelectorAll(".sort-option");
+                const currentUrlParams = new URLSearchParams(window.location.search);
+
+                // بررسی پارامتر مرتب‌سازی از URL و فعال کردن گزینه انتخاب‌شده
+                const currentSort = currentUrlParams.get("sort");
+                if (currentSort) {
+                    sortOptions.forEach(option => {
+                        if (option.dataset.sort === currentSort) {
+                            option.classList.add("text-red-600");  // استایل فعال
+                        } else {
+                            option.classList.remove("text-red-600");
+                        }
+                    });
+                }
+
+                // اضافه کردن پارامتر مرتب‌سازی به URL هنگام کلیک
+                sortOptions.forEach(option => {
+                    option.addEventListener("click", function() {
+                        const selectedSort = option.dataset.sort;
+                        currentUrlParams.set("sort", selectedSort);
+
+                        // تغییر مسیر به URL جدید با پارامتر مرتب‌سازی
+                        window.location.href = `${window.location.pathname}?${currentUrlParams.toString()}`;
+                    });
+                });
+            });
+          </script>
           <div class="bg-white rounded-2xl">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 px-1 rounded-2xl py-5" >
               

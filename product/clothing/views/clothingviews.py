@@ -30,13 +30,28 @@ class ClothingGrid(ListView):
         if max_price:
             queryset = queryset.filter(price__lte=max_price)
         
+        # اعمال مرتب‌سازی بر اساس پارامتر sort
+        sort_option = self.request.GET.get("sort")
+        # if sort_option == "popular":
+        #     queryset = queryset.order_by('-popularity') 
+        # elif sort_option == "best_selling":
+        #     queryset = queryset.order_by('-sales')  
+        if sort_option == "cheapest":
+            queryset = queryset.order_by('price')  
+        elif sort_option == "most_expensive":
+            queryset = queryset.order_by('-price')  
+        elif sort_option == "newest":
+            queryset = queryset.order_by('-created_date')  
+        # elif sort_option == "most_viewed":
+        #     queryset = queryset.order_by('-views')  
+        
         return queryset
 
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category_clothing.objects.all()  # ارسال لیست همه کتگوری‌ها به تمپلیت
         context['selected_category'] = self.request.GET.get('category')
+        context['selected_sort'] = self.request.GET.get('sort')  # ارسال گزینه مرتب‌سازی انتخاب‌شده به تمپلیت
         return context
 
 
