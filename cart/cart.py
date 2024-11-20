@@ -1,5 +1,5 @@
 from django.apps import apps
-
+from .models import CartItemModel,CartModel
 class CartSession():
     def __init__(self, session):
         self.session = session
@@ -88,4 +88,10 @@ class CartSession():
         """ذخیره تغییرات سبد خرید در session"""
         self.session.modified = True
 
-    
+    def sync_cart_items_from_db(self,user):
+        cart,created = CartModel.objects.get_or_create(user=user)
+        cart_items = CartItemModel.objects.filter(cart=cart)
+
+    def merge_session_cart_in_db(self, user):
+        cart,created = CartModel.objects.get_or_create(user=user)
+        cart_items = CartItemModel.objects.filter(cart=cart)
