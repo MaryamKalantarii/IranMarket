@@ -3,6 +3,7 @@ from .views import *
 from . import views
 
 app_name = 'product'
+
 urlpatterns =[
     
     # include clothing urls
@@ -15,20 +16,13 @@ urlpatterns =[
 
     path("beauty/",include('product.beauty.urls')),
 
-
     path("child/",include('product.child.urls')),
 
     path("supermarket/",include('product.supermarket.urls')),
 
     path("appliances/",include('product.appliances.urls')),
 
-
     path("search/",search_products,name="search_products"),
-
-
-   
-    
-
 
     # path('api/V1/',include("product.api.V1.urls")),
 ]
