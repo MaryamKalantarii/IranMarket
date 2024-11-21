@@ -25,10 +25,11 @@ class CartItemAdminForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super().save(commit=False)
 
-        # ذخیره کردن `ContentType` و `Object ID` از مقدار انتخاب‌شده
-        product_data = self.cleaned_data['product_selector'].split('-')
-        instance.product_content_type_id = product_data[0]
-        instance.product_object_id = product_data[1]
+        # اطمینان از اینکه محصول انتخاب شده
+        if 'product_selector' in self.cleaned_data:
+            product_data = self.cleaned_data['product_selector'].split('-')
+            instance.product_content_type_id = product_data[0]  # شناسه ContentType
+            instance.product_object_id = product_data[1]        # شناسه محصول
 
         if commit:
             instance.save()

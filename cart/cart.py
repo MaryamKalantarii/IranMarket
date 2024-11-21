@@ -1,5 +1,7 @@
 from django.apps import apps
 from .models import CartItemModel,CartModel
+from django.contrib.contenttypes.models import ContentType
+
 class CartSession():
     def __init__(self, session):
         self.session = session
@@ -88,10 +90,82 @@ class CartSession():
         """ذخیره تغییرات سبد خرید در session"""
         self.session.modified = True
 
-    def sync_cart_items_from_db(self,user):
-        cart,created = CartModel.objects.get_or_create(user=user)
-        cart_items = CartItemModel.objects.filter(cart=cart)
+    def sync_cart_items_from_db(self, user):
+        """همگام‌سازی اقلام سبد خرید در سشن با دیتابیس هنگام ورود کاربر"""
+        if not user.is_authenticated:
+            return
+
+        cart, _ = CartModel.objects.get_or_create(user=user)
+        
+        # بررسی وضعیت سشن قبل از همگام‌سازی
+        print(f"Session before sync: {self._cart['items']}")
+
+        db_items = CartItemModel.objects.filter(cart=cart)
+        for db_item in db_items:
+            product_id = db_item.product_object_id
+            model_name = db_item.product_content_type.model
+            quantity = db_item.quantity
+
+            # بررسی وجود محصول در سشن
+            for session_item in self._cart["items"]:
+                if session_item["product_id"] == str(product_id) and session_item["model_name"] == model_name:
+                    session_item["quantity"] = quantity
+                    break
+            else:
+                self._cart["items"].append({
+                    "product_id": str(product_id),
+                    "quantity": quantity,
+                    "model_name": model_name
+                })
+
+        # بررسی وضعیت سشن بعد از همگام‌سازی
+        print(f"Session after sync: {self._cart['items']}")
+        self.merge_session_cart_in_db(user)
+
 
     def merge_session_cart_in_db(self, user):
-        cart,created = CartModel.objects.get_or_create(user=user)
-        cart_items = CartItemModel.objects.filter(cart=cart)
+        """انتقال اقلام سبد خرید سشن به دیتابیس هنگام خروج کاربر"""
+        if not user.is_authenticated:
+            return  # اگر کاربر وارد نشده باشد، کاری انجام نمی‌شود
+
+        # گرفتن یا ساختن سبد خرید مرتبط با کاربر
+        cart, _ = CartModel.objects.get_or_create(user=user)
+
+        # بررسی وضعیت سشن قبل از انتقال به دیتابیس
+        print(f"Session before merge: {self._cart['items']}")
+
+        # --- 1. انتقال اقلام سشن به دیتابیس ---
+        for session_item in self._cart["items"]:
+            model_name = session_item["model_name"]
+            product_id = int(session_item["product_id"])
+            quantity = session_item["quantity"]
+
+            try:
+                # واکشی ContentType و محصول
+                content_type = ContentType.objects.get(model=model_name)
+                product_obj = content_type.get_object_for_this_type(id=product_id)
+            except ContentType.DoesNotExist:
+                continue  # اگر مدل پیدا نشد، رد شود
+            except product_obj.DoesNotExist:
+                continue  # اگر محصول پیدا نشد، رد شود
+
+            # ایجاد یا بروزرسانی آیتم در دیتابیس
+            cart_item, _ = CartItemModel.objects.get_or_create(
+                cart=cart,
+                product_content_type=content_type,
+                product_object_id=product_id
+            )
+            cart_item.quantity = quantity
+            cart_item.save()
+
+        # بررسی وضعیت سشن بعد از انتقال به دیتابیس
+        print(f"Session after merge: {self._cart['items']}")
+
+        # --- 2. حذف اقلام اضافی از دیتابیس ---
+        session_product_ids = [
+            (item["model_name"], int(item["product_id"])) for item in self._cart["items"]
+        ]
+        CartItemModel.objects.filter(cart=cart).exclude(
+            product_content_type__model__in=[item[0] for item in session_product_ids],
+            product_object_id__in=[item[1] for item in session_product_ids],
+        ).delete()

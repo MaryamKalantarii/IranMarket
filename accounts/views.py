@@ -10,6 +10,7 @@ class LoginView(auth_views.LoginView):
     
     
 class LogoutView(auth_views.LogoutView):
+    
     def dispatch(self, request, *args, **kwargs):
         # قبول کردن متد GET برای لاگ‌اوت
         if request.method == 'GET':
@@ -19,6 +20,7 @@ class LogoutView(auth_views.LogoutView):
             return redirect('/')  # مسیر مناسب خود را تنظیم کنید
         # رفتار پیش‌فرض برای سایر متدها (مثل POST)
         return super().dispatch(request, *args, **kwargs)
+
 
 
 
