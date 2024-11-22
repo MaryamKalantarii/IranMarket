@@ -15,7 +15,7 @@ class CartItemModel(models.Model):
     cart = models.ForeignKey(CartModel, on_delete=models.CASCADE, related_name="cart_items")
     
     # استفاده از ContentType برای نگه داشتن نوع مدل محصول
-    product_content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    product_content_type = models.ForeignKey(ContentType, on_delete=models.PROTECT)
     
     # نگه داشتن ID محصول
     product_object_id = models.PositiveIntegerField()
