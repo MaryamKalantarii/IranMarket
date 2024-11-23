@@ -20,6 +20,9 @@ class UserAddressModel(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('-created_date',)
+        
 class CouponModel(models.Model):
     code = models.CharField(max_length=100)
     discount_percent = models.IntegerField(default=0,validators = [MinValueValidator(0),MaxValueValidator(100)])

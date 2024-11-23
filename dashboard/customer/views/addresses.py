@@ -34,7 +34,7 @@ class CustomerAddressCreateView(LoginRequiredMixin, HasCustomerAccessPermission,
     def form_valid(self, form):
         form.instance.user = self.request.user
         super().form_valid(form)
-        return redirect(reverse_lazy("dashboard:customer:address-edit", kwargs={"pk": form.instance.pk}))
+        return redirect(reverse_lazy("dashboard:customer:address-list"))
         
 
     def get_success_url(self):
