@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+  <!-- MAIN -->
+  <div class="max-w-[1440px] mx-auto px-3">
+    <div class="bg-white shadow-xl my-5 lg:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
+      <div class="flex flex-col md:flex-row gap-5">
+        {% include 'dashboard/customer/sidebar.html' %}
+        <div class="md:w-8/12 lg:w-9/12 flex flex-col gap-y-5">
+          {% for object in object_list %}
+          <div class="border rounded-3xl shadow-lg flex flex-col p-5 gap-y-5">
+            <div >
+              <div class="opacity-80">
+               {{object.address}}
+              </div>
+            </div>
+            <div class="md:grid grid-cols-2">
+              <div>
+                <div class="text-xs opacity-80 mb-1">
+                  استان:
+                </div>
+                <div class="text-sm opacity-90">
+                  {{object.state}}
+                </div>
+              </div>
+              <div>
+                <div class="text-xs opacity-80 mb-1">
+                  شهر:
+                </div>
+                <div class="text-sm opacity-90">
+                  {{object.city}}
+                </div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <div class="text-xs opacity-80 mb-1">
+                کد پستی:
+              </div>
+              <div class="text-sm opacity-90">
+                {{object.zip_code}}
+              </div>
+            </div>
+            <span class="opacity-90">
+              <a href="{% url 'dashboard:customer:address-edit' %}"><button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm">ویرایش آدرس</button></a>
+              
+              <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">حذف</button>
+            </span>
+          </div>
+          {% endfor %}
+          <div class="md:w-8/12 lg:w-9/12 flex flex-col gap-y-5">
+            <div class="border rounded-3xl shadow-lg flex flex-col justify-center items-center py-4 gap-y-5">
+              <a href="{% url 'dashboard:customer:address-create' %}">
+              <div>
+                <span class="flex items-center pr-20 pb-2">
+                  <img onclick="showAlertAddTocomparison()" class="w-14 ml-2 cursor-pointer" src="{% static 'assets//image/images.jpeg' %}" alt="" title="مقایسه">
+                  <svg
+                    onclick="showAlertAddToFavorit()"
+                    class="h-7 w-7 text-red-500 hover:text-red-600 fill-current transition cursor-pointer inline"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24">
+                    
+                  </svg>
+                </span>
+                
+                <div class="opacity-80 ">
+                  +یک آدرس جدید اضافه کنید
+                </div>
+              </div>
+            </a>
+              
+            </div>
+           
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}
