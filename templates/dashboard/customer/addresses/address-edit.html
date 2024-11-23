@@ -36,7 +36,7 @@
             <span class="opacity-90">
               <button class="px-7 py-2 text-center text-white bg-green-500 align-middle border-0 rounded-lg shadow-md text-sm" type="submit">ثبت</button>
               <button class="px-7 py-2 text-center text-white bg-blue-500 align-middle border-0 rounded-lg shadow-md text-sm"><a class="btn btn-secondary" href="{% url 'dashboard:customer:address-list' %}">بازگشت</a></button>
-              <a href="{% url 'dashboard:customer:address-delete' pk=object.pk %}"><button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">لغو</button></a>
+              <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"><a class="btn btn-danger" href="{% url 'dashboard:customer:address-delete' pk=object.pk %}">حذف</a></button>
             </span>
           </div>
         </form>
