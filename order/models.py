@@ -57,6 +57,7 @@ class OrderModel(models.Model):
     class Meta:
         ordering = ["-created_date"]
     
+    
     def calculate_total_price(self):
         return sum(item.price * item.quantity for item in self.order_items.all())
     

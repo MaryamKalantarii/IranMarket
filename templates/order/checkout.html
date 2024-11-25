@@ -32,7 +32,7 @@
             <div class="flex flex-col md:flex-row items-center gap-3">
               <label for="discount-code" class="text-sm font-medium text-gray-600">کد تخفیف دارید؟ وارد کنید:</label>
               <div class="flex-grow">
-                <input id="discount-code" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring focus:ring-red-300 focus:outline-none" type="text">
+                <input name="coupon" id="checkout-form" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:ring focus:ring-red-300 focus:outline-none" type="text">
               </div>
               <button type="button" class="bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-700 transition">
                 تایید
@@ -43,9 +43,9 @@
           <div>
             قیمت کل:
           </div>
-          <div class="flex gap-x-1">
+          <div class="flex gap-x-1 formatted-price">
             <div>
-              1,240,000
+              {{total_price}}
             </div>
             <div>
               تومان
@@ -56,13 +56,11 @@
           <div>
             حمل و نقل:
           </div>
-          <div class="flex gap-x-1">
+          <div class="flex gap-x-1 formatted-price">
             <div>
-              40,000
+              40000
             </div>
-            <div>
-              تومان
-            </div>
+            
           </div>
         </div>
         <div class="flex justify-between">
@@ -82,9 +80,9 @@
           <div class="text-red-600">
             مجموع نهایی:
           </div>
-          <div class="flex gap-x-1">
+          <div class="flex gap-x-1 formatted-price">
             <div>
-              1,200,000
+            {{shipping_price}}
             </div>
             <div>
               تومان
@@ -92,9 +90,9 @@
           </div>
         </div>
       </div>
-      <a href="#" class="flex justify-center items-center opacity-90 my-5">
-        <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm">ثبت و پرداخت</button>
-      </a>
+      <div class="d-grid">
+        <button class="btn btn-primary btn-lg" type="submit" form="checkout-form" >ثبت نهایی</button>
+    </div>
     </div>
   </div>
 

@@ -10,6 +10,9 @@ class CartModel(models.Model):
 
     def __str__(self):
         return self.user.email
+    
+    def calculate_total_price(self):
+        return sum(item.product.get_price() * item.quantity for item in self.cart_items.all())
 
 class CartItemModel(models.Model):
     cart = models.ForeignKey(CartModel, on_delete=models.CASCADE, related_name="cart_items")
