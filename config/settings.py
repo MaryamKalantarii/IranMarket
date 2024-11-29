@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'mail_templated',
     'cart',
     'dashboard',
+    'payment',
 ]
 
 ALLOWED_HOSTS = ['*']
@@ -174,3 +176,6 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 
+# payment gateway settings
+MERCHANT_ID = config("MERCHANT_ID",default="4ced0a1e-4ad8-4309-9668-3ea3ae8e8897")
+SANDBOX_MODE = config("SANDBOX_MODE", cast=bool, default=True)
