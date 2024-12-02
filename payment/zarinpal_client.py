@@ -2,29 +2,26 @@ import requests
 import json
 from django.conf import settings
 
-
-
-
-def get_protocol():
-    # Determine the protocol based on the SECURE_SSL_REDIRECT setting
-    return 'https' if getattr(settings, 'SECURE_SSL_REDIRECT', False) else 'http'
-
-
 class ZarinPalSandbox:
-    _payment_request_url = "https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
-    _payment_verify_url = "https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+    _payment_request_url = "https://sandbox.zarinpal.com/pg/v4/payment/request.json"
+    _payment_verify_url = "https://sandbox.zarinpal.com/pg/v4/payment/verify.json"
     _payment_page_url = "https://sandbox.zarinpal.com/pg/StartPay/"
-    _callback_url = "https://redreseller.com/verify"
+    _callback_url = "https://sandbox.zarinpal.com/pg/StartPay/"
 
     def __init__(self, merchant_id=settings.MERCHANT_ID):
+        if not merchant_id:
+            raise ValueError("Merchant ID is not set")
         self.merchant_id = merchant_id
 
     def payment_request(self, amount, description="پرداختی کاربر"):
+        if amount <= 0:
+            raise ValueError("Amount must be greater than zero")
+        
         payload = {
-            "MerchantID": self.merchant_id,
-            "Amount": str(amount),
-            "CallbackURL": self._callback_url,
-            "Description": description,
+            "merchant_id": self.merchant_id,
+            "amount": str(amount),
+            "callback_url": self._callback_url,
+            "description": description,
         }
         headers = {
             'Content-Type': 'application/json'
@@ -35,11 +32,27 @@ class ZarinPalSandbox:
 
         return response.json()
 
+        # try:
+        #     response = requests.post(
+        #         self._payment_request_url, headers=headers, data=json.dumps(payload))
+        #     response.raise_for_status()
+        #     response_data = response.json()
+
+        #     if response_data.get("Status") != 100:
+        #         raise ValueError(f"Payment request failed: {response_data.get('Status')}")
+        #     return response_data
+        # except Exception as e:
+        #     print(f"Error in payment_request: {e}")
+        #     raise
+
     def payment_verify(self, amount, authority):
+        if not authority:
+            raise ValueError("Authority is required for verification")
+        
         payload = {
-            "MerchantID": self.merchant_id,
-            "Amount": amount,
-            "Authority": authority
+            "merchant_id": self.merchant_id,
+            "amount": amount,
+            "authority": authority
         }
         headers = {
             'Content-Type': 'application/json'
@@ -49,5 +62,20 @@ class ZarinPalSandbox:
             self._payment_verify_url, headers=headers, data=json.dumps(payload))
         return response.json()
 
+        # try:
+        #     response = requests.post(
+        #         self._payment_verify_url, headers=headers, data=json.dumps(payload))
+        #     response.raise_for_status()
+        #     response_data = response.json()
+
+        #     if response_data.get("Status") != 100:
+        #         raise ValueError(f"Payment verification failed: {response_data.get('Status')}")
+        #     return response_data
+        # except Exception as e:
+        #     print(f"Error in payment_verify: {e}")
+        #     raise
+
     def generate_payment_url(self, authority):
+        if not authority:
+            raise ValueError("Authority is missing")
         return f"{self._payment_page_url}{authority}"
