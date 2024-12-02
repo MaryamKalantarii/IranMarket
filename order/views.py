@@ -44,37 +44,36 @@ class OrderCheckOutView(LoginRequiredMixin, HasCustomerAccessPermission, FormVie
         total_price = order.calculate_total_price()
         self.apply_coupon(coupon, order, user, total_price)
         order.save()
-        zarinpal = ZarinPalSandbox()
+        # zarinpal = ZarinPalSandbox()
 
-        # ارسال درخواست پرداخت
-        response = zarinpal.payment_request(order.total_price)
+        # # ارسال درخواست پرداخت
+        # response = zarinpal.payment_request(order.total_price)
 
-        # بررسی پاسخ و استخراج authority
-        print(response)  # Debugging
-        authority = response.get('data', {}).get('authority')
-        if not authority:
-            raise ValueError("Authority key is missing in the response.")
+        # # بررسی پاسخ و استخراج authority
+        # print(response)  # Debugging
+        # authority = response.get('data', {}).get('authority')
+        # if not authority:
+        #     raise ValueError("Authority key is missing in the response.")
 
-        # تولید لینک پرداخت
-        payment_url = zarinpal.generate_payment_url(authority)
+        # # تولید لینک پرداخت
+        # payment_url = zarinpal.generate_payment_url(authority)
 
         # هدایت کاربر به درگاه پرداخت
-        return redirect(payment_url)
+        return redirect(self.create_payment_url(order))
 
 
 
-    # def create_payment_url(self, order):
-    #     zarinpal = ZarinPalSandbox()
-    #     response = zarinpal.payment_request(order.total_price)
+    def create_payment_url(self, order):
+        zarinpal = ZarinPalSandbox()
+        response = zarinpal.payment_request(order.get_price())
       
-    #     payment_obj = PaymentModel.objects.create(
-    #         authority_id=response.get("authority"),
-    #         amount=order.total_price,
-    #     )
-    #     order.payment = payment_obj
-    #     print("print",payment_obj)
-    #     order.save()
-    #     return zarinpal.generate_payment_url(response.get("authority"))
+        payment_obj = PaymentModel.objects.create(
+            authority_id = response.get('data', {}).get('authority'),
+            amount=order.get_price(),
+        )
+        order.payment = payment_obj
+        order.save()
+        return zarinpal.generate_payment_url(response.get('data', {}).get('authority'))
 
     def create_order(self, address):
         return OrderModel.objects.create(
@@ -100,9 +99,9 @@ class OrderCheckOutView(LoginRequiredMixin, HasCustomerAccessPermission, FormVie
 
     def apply_coupon(self, coupon, order, user, total_price):
         if coupon:
-            discount_amount = round(
-                (total_price * Decimal(coupon.discount_percent / 100)))
-            total_price -= discount_amount
+        #     discount_amount = round(
+        #         (total_price * Decimal(coupon.discount_percent / 100)))
+        #     total_price -= discount_amount
 
             order.coupon = coupon
             coupon.used_by.add(user)
@@ -160,8 +159,8 @@ class ValidateCouponView(LoginRequiredMixin, HasCustomerAccessPermission, View):
 
 
 
-
-
-
 class OrderCompletedView(LoginRequiredMixin, HasCustomerAccessPermission, TemplateView):
     template_name = "order/completed.html"
+
+class OrderFailedView(LoginRequiredMixin, HasCustomerAccessPermission, TemplateView):
+    template_name = "order/failed.html"
