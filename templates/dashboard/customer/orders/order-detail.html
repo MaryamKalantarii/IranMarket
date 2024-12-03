@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+  <!-- MAIN -->
+  <div class="max-w-[1440px] mx-auto px-3">
+    <div class="bg-white shadow-xl my-5 lg:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
+      <div class="flex flex-col md:flex-row gap-5">
+        {% include 'dashboard/customer/sidebar.html' %}
+        <div class="md:w-8/12 lg:w-9/12">
+          <div class="rounded-xl">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+              <thead class="hidden md:table-header-group text-xs text-gray-700 bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-16 py-3">
+                    <span class="sr-only">تصویر</span>
+                  </th>
+                  <th scope="col" class="md:pr-6 py-3">
+                    نام محصول
+                  </th>
+                  <th scope="col" class="pr-10 py-3">
+                    تعداد
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    قیمت
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="grid grid-cols-1 sm:grid-cols-2 md:contents gap-5">
+                {% for order_item in object.order_items.all %}
+                <tr class="bg-white border-b hover:bg-gray-50 grid grid-cols-1 justify-items-center md:table-row">
+                  <td class="p-4">
+                    <img src="{{order_item.product.image1.url}}" class="w-48 md:w-32 max-w-full max-h-full rounded-lg" alt="">
+                  </td>
+                  <td class="md:pr-6 py-4 text-sm opacity-90 text-gray-900">
+                    {{order_item.product.title}}
+                  </td>
+                  <td class="px-6 py-4">
+                       {{order_item.quantity}}
+                  </td>
+                  <td class="px-6 py-4 text-sm opacity-90 text-gray-900 formatted-price">
+                    {{order_item.price}}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="border shadow-xl rounded-2xl mx-auto max-w-xl mt-7 flex flex-col gap-y-5 py-5 px-5 md:px-20 text-sm">
+              <div class="flex justify-between">
+                <div>
+                  قیمت کل:
+                </div>
+                <div class="flex gap-x-1 formatted-price">
+                  <div>
+                    {{object.total_price}}
+                  </div>
+                 
+                </div>
+              </div>
+              <div class="flex justify-between">
+                <div>
+                  حمل و نقل:
+                </div>
+                <div class="flex gap-x-1">
+                  <div>
+                    40,000
+                  </div>
+                  <div>
+                    تومان
+                  </div>
+                </div>
+              </div>
+              {% if object.coupon %}
+              <div class="flex justify-between">
+                <div>
+                  سود شما از این خرید:
+                </div>
+                <div class="flex gap-x-1">
+                  <div>
+                    {{object.coupon.discount_percent}}%
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="flex justify-between">
+                <div class="text-red-600">
+                  :قیمت با اعمال تخفیف
+                </div>
+                <div class="flex gap-x-1 formatted-price">
+                  <div>
+                    {{object.get_price}}
+                  </div>
+                  
+                </div>
+              </div>
+              {% endif %}
+              <div class="flex justify-between">
+                <div class="ml-2">
+                  آدرس ارسال شده:
+                </div>
+                <div>
+                  {{object.get_full_address}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}

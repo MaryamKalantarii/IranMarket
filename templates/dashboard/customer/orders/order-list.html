@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+  <!-- MAIN -->
+  <div class="max-w-[1440px] mx-auto px-3">
+    <div class="bg-white shadow-xl my-5 lg:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
+      <div class="flex flex-col md:flex-row gap-5">
+        {% include 'dashboard/customer/sidebar.html' %}
+        <div class="md:w-8/12 lg:w-9/12">
+          <div class="relative overflow-x-auto shadow-md rounded-xl">
+            <table class="w-full text-sm text-right text-gray-600">
+              <thead class="text-xs text-gray-700 bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    شماره سفارش
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    تاریخ ثبت سفارش
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    وضعیت
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    مجموع
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    جزئیات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for object in object_list%}
+                <tr class="hover:bg-gray-100 transition text-xs border-b">
+                  <th scope="row" class="px-6 py-4 font-medium">
+                    {{object.id}}
+                  </th>
+                  <td class="px-6 py-4">
+                    {{object.created_date|date:"Y-m-d , h:i"}}
+                  </td>
+                  <td class="lg:px-6 py-4 text-red-500">
+                    {{object.get_status.label}}
+                  </td>
+                  <td class="px-6 py-4 formatted-price">
+                    {{object.get_price}}
+                  </td>
+                  <td class="px-6 py-4">
+                    <a href="{% url 'dashboard:customer:order-detail' pk=object.pk %}" class="text-red-500 border-b border-red-400">مشاهده</a>
+                  </td>
+                </tr>
+              {% endfor %} 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}
