@@ -57,11 +57,19 @@
               href="{% url 'accounts:login' %}"
               class="flex items-center h-10 leading-10 px-3 mx-1 transition rounded-xl hover:bg-red-50">
               <img class="ml-1 w-6" src="{{request.user.user_profile.image.url}}" alt="" />
+              {% if request.user.is_authenticated %}
               <span
                 class="text-sm opacity-95"
                 >
-                ورود | ثبت نام
+                {{request.user.email}}
               </span>
+              {% else %}
+              <span
+              class="text-sm opacity-95"
+              >
+              ورود | ثبت نام
+            </span>
+            {% endif %}
               <span>
                 <img class="w-4 mr-1" src="" alt="" />
               </span>
@@ -99,7 +107,7 @@
                     @mouseleave="showChildren=false"
                     @mouseenter="showChildren=true">
                     <a
-                      href="profile-order.html"
+                      href="{% url 'dashboard:customer:order-list' %}"
                       class="px-4 py-2 flex w-full items-start hover:bg-red-50 rounded-xl">
                       <span class="flex justify-center items-center text-sm opacity-90"
                         ><img

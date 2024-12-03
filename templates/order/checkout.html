@@ -49,55 +49,22 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-between">
-          <div>
-            حمل و نقل:
-          </div>
-          <div class="flex gap-x-1 formatted-price">
-            <div>
-              40000
-            </div>
-            
-          </div>
-        </div>
-        <div class="flex justify-between">
-          <div>
-            سود شما از این خرید:
-          </div>
-          <div class="flex gap-x-1">
-            <div>
-              80,000
-            </div>
-            <div>
-              تومان
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-between">
-          <div class="text-red-600">
-            مجموع نهایی:
-          </div>
-          <div class="flex gap-x-1 formatted-price" id="shipping_price">
-            <div>
-            {{shipping_price}}
-            </div>
-            
-          </div>
-        </div>
+        
+       
       </div>
-      <div class="d-grid">
-        <button class="btn btn-primary btn-lg" type="submit" form="checkout-form" >ثبت نهایی</button>
+      <div class="text-center mt-5 mb-3">
+        <button class="bg-red-600 text-white px-10 py-2 rounded-lg shadow hover:bg-red-700 transition" type="submit" form="checkout-form" >ثبت نهایی</button>
     </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-  function applyDiscount(total_price,shipping_price){
+  function applyDiscount(total_price){
       $("#total-price").html(total_price)
-      $("#shipping_price").html(shipping_price)
+     
 
       formatPriceInToman(document.getElementById("total-price"))
-      formatPriceInToman(document.getElementById("shipping_price"))
+      
   }
 
   function validateCoupon(){
@@ -118,7 +85,7 @@
                     background: "green",
                   }
                 }).showToast();
-                applyDiscount(response.total_price,response.shipping_price)
+                applyDiscount(response.total_price)
               // do something with the response data
           },
           error: function (jqXHR, textStatus, errorThrown) {
