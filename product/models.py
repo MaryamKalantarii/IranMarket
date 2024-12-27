@@ -3,6 +3,7 @@ from decimal import Decimal
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 # Create your models here.
 
 class Category_clothing(models.Model):
@@ -110,6 +111,7 @@ class Clothing(models.Model):
     def is_out_of_stock(self):
         return self.stock == 0
     
+  
     
 # کالای دیجیتال 
 class Dijitalgoods(models.Model):
@@ -406,3 +408,5 @@ class WishlistProductModel(models.Model):
     
     def __str__(self):
         return self.product.title
+    
+  

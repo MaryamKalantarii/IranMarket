@@ -41,10 +41,13 @@
                   <td class="px-6 py-4 text-sm opacity-90 text-gray-900 formatted-price">
                     {{object.product.price}}
                   </td>
-                  <td class="px-2 py-4">
-                    <a href="#" class="text-red-600">حذف</a>
+                  <form action="{% url 'dashboard:customer:wishlist-delete' pk=object.pk %}" method="post">
+                    {% csrf_token %}
+                    <td class="px-2 py-4">
+                    <button  class="text-red-600" type="submit">حذف</button>
                     <a href="#" class="text-white bg-green-500 hover:bg-green-600 transition px-2 py-1 shadow-lg rounded-md mr-3">مشاهده</a>
                   </td>
+                  </form>
                 </tr>
                 {% endfor %}
               </tbody>

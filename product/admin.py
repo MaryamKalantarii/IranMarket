@@ -21,9 +21,6 @@ admin.site.register(Category_Appliances)
 admin.site.register(Category_Supermarket)
 admin.site.register(Category_Child_and_baby)
 
-# @admin.register(WishlistProductModel)
-# class WishlistProductModelAdmin(admin.ModelAdmin):
-#     list_display = ("id", "user", "product")
 
 @admin.register(WishlistProductModel)
 class CartItemModelAdmin(admin.ModelAdmin):
