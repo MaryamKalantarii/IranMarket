@@ -1027,7 +1027,39 @@ function removeProduct(product_id){
             }
         });
     }
-</script>
+    function addToWishlist(element, product_id, model_name) {
+    $.ajax({
+        url: "{% url 'product:add-or-remove-wishlist' %}",
+        method: 'POST',
+        data: {
+            product_id: product_id,
+            model_name: model_name, // اضافه کردن model_name به درخواست
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function (response) {
+            Toastify({
+                text: response.message,
+                className: `info`,
+                style: {
+                    background: response.message.includes("اضافه") ? "green" : "red", // تغییر رنگ بر اساس پیام
+                }
+            }).showToast();
+            $(element).toggleClass('active'); // تغییر وضعیت دکمه علاقه‌مندی
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error(errorThrown);
+            Toastify({
+                text: "خطا در انجام عملیات.",
+                className: `error`,
+                style: {
+                    background: "red",
+                }
+            }).showToast();
+        }
+    });
+}
+
+
   </script>
 
 {% include 'messages.html' %}  

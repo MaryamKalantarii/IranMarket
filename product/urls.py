@@ -24,5 +24,6 @@ urlpatterns =[
 
     path("search/",search_products,name="search_products"),
 
+    path("add-or-remove-wishlist/",views.AddOrRemoveWishlistView.as_view(),name="add-or-remove-wishlist"),
     # path('api/V1/',include("product.api.V1.urls")),
 ]

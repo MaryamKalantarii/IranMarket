@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.db.models import Q
 from .models import *
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from django.views.generic import View
 
 def search_products(request):
     query = request.GET.get('q')
@@ -61,3 +64,47 @@ def search_products(request):
         results += clothing_results + dijitalgoods_results + homeappliances_results + beauty_results + appliances_results + supermarket_results + Child_and_baby_results 
 
     return render(request, 'search/search.html', {'results': results})
+
+
+from django.http import JsonResponse
+from django.contrib.contenttypes.models import ContentType
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import WishlistProductModel
+
+class AddOrRemoveWishlistView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product_id = request.POST.get("product_id")
+        model_name = request.POST.get("model_name")  # دریافت نام مدل
+        message = ""
+
+        if product_id and model_name:
+            try:
+                # پیدا کردن ContentType مرتبط با مدل
+                content_type = ContentType.objects.get(model=model_name)
+                product = content_type.get_object_for_this_type(pk=product_id)
+
+                # بررسی وجود محصول در لیست علاقه‌مندی‌ها
+                wishlist_item = WishlistProductModel.objects.filter(
+                    user=request.user, 
+                    content_type=content_type, 
+                    object_id=product_id
+                )
+                if wishlist_item.exists():
+                    wishlist_item.delete()
+                    message = "محصول از لیست علایق حذف شد"
+                else:
+                    WishlistProductModel.objects.create(
+                        user=request.user,
+                        content_type=content_type,
+                        object_id=product_id
+                    )
+                    message = "محصول به لیست علایق اضافه شد"
+            except ContentType.DoesNotExist:
+                message = "مدل نامعتبر است."
+            except Exception as e:
+                message = f"خطا رخ داد: {str(e)}"
+        else:
+            message = "اطلاعات ارسال‌شده کامل نیست."
+
+        return JsonResponse({"message": message})
