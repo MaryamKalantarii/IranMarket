@@ -1033,7 +1033,7 @@ function removeProduct(product_id){
         method: 'POST',
         data: {
             product_id: product_id,
-            model_name: model_name, // اضافه کردن model_name به درخواست
+            model_name: model_name,
             csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function (response) {
@@ -1041,10 +1041,16 @@ function removeProduct(product_id){
                 text: response.message,
                 className: `info`,
                 style: {
-                    background: response.message.includes("اضافه") ? "green" : "red", // تغییر رنگ بر اساس پیام
+                    background: response.message.includes("اضافه") ? "green" : "red",
                 }
             }).showToast();
-            $(element).toggleClass('active'); // تغییر وضعیت دکمه علاقه‌مندی
+
+            // تغییر وضعیت آیکون
+            if ($(element).hasClass('active')) {
+                $(element).removeClass('active');
+            } else {
+                $(element).addClass('active');
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error(errorThrown);
@@ -1058,6 +1064,7 @@ function removeProduct(product_id){
         }
     });
 }
+
 
 
   </script>

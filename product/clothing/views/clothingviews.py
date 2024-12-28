@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,ListView,DetailView
-from product.models import Clothing,Category_clothing
+from product.models import Clothing,Category_clothing,WishlistProductModel
 from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
 
 class ClothingView(TemplateView):
     template_name = 'product/product_clothing/category_clothing.html'
@@ -61,6 +62,21 @@ class ClothingGrid(ListView):
 class Clothing_detaile(DetailView):
     template_name = 'product/product_clothing/single-product.html'
     queryset = Clothing.objects.filter(status=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # اضافه کردن اطلاعات Wishlist به کانتکست
+        wishlist_items = WishlistProductModel.objects.filter(user=self.request.user)
+        wishlist_ids = set(
+            (item.content_type_id, item.object_id)
+            for item in wishlist_items
+        )
+        product = self.get_object()
+        is_in_wishlist = (
+            ContentType.objects.get_for_model(product).id, product.id
+        ) in wishlist_ids
+        context['is_in_wishlist'] = is_in_wishlist
+        return context
 
     def post(self, request, *args, **kwargs):
         messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")

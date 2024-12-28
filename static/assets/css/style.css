@@ -2,3 +2,12 @@
     font-weight: bold;
 }
 
+.heart-icon {
+    fill: none; /* رنگ سفید */
+    transition: fill 0.3s ease; /* انیمیشن تغییر رنگ */
+}
+
+.heart-icon.active {
+    fill: red; /* رنگ قرمز */
+}
+
