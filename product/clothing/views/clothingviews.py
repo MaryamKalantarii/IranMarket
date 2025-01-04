@@ -65,19 +65,28 @@ class Clothing_detaile(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # اضافه کردن اطلاعات Wishlist به کانتکست
-        wishlist_items = WishlistProductModel.objects.filter(user=self.request.user)
-        wishlist_ids = set(
-            (item.content_type_id, item.object_id)
-            for item in wishlist_items
-        )
-        product = self.get_object()
-        is_in_wishlist = (
-            ContentType.objects.get_for_model(product).id, product.id
-        ) in wishlist_ids
-        context['is_in_wishlist'] = is_in_wishlist
+        
+       
+        user = self.request.user
+        if user.is_authenticated:
+            wishlist_items = WishlistProductModel.objects.filter(user=user)
+            wishlist_ids = set(
+                (item.content_type_id, item.object_id) for item in wishlist_items
+            )
+            product = self.get_object()
+            is_in_wishlist = (
+                ContentType.objects.get_for_model(product).id, product.id
+            ) in wishlist_ids
+            context['is_in_wishlist'] = is_in_wishlist
+        else:
+            context['is_in_wishlist'] = False  
+        
         return context
 
     def post(self, request, *args, **kwargs):
         messages.success(request, "محصول با موفقیت به سبد خرید اضافه شد.")
         return redirect(request.path_info)
+
+    
+
+
