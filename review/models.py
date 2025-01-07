@@ -11,7 +11,9 @@ class ReviewStatusType(models.IntegerChoices):
 
 class ReviewModel(models.Model):
     user = models.ForeignKey('accounts.CustomeUser', on_delete=models.CASCADE)
-    product = models.ForeignKey('shop.ProductModel',on_delete=models.CASCADE)
+    product_content_type = models.ForeignKey(ContentType, on_delete=models.PROTECT)
+    product_object_id = models.PositiveIntegerField()
+    product = GenericForeignKey('product_content_type', 'product_object_id')
     description = models.TextField()
     status = models.IntegerField(
         choices=ReviewStatusType.choices, default=ReviewStatusType.pending.value)
