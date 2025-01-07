@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'cart',
     'dashboard',
     'payment',
+    'review',
 ]
 
 ALLOWED_HOSTS = ['*']

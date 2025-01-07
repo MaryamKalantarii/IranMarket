@@ -45,6 +45,7 @@ urlpatterns = [
     path("dashboard/",include("dashboard.urls")),
     path("order/",include("order.urls")),
     path("payment/",include("payment.urls")),
+    path("review/",include("review.urls")),
     path('api-auth/', include('rest_framework.urls')),
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
