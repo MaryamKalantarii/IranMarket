@@ -9,3 +9,19 @@ document.addEventListener("DOMContentLoaded", function() {
     let priceElements = document.querySelectorAll('.formatted-price');
     priceElements.forEach(element => formatPriceInToman(element));
 });
+
+
+
+document.getElementById('openModal').addEventListener('click', function () {
+    document.getElementById('reviewModal').classList.remove('hidden');
+});
+
+document.getElementById('closeModal').addEventListener('click', function () {
+    document.getElementById('reviewModal').classList.add('hidden');
+});
+
+document.getElementById('reviewForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    alert('نظر شما با موفقیت ثبت شد!');
+    document.getElementById('reviewModal').classList.add('hidden');
+});

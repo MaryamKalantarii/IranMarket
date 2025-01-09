@@ -304,19 +304,10 @@
           <div class="border-b border-gray-200 mb-4">
             <ul class="flex justify-center flex-wrap -mb-px text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
               <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false">درباره محصول</button>
-              </li>
-              <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active" id="test-tab" data-tabs-target="#test" type="button" role="tab" aria-controls="test" aria-selected="true">بررسی تخصصی</button>
-              </li>
-              <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="details-tab" data-tabs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">مشخصات</button>
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">درباره محصول</button>
               </li>
               <li role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="commentsBuy-tab" data-tabs-target="#commentsBuy" type="button" role="tab" aria-controls="commentsBuy" aria-selected="false">دیدگاه ها</button>
-              </li>
-              <li role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="comments-tab" data-tabs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">پرسش ها</button>
               </li>
             </ul>
           </div>
@@ -336,17 +327,21 @@
         
               </div>
             </div>
+            
             <div class="bg-gray-50 p-4 rounded-xl hidden" id="commentsBuy" role="tabpanel" aria-labelledby="commentsBuy-tab">
               <span class="border-b-red-500 border-b">
                 دیدگاه های محصول
               </span>
+              <button id="openModal" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                ثبت نظر
+              </button>
               <p class="text-gray-500 text-sm">
                 <div class="flex flex-col py-4 px-4 mx-auto my-6 max-w-7xl rounded-2xl bg-white">
                   <!-- UO COMMENTS -->
                   <div>
-                    <div>دیدگاه ها</div>
                     <div class="opacity-70 text-xs">1 دیدگاه</div>
                   </div>
+
                   <!-- COMMENT -->
                   <div class="bg-gray-50 rounded-xl px-3 sm:px-5 py-3 my-2">
                     <div class="flex flex-col items-stat gap-y-2">
@@ -398,6 +393,24 @@
                         </div>
                       </div>
                     </div>
+                    <!-- Button to open modal -->
+                  
+                  <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+                      <div class="bg-white rounded-xl p-6 w-full max-w-md">
+                          <h2 class="text-lg font-bold mb-4">ثبت نظر</h2>
+                          <form id="reviewForm">
+                              <textarea class="w-full border-gray-300 rounded-md p-2 mb-4" rows="4" placeholder="نظر خود را بنویسید"></textarea>
+                              <div class="flex justify-end gap-2">
+                                  <button type="button" id="closeModal" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
+                                      لغو
+                                  </button>
+                                  <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                                      ارسال
+                                  </button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
                     <div class="flex gap-x-4 justify-end">
                       <a href="" class="flex">
                         <span>5</span>
@@ -418,90 +431,11 @@
                 </div>
               </p>
             </div>
-            <div class="bg-gray-50 p-4 rounded-xl hidden" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-              <span class="border-b-red-500 border-b">
-                پرسش های محصول
-              </span>
-              <p class="text-gray-500 text-sm">
-                <div class="flex flex-col py-4 px-4 mx-auto my-6 max-w-7xl rounded-2xl bg-white">
-                  <!-- UO COMMENTS -->
-                  <div>
-                    <div>نظرات</div>
-                    <div class="pr-5 opacity-70 text-xs">2نظر</div>
-                  </div>
-                  <!-- COMMENT -->
-                  <div class="bg-gray-50 rounded-xl px-5 py-3 my-2">
-                    <div class="flex items-center">
-                      <div>
-                        <img class="w-10" src="{% static 'assets//image/userNotImage.png' %}" alt="">
-                      </div>
-                      <div class="text-sm opacity-60 pr-1">
-                        نوشته شده توسط امیررضا کریمی
-                      </div>
-                    </div>
-                    <div class="opacity-60 text-sm py-3">
-                      لورم است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.             
-                    </div>
-                    <div>
-                      <button class="mr-auto px-2 sm:px-4 py-2 opacity-80 md:w-auto text-xs sm:text-sm xl:text-base flex justify-center items-center">
-                        پاسخ
-                      </button>
-                    </div>
-                    <!-- RESPONSE -->
-                    <div class="bg-gray-100 rounded-xl pl-2 pr-5 sm:pr-8 py-3">
-                      <div class="flex items-center">
-                        <div>
-                          <img class="w-10" src="{% static 'assets//image/userNotImage.png' %}" alt="">
-                        </div>
-                        <div class="text-sm opacity-60 pr-1">
-                          پاسخ داده شده توسط امیررضا کریمی  
-                        </div>
-                      </div>
-                      <div class="opacity-60 text-sm py-3">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحامه و مجله در ستون و سطرآنچنان که لازم است.             
-                      </div>
-                      <div>
-                        <button class="mr-auto px-2 sm:px-4 py-2 opacity-80 md:w-auto text-xs sm:text-sm xl:text-base flex justify-center items-center">
-                          پاسخ
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bg-gray-50 rounded-xl px-5 py-3 my-2">
-                    <div class="flex items-center">
-                      <div>
-                        <img class="w-10" src="{% static 'assets//image/userNotImage.png' %}" alt="">
-                      </div>
-                      <div class="text-sm opacity-60 pr-1">
-                        نوشته شده توسط امیررضا کریمی
-                      </div>
-                    </div>
-                    <div class="opacity-60 text-sm py-3">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهو است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.             
-                    </div>
-                    <div>
-                      <button class="mr-auto px-2 sm:px-4 py-2 opacity-80 md:w-auto text-xs sm:text-sm xl:text-base flex justify-center items-center">
-                        پاسخ
-                      </button>
-                    </div>
-                  </div>
-                  <!-- BOX SENT COMMENT -->
-                  <div>
-                    <div class="mb-4">
-                      <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نام شما:</label>
-                      <input type="text" class="text-sm block w-full rounded-lg border border-gray-400 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
-                    </div>
-                  </div>
-                  <div class="mb-4">
-                    <label for="mailTicket" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نظر شما:</label>
-                    <textarea cols="30" rows="5" class="text-sm block w-full rounded-lg border border-gray-400 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"></textarea>
-                  </div>
-                  <button class="inline-block px-8 py-2 ml-auto font-semibold text-center text-white bg-red-500 rounded-lg shadow-md text-xs">ارسال نظر</button>
-                </div>
-              </p>
-            </div>
+            
+            
           </div>
         </div>
+
         {% show_similar_products object %}
       </div>
     </div>
@@ -525,10 +459,8 @@
   <!-- TABS -->
   <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
   <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
-  <!-- INPUTS ADD NUMBER -->
-  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-  <script src="{% static 'assets/js/main.js' %}"></script>
-  
+ 
+
 
 </html>
 
