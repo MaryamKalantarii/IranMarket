@@ -4,6 +4,7 @@ from product.models import Clothing,Category_clothing,WishlistProductModel
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from review.models import ReviewModel,ReviewStatusType
+
 class ClothingView(TemplateView):
     template_name = 'product/product_clothing/category_clothing.html'
 
