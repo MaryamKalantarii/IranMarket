@@ -5,34 +5,23 @@
 {% block 'content' %}
   <!-- MAIN -->
   <div class="max-w-[1440px] mx-auto px-3">
-    <div class="flex gap-x-2 px-10 mt-5 md:mt-10">
-      <div>
-        <a href="" class="hover:text-red-500 transition text-sm opacity-70">خانه</a>
-      </div>
-      <div class="opacity-70">/</div>
-      <div>
-        <a href="" class="hover:text-red-500 transition text-sm opacity-70">کالای دیجیتال</a>
-      </div>
-      <div class="opacity-70">/</div>
-      <div>
-        <a href="" class="hover:text-red-500 transition text-sm opacity-70">موبایل</a>
-      </div>
-    </div>
+  
     <div class="bg-white shadow-xl my-5 md:my-10 rounded-xl md:rounded-2xl p-3 md:p-5">
       <div class="p-3 w-11/12 mx-auto rounded-2xl">
         <div class="lg:flex">
           <div class="w-full lg:w-1/3">
             <div>
               <span class="flex items-center pr-20 pb-2">
-                <img onclick="showAlertAddTocomparison()" class="w-6 ml-2 cursor-pointer" src="{% static 'assets//image/comparison.png' %}" alt="" title="مقایسه">
+                <img onclick="showAlertAddTocomparison()" class="w-6 ml-2 cursor-pointer" src="{% static 'assets/image/comparison.png' %}" alt="" title="مقایسه">
                 <svg
-                  onclick="showAlertAddToFavorit()"
-                  class="h-7 w-7 text-red-500 hover:text-red-600 fill-current transition cursor-pointer inline"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24">
-                  <path
-                    d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z"></path>
-                </svg>
+                onclick="addToWishlist(this, `{{object.id}}`, 'beauty')"
+                class="heart-icon h-7 w-7 text-gray-500 hover:text-red-600 fill-current transition cursor-pointer {% if is_in_wishlist %}active{% endif %}"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z">
+                </path>
+              </svg>
               </span>
             </div>
             <div>
@@ -65,87 +54,7 @@
             
             <div class="md:flex sm:pr-7">
               <div class="md:w-2/3">
-                <div class="flex items-center">
-                  <div class="opacity-70 text-sm mb-1">
-                    رنگ بندی:
-                  </div>
-                  <div class="flex flex-wrap">
-                      <div class="flex items-center gap-x-2">
-                        <div class="flex w-max">
-                          <div class="inline-flex items-center">
-                            <label
-                              class="relative flex cursor-pointer items-center rounded-full p-3"
-                              for="pink"
-                            >
-                              <input
-                                id="pink"
-                                name="color"
-                                type="radio"
-                                class="before:content[''] peer relative h-7 w-7 cursor-pointer appearance-none rounded-full border border-blue-gray-200 bg-pink-500 text-pink-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10"
-                                checked
-                              />
-                              <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-pink-500 opacity-0 transition-opacity peer-checked:opacity-100">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-3.5 w-3.5"
-                                  viewBox="0 0 16 16"
-                                  fill="currentColor"
-                                >
-                                <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                </svg>
-                              </div>
-                            </label>
-                          </div>
-                          <div class="inline-flex items-center">
-                            <label
-                              class="relative flex cursor-pointer items-center rounded-full p-3"
-                              for="red"
-                            >
-                              <input
-                                id="red"
-                                name="color"
-                                type="radio"
-                                class="before:content[''] peer relative h-7 w-7 cursor-pointer appearance-none rounded-full border border-blue-gray-200 bg-red-500 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                              />
-                              <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-red-500 opacity-0 transition-opacity peer-checked:opacity-100">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-3.5 w-3.5"
-                                  viewBox="0 0 16 16"
-                                  fill="currentColor"
-                                >
-                                  <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                </svg>
-                              </div>
-                            </label>
-                          </div>
-                          <div class="inline-flex items-center">
-                            <label
-                              class="relative flex cursor-pointer items-center rounded-full p-3"
-                              for="green"
-                            >
-                              <input
-                                id="green"
-                                name="color"
-                                type="radio"
-                                class="before:content[''] peer relative h-7 w-7 cursor-pointer appearance-none rounded-full border border-blue-gray-200 bg-blue-500 text-blue-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-blue-500 checked:before:bg-blue-500 hover:before:opacity-10"
-                              />
-                              <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-blue-500 opacity-0 transition-opacity peer-checked:opacity-100">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-3.5 w-3.5"
-                                  viewBox="0 0 16 16"
-                                  fill="currentColor"
-                                >
-                                  <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                </svg>
-                              </div>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
+                
                 <div>
                   <div class="mt-4 mb-2 opacity-80 text-sm font-semibold">
                     ویژگی های محصول:
@@ -263,24 +172,15 @@
           <div class="border-b border-gray-200 mb-4">
             <ul class="flex justify-center flex-wrap -mb-px text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
               <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false">درباره محصول</button>
-              </li>
-              <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active" id="test-tab" data-tabs-target="#test" type="button" role="tab" aria-controls="test" aria-selected="true">بررسی تخصصی</button>
-              </li>
-              <li class="mr-2" role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="details-tab" data-tabs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">مشخصات</button>
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active" id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">درباره محصول</button>
               </li>
               <li role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="commentsBuy-tab" data-tabs-target="#commentsBuy" type="button" role="tab" aria-controls="commentsBuy" aria-selected="false">دیدگاه ها</button>
               </li>
-              <li role="presentation">
-                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="comments-tab" data-tabs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">پرسش ها</button>
-              </li>
             </ul>
           </div>
           <div id="myTabContent">
-            <div class="bg-gray-50 p-4 rounded-xl hidden" id="about" role="tabpanel" aria-labelledby="about-tab">
+            <div class="bg-gray-50 p-4 rounded-xl" id="about" role="tabpanel" aria-labelledby="about-tab">
               <span class="border-b-red-500 border-b">
                 معرفی کوتاه محصول
               </span>
@@ -295,168 +195,38 @@
         
               </div>
             </div>
+            
             <div class="bg-gray-50 p-4 rounded-xl hidden" id="commentsBuy" role="tabpanel" aria-labelledby="commentsBuy-tab">
               <span class="border-b-red-500 border-b">
                 دیدگاه های محصول
               </span>
+              <button id="openModal" class="bg-red-400 text-white py-1 px-4 rounded-md hover:bg-blue-600">
+                ثبت نظر
+              </button>
               <p class="text-gray-500 text-sm">
                 <div class="flex flex-col py-4 px-4 mx-auto my-6 max-w-7xl rounded-2xl bg-white">
-                  <!-- UO COMMENTS -->
-                  <div>
-                    <div>دیدگاه ها</div>
-                    <div class="opacity-70 text-xs">1 دیدگاه</div>
-                  </div>
                   <!-- COMMENT -->
+                  {% for review in reviews %}
                   <div class="bg-gray-50 rounded-xl px-3 sm:px-5 py-3 my-2">
                     <div class="flex flex-col items-stat gap-y-2">
                       <div class="flex items-center">
-                        <div class="text-green-400 bg-green-100 px-1 rounded-md text-sm">
-                          4.7
+                        <div class="text-xs opacity-60 pr-1">
+                          {{review.user.user_profile.get_fullname}}
                         </div>
                         <div class="text-xs opacity-60 pr-1">
-                          ارسال شده توسط امیررضا کریمی
-                        </div>
-                        <div class="text-xs opacity-60 pr-1">
-                          1402/05/12
+                          {{review.created_date|date:"Y-m-d h:i"}}
                         </div>
                       </div>
-                      <span class="text-green-400 bg-green-100 px-1 w-24 rounded-md text-sm text-center">
-                        پیشنهاد شده
-                      </span>
                     </div>
                     <div>
                       <div class="opacity-60 text-sm py-3">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.             
+                        {{review.description}}
                       </div>
-                      <div class="flex flex-col gap-y-2">
-                        <div class="flex text-green-400 text-xs">
-                          <div>
-                            +
-                          </div>
-                          <div>
-                            طراحی زیبا
-                          </div>
-                        </div>
-                        <div class="flex text-green-400 text-xs">
-                          <div>
-                            +
-                          </div>
-                          <div>
-                            خوش دستی
-                          </div>
-                        </div>
-                      </div>
-                      <div class="flex flex-col gap-y-2 mt-2"> 
-                        <div class="flex text-red-400 text-xs">
-                          <div>
-                            -
-                          </div>
-                          <div>
-                            وزن زیاد
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex gap-x-4 justify-end">
-                      <a href="" class="flex">
-                        <span>5</span>
-                        <svg class="hover:fill-green-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#797979" viewBox="0 0 256 256">
-                          <path d="M232.49,81.44A22,22,0,0,0,216,74H158V56a38,38,0,0,0-38-38,6,6,0,0,0-5.37,3.32L76.29,98H32a14,14,0,0,0-14,14v88a14,14,0,0,0,14,14H204a22,22,0,0,0,21.83-19.27l12-96A22,22,0,0,0,232.49,81.44ZM30,200V112a2,2,0,0,1,2-2H74v92H32A2,2,0,0,1,30,200ZM225.92,97.24l-12,96A10,10,0,0,1,204,202H86V105.42l37.58-75.17A26,26,0,0,1,146,56V80a6,6,0,0,0,6,6h64a10,10,0,0,1,9.92,11.24Z">
-                          </path>
-                        </svg>  
-                      </a>                    
-                      <a href="" class="flex">
-                        <span>1</span>
-                        <svg class="hover:fill-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#797979" viewBox="0 0 256 256">
-                          <path d="M237.83,157.27l-12-96A22,22,0,0,0,204,42H32A14,14,0,0,0,18,56v88a14,14,0,0,0,14,14H76.29l38.34,76.68A6,6,0,0,0,120,238a38,38,0,0,0,38-38V182h58a22,22,0,0,0,21.83-24.73ZM74,146H32a2,2,0,0,1-2-2V56a2,2,0,0,1,2-2H74Zm149.5,20.62A9.89,9.89,0,0,1,216,170H152a6,6,0,0,0-6,6v24a26,26,0,0,1-22.42,25.75L86,150.58V54H204a10,10,0,0,1,9.92,8.76l12,96A9.89,9.89,0,0,1,223.5,166.62Z">
-                          </path>
-                        </svg>  
-                      </a> 
                     </div>
                   </div>
+                  {% endfor %}
                 </div>
-              </p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-xl hidden" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-              <span class="border-b-red-500 border-b">
-                پرسش های محصول
-              </span>
-              <p class="text-gray-500 text-sm">
-                <div class="flex flex-col py-4 px-4 mx-auto my-6 max-w-7xl rounded-2xl bg-white">
-                  <!-- UO COMMENTS -->
-                  <div>
-                    <div>نظرات</div>
-                    <div class="pr-5 opacity-70 text-xs">2نظر</div>
-                  </div>
-                  <!-- COMMENT -->
-                  <div class="bg-gray-50 rounded-xl px-5 py-3 my-2">
-                    <div class="flex items-center">
-                      <div>
-                        <img class="w-10" src="{% static 'assets//image/userNotImage.png' %}" alt="">
-                      </div>
-                      <div class="text-sm opacity-60 pr-1">
-                        نوشته شده توسط امیررضا کریمی
-                      </div>
-                    </div>
-                    <div class="opacity-60 text-sm py-3">
-                      لورم است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.             
-                    </div>
-                    <div>
-                      <button class="mr-auto px-2 sm:px-4 py-2 opacity-80 md:w-auto text-xs sm:text-sm xl:text-base flex justify-center items-center">
-                        پاسخ
-                      </button>
-                    </div>
-                    <!-- RESPONSE -->
-                    <div class="bg-gray-100 rounded-xl pl-2 pr-5 sm:pr-8 py-3">
-                      <div class="flex items-center">
-                        <div>
-                          <img class="w-10" src="{% static 'assets//image/userNotImage.png' %}" alt="">
-                        </div>
-                        <div class="text-sm opacity-60 pr-1">
-                          پاسخ داده شده توسط امیررضا کریمی  
-                        </div>
-                      </div>
-                      <div class="opacity-60 text-sm py-3">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحامه و مجله در ستون و سطرآنچنان که لازم است.             
-                      </div>
-                      <div>
-                        <button class="mr-auto px-2 sm:px-4 py-2 opacity-80 md:w-auto text-xs sm:text-sm xl:text-base flex justify-center items-center">
-                          پاسخ
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bg-gray-50 rounded-xl px-5 py-3 my-2">
-                    <div class="flex items-center">
-                      <div>
-                        <img class="w-10" src="{% static 'assets//image/userNotImage.png' %}" alt="">
-                      </div>
-                      <div class="text-sm opacity-60 pr-1">
-                        نوشته شده توسط امیررضا کریمی
-                      </div>
-                    </div>
-                    <div class="opacity-60 text-sm py-3">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهو است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.             
-                    </div>
-                    <div>
-                      <button class="mr-auto px-2 sm:px-4 py-2 opacity-80 md:w-auto text-xs sm:text-sm xl:text-base flex justify-center items-center">
-                        پاسخ
-                      </button>
-                    </div>
-                  </div>
-                  <!-- BOX SENT COMMENT -->
-                  <div>
-                    <div class="mb-4">
-                      <label for="username" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نام شما:</label>
-                      <input type="text" class="text-sm block w-full rounded-lg border border-gray-400 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"/>
-                    </div>
-                  </div>
-                  <div class="mb-4">
-                    <label for="mailTicket" class="inline-block mb-2 ml-1 font-semibold text-xs text-slate-700">نظر شما:</label>
-                    <textarea cols="30" rows="5" class="text-sm block w-full rounded-lg border border-gray-400 bg-white px-3 py-2 font-normal text-gray-700 outline-none focus:border-red-300"></textarea>
-                  </div>
-                  <button class="inline-block px-8 py-2 ml-auto font-semibold text-center text-white bg-red-500 rounded-lg shadow-md text-xs">ارسال نظر</button>
-                </div>
+                {% include 'product/modal-review.html' %}
               </p>
             </div>
           </div>

@@ -14,7 +14,7 @@ class SubmitReviewView(LoginRequiredMixin, View):
 
         # بررسی مقادیر ارسال شده از فرم
         if not product_id or not model_name or not description:
-            messages.error(request, "اطلاعات ارسال‌شده کامل نیست.")
+            messages.error(request, "فیلد توضیحات اجباری است")
             return redirect(request.META.get("HTTP_REFERER", "/"))
 
         try:

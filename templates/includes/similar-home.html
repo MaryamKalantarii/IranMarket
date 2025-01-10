@@ -13,7 +13,7 @@
             {% for similar_home in similar_home %}
           <span class="card swiper-slide my-2 p-2 md:p-3 ">
             <div class="image-box mb-6 ">
-              <a href="">
+              <a href="{% url 'product:homeappliances:categoy-detaile' slug=similar_home.slug %}">
                 <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{{similar_home.image1.url}}" alt="" />
               </a>
             </div>

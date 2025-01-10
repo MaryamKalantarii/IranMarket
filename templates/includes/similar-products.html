@@ -13,7 +13,7 @@
             {% for similar_clothings in similar_clothings %}
           <span class="card swiper-slide my-2 p-2 md:p-3 ">
             <div class="image-box mb-6 ">
-              <a href="">
+              <a href="{% url 'product:clothing:categoy-detaile' slug=similar_clothings.slug %}">
                 <img class="hover:scale-105 transition rounded-3xl w-full mx-auto" src="{{similar_clothings.image1.url}}" alt="" />
               </a>
             </div>
