@@ -332,112 +332,56 @@
               <span class="border-b-red-500 border-b">
                 دیدگاه های محصول
               </span>
-              <button id="openModal" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+              <button id="openModal" class="bg-red-400 text-white py-1 px-4 rounded-md hover:bg-blue-600">
                 ثبت نظر
               </button>
               <p class="text-gray-500 text-sm">
                 <div class="flex flex-col py-4 px-4 mx-auto my-6 max-w-7xl rounded-2xl bg-white">
-                  <!-- UO COMMENTS -->
-                  <div>
-                    <div class="opacity-70 text-xs">1 دیدگاه</div>
-                  </div>
-
                   <!-- COMMENT -->
+                  {% for review in reviews %}
                   <div class="bg-gray-50 rounded-xl px-3 sm:px-5 py-3 my-2">
                     <div class="flex flex-col items-stat gap-y-2">
                       <div class="flex items-center">
-                        <div class="text-green-400 bg-green-100 px-1 rounded-md text-sm">
-                          4.7
+                        <div class="text-xs opacity-60 pr-1">
+                          {{review.user.user_profile.get_fullname}}
                         </div>
                         <div class="text-xs opacity-60 pr-1">
-                          ارسال شده توسط امیررضا کریمی
-                        </div>
-                        <div class="text-xs opacity-60 pr-1">
-                          1402/05/12
+                          {{review.created_date|date:"Y-m-d h:i"}}
                         </div>
                       </div>
-                      <span class="text-green-400 bg-green-100 px-1 w-24 rounded-md text-sm text-center">
-                        پیشنهاد شده
-                      </span>
                     </div>
                     <div>
                       <div class="opacity-60 text-sm py-3">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.             
-                      </div>
-                      <div class="flex flex-col gap-y-2">
-                        <div class="flex text-green-400 text-xs">
-                          <div>
-                            +
-                          </div>
-                          <div>
-                            طراحی زیبا
-                          </div>
-                        </div>
-                        <div class="flex text-green-400 text-xs">
-                          <div>
-                            +
-                          </div>
-                          <div>
-                            خوش دستی
-                          </div>
-                        </div>
-                      </div>
-                      <div class="flex flex-col gap-y-2 mt-2"> 
-                        <div class="flex text-red-400 text-xs">
-                          <div>
-                            -
-                          </div>
-                          <div>
-                            وزن زیاد
-                          </div>
-                        </div>
+                        {{review.description}}
                       </div>
                     </div>
-                    <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
-                      <div class="bg-white rounded-xl p-6 w-full max-w-md">
-                        <h2 class="text-lg font-bold mb-4">ثبت نظر</h2>
-                        <form action="{% url 'review:submit-review' %}" method="post" id="reviewForm">
-                          {% csrf_token %}
-                          <input type="hidden" name="product_id" value="{{ object.id }}">
-                          <input type="hidden" name="model_name" value="{{ model_name }}">
-                          <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700">نظر شما</label>
-                            <textarea class="w-full border-gray-300 rounded-md p-2" rows="4" placeholder="نظر خود را بنویسید" name="description" id="description"></textarea>
-                          </div>
-                          <div class="flex justify-end gap-2">
-                            <button type="button" id="closeModal" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
-                              لغو
-                            </button>
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-                              ارسال
-                            </button>
-                          </div>
-                        </form>
+                  </div>
+                  {% endfor %}
+                </div>
+                <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+                  <div class="bg-white rounded-xl p-6 w-full max-w-md">
+                    <h2 class="text-lg font-bold mb-4">ثبت نظر</h2>
+                    <form action="{% url 'review:submit-review' %}" method="post" id="reviewForm">
+                      {% csrf_token %}
+                      <input type="hidden" name="product_id" value="{{ object.id }}">
+                      <input type="hidden" name="model_name" value="{{ model_name }}">
+                      <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium text-gray-700">نظر شما</label>
+                        <textarea class="w-full border-gray-300 rounded-md p-2" rows="4" placeholder="نظر خود را بنویسید" name="description" id="description"></textarea>
                       </div>
-                    </div>
-                    
-                    <div class="flex gap-x-4 justify-end">
-                      <a href="" class="flex">
-                        <span>5</span>
-                        <svg class="hover:fill-green-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#797979" viewBox="0 0 256 256">
-                          <path d="M232.49,81.44A22,22,0,0,0,216,74H158V56a38,38,0,0,0-38-38,6,6,0,0,0-5.37,3.32L76.29,98H32a14,14,0,0,0-14,14v88a14,14,0,0,0,14,14H204a22,22,0,0,0,21.83-19.27l12-96A22,22,0,0,0,232.49,81.44ZM30,200V112a2,2,0,0,1,2-2H74v92H32A2,2,0,0,1,30,200ZM225.92,97.24l-12,96A10,10,0,0,1,204,202H86V105.42l37.58-75.17A26,26,0,0,1,146,56V80a6,6,0,0,0,6,6h64a10,10,0,0,1,9.92,11.24Z">
-                          </path>
-                        </svg>  
-                      </a>                    
-                      <a href="" class="flex">
-                        <span>1</span>
-                        <svg class="hover:fill-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#797979" viewBox="0 0 256 256">
-                          <path d="M237.83,157.27l-12-96A22,22,0,0,0,204,42H32A14,14,0,0,0,18,56v88a14,14,0,0,0,14,14H76.29l38.34,76.68A6,6,0,0,0,120,238a38,38,0,0,0,38-38V182h58a22,22,0,0,0,21.83-24.73ZM74,146H32a2,2,0,0,1-2-2V56a2,2,0,0,1,2-2H74Zm149.5,20.62A9.89,9.89,0,0,1,216,170H152a6,6,0,0,0-6,6v24a26,26,0,0,1-22.42,25.75L86,150.58V54H204a10,10,0,0,1,9.92,8.76l12,96A9.89,9.89,0,0,1,223.5,166.62Z">
-                          </path>
-                        </svg>  
-                      </a> 
-                    </div>
+                      <div class="flex justify-end gap-2">
+                        <button type="button" id="closeModal" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
+                          لغو
+                        </button>
+                        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                          ارسال
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </p>
             </div>
-            
-            
           </div>
         </div>
 

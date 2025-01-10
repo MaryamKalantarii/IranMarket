@@ -11,7 +11,7 @@ class SubmitReviewView(LoginRequiredMixin, View):
         model_name = request.POST.get("model_name")
         description = request.POST.get("description")
         
-       
+
         # بررسی مقادیر ارسال شده از فرم
         if not product_id or not model_name or not description:
             messages.error(request, "اطلاعات ارسال‌شده کامل نیست.")

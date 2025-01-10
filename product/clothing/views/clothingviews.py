@@ -3,7 +3,7 @@ from django.views.generic import TemplateView,ListView,DetailView
 from product.models import Clothing,Category_clothing,WishlistProductModel
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
-
+from review.models import ReviewModel,ReviewStatusType
 class ClothingView(TemplateView):
     template_name = 'product/product_clothing/category_clothing.html'
 
@@ -68,6 +68,16 @@ class Clothing_detaile(DetailView):
         product= self.get_object()
         context['model_name'] = product._meta.model_name  # "clothing"
         user = self.request.user
+
+            # دریافت کامنت‌های تأیید شده
+        accepted_reviews = ReviewModel.objects.filter(
+            product_content_type=ContentType.objects.get_for_model(product),
+            product_object_id=product.id,
+            status=ReviewStatusType.accepted.value  # فقط کامنت‌های تأیید شده
+        )
+        
+        context['reviews'] = accepted_reviews
+       
         if user.is_authenticated:
             wishlist_items = WishlistProductModel.objects.filter(user=user)
             wishlist_ids = set(
