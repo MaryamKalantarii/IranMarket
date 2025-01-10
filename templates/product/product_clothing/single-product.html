@@ -393,24 +393,29 @@
                         </div>
                       </div>
                     </div>
-                    <!-- Button to open modal -->
-                  
-                  <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+                    <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
                       <div class="bg-white rounded-xl p-6 w-full max-w-md">
-                          <h2 class="text-lg font-bold mb-4">ثبت نظر</h2>
-                          <form id="reviewForm">
-                              <textarea class="w-full border-gray-300 rounded-md p-2 mb-4" rows="4" placeholder="نظر خود را بنویسید"></textarea>
-                              <div class="flex justify-end gap-2">
-                                  <button type="button" id="closeModal" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
-                                      لغو
-                                  </button>
-                                  <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-                                      ارسال
-                                  </button>
-                              </div>
-                          </form>
+                        <h2 class="text-lg font-bold mb-4">ثبت نظر</h2>
+                        <form action="{% url 'review:submit-review' %}" method="post" id="reviewForm">
+                          {% csrf_token %}
+                          <input type="hidden" name="product_id" value="{{ object.id }}">
+                          <input type="hidden" name="model_name" value="{{ model_name }}">
+                          <div class="mb-4">
+                            <label for="description" class="block text-sm font-medium text-gray-700">نظر شما</label>
+                            <textarea class="w-full border-gray-300 rounded-md p-2" rows="4" placeholder="نظر خود را بنویسید" name="description" id="description"></textarea>
+                          </div>
+                          <div class="flex justify-end gap-2">
+                            <button type="button" id="closeModal" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
+                              لغو
+                            </button>
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                              ارسال
+                            </button>
+                          </div>
+                        </form>
                       </div>
-                  </div>
+                    </div>
+                    
                     <div class="flex gap-x-4 justify-end">
                       <a href="" class="flex">
                         <span>5</span>

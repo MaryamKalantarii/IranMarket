@@ -20,8 +20,3 @@ document.getElementById('closeModal').addEventListener('click', function () {
     document.getElementById('reviewModal').classList.add('hidden');
 });
 
-document.getElementById('reviewForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('نظر شما با موفقیت ثبت شد!');
-    document.getElementById('reviewModal').classList.add('hidden');
-});

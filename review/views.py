@@ -1,32 +1,44 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
-from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.views.generic.edit import CreateView
-from .forms import SubmitReviewForm
-from .models import ReviewModel
+from django.views import View
 from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
+from .models import ReviewModel
 
-class SubmitReviewView(LoginRequiredMixin, CreateView):
-    http_method_names = ["post"]
-    model = ReviewModel
-    form_class = SubmitReviewForm
+class SubmitReviewView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product_id = request.POST.get("product_id")
+        model_name = request.POST.get("model_name")
+        description = request.POST.get("description")
+        
+       
+        # بررسی مقادیر ارسال شده از فرم
+        if not product_id or not model_name or not description:
+            messages.error(request, "اطلاعات ارسال‌شده کامل نیست.")
+            return redirect(request.META.get("HTTP_REFERER", "/"))
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        form.save()
-        # Assuming your form has a 'product_slug' field
-        product = form.cleaned_data['product']
-        messages.success(self.request,"دیدگاه شما با موفقیت ثبت شد و پس از بررسی نمایش داده خواهد شد")
-        return redirect(reverse_lazy('shop:product-detail',kwargs={"slug":product.slug}))
-    
-    def form_invalid(self, form):
-        for field, errors in form.errors.items():
-            for error in errors:
-                messages.error(self.request,error)
-        return redirect(self.request.META.get('HTTP_REFERER'))
+        try:
+            # پیدا کردن مدل مرتبط با محصول
+            content_type = ContentType.objects.get(model=model_name)
+            product = content_type.get_object_for_this_type(pk=product_id)
 
-    def get_queryset(self):
-        # You can customize the queryset if needed
-        return ReviewModel.objects.filter(user=self.request.user)
+            # ذخیره نظر در مدل ReviewModel
+            review = ReviewModel.objects.create(
+                user=request.user,
+                product=product,
+                description=description,
+            )
+            review.save()
+
+            messages.success(request, "نظر شما با موفقیت ثبت شد و پس از بررسی نمایش داده خواهد شد.")
+            return redirect(request.META.get("HTTP_REFERER", "/"))
+
+        except ContentType.DoesNotExist:
+            messages.error(request, "مدل محصول یافت نشد.")
+            return redirect(request.META.get("HTTP_REFERER", "/"))
+        except Exception as e:
+            messages.error(request, f"خطایی رخ داد: {str(e)}")
+            return redirect(request.META.get("HTTP_REFERER", "/"))
+
+            
+       

@@ -65,8 +65,8 @@ class Clothing_detaile(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
-       
+        product= self.get_object()
+        context['model_name'] = product._meta.model_name  # "clothing"
         user = self.request.user
         if user.is_authenticated:
             wishlist_items = WishlistProductModel.objects.filter(user=user)
