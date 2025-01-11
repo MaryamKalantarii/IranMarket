@@ -10,3 +10,14 @@
 .heart-icon.active {
     fill: red; /* رنگ قرمز */
 }
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* مخفی کردن spinner در Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

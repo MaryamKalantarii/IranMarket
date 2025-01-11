@@ -108,65 +108,71 @@
               {% else %}
               <div class="md:w-2/5 mt-5 md:mt-0">
                 <div class="pb-5 rounded-2xl shadow-xl border">
-                  <div class="flex justify-between px-3 py-5">
-                    <div class="text-right opacity-80 text-sm flex flex-col gap-y-6">
-                      <div>
+                  <div class="px-3 py-5">
+                    <!-- استفاده از grid برای ساختار مرتب -->
+                    <div class="grid grid-cols-2 gap-y-4 items-center">
+                      <!-- اندازه -->
+                      <div class="text-right opacity-80 text-sm">
                         اندازه:
                       </div>
-                      <div>
-                        موجود در انبار:
-                      </div>
-                      <div>
-                        قیمت:
-                      </div>
-                      <div>
-                        تعداد:
-                      </div>
-                    </div>
-                    <div class="text-left opacity-70 text-sm flex flex-col gap-y-6">
-                      <div>
+                      <div class="text-left opacity-70 text-sm">
                         {{object.size}}
                       </div>
-                      <div>
+                      <!-- موجود در انبار -->
+                      <div class="text-right opacity-80 text-sm">
+                        موجود در انبار:
+                      </div>
+                      <div class="text-left opacity-70 text-sm">
                         {{object.stock}}
                       </div>
-                      {% if object.is_discounted %}
-                      <div class="flex text-red-500 formatted-price">
-                        <div>
-                          {{object.get_price}} 
-                        </div>
-
+                      <!-- قیمت -->
+                      <div class="text-right opacity-80 text-sm">
+                        قیمت:
                       </div>
-                      {% else %}
-                      <div class="flex text-red-500 formatted-price">
-                        <div>
-                          {{object.price}} 
-                        </div>
-                       
+                      <div class="text-left opacity-70 text-sm text-red-500 formatted-price" id="total-price">
+                        {% if object.is_discounted %}
+                          {{object.get_price}}
+                        {% else %}
+                          {{object.price}}
+                        {% endif %}
                       </div>
-                      {% endif %}
-                      
-                      <div class="flex text-sm sm:text-sm items-center justify-center lg:justify-start">
-                        <div class="flex items-center justify-center select-none">
-                          <div class="quantity flex items-center">
-                            <input class="w-12 h-7 mx-2 text-center border focus:outline-none rounded-lg" type="number" min="1" step="1" value="1" readonly>
-                          </div>
-                        </div>
+                      <!-- تعداد -->
+                      <div class="text-right opacity-80 text-sm">
+                        تعداد:
+                      </div>
+                      <div class="flex items-center">
+                        <!-- دکمه کم کردن تعداد -->
+                        <button class="decrement-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none"
+                                onclick="updateDetailQuantity(-1)">−</button>
+                        <!-- ورودی تعداد -->
+                        <input id="quantity-input" 
+                               class="w-12 h-8 mx-2 text-center border focus:outline-none rounded-lg" 
+                               type="number" 
+                               min="1" 
+                               max="{{ object.stock }}" 
+                               value="1" 
+                               readonly>
+                        <!-- دکمه افزایش تعداد -->
+                        <button class="increment-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none"
+                                onclick="updateDetailQuantity(1)">+</button>
                       </div>
                     </div>
                   </div>
+                  <!-- دکمه افزودن به سبد خرید -->
                   <span class="flex justify-center items-center opacity-90">
-
                     <form action="" method="post">
                       {% csrf_token %}
-                    <button type="submit" class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
-                    onclick="addToCart(this)"
-                    data-product-id="{{ object.id }}"
-                    data-model-name="clothing">افزودن به سبد خرید</button>
+                      <button id="add-to-cart" type="submit" class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
+                              onclick="addToCart(this)"
+                              data-product-id="{{ object.id }}"
+                              data-model-name="clothing">
+                        افزودن به سبد خرید
+                      </button>
                     </form>
-                    </span>
+                  </span>
                 </div>
               </div>
+              
               {% endif %}
             </div>
           </div>
@@ -285,7 +291,66 @@
   <!-- TABS -->
   <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
   <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
- 
+ <script>
+  function updateDetailQuantity(change) {
+    const input = document.getElementById("quantity-input");
+    const totalPrice = document.getElementById("total-price");
+    let currentQuantity = parseInt(input.value, 10);
+    const maxQuantity = parseInt(input.max, 10);
+    const pricePerItem = "{{ object.price|safe }}"; // قیمت هر واحد محصول
+
+    const newQuantity = currentQuantity + change;
+
+    if (newQuantity >= 1 && newQuantity <= maxQuantity) {
+        input.value = newQuantity;
+
+        // محاسبه قیمت کل
+        const newTotalPrice = newQuantity * pricePerItem;
+        totalPrice.textContent = newTotalPrice.toLocaleString();
+
+        // ارسال درخواست AJAX برای به‌روزرسانی در سرور
+        updateProductQuantityServer('{{ object.id }}', newQuantity);
+    }
+}
+
+function updateProductQuantityServer(object_id, quantity) {
+    $.ajax({
+        url: "{% url 'cart:session-update-product-quantity' %}",
+        method: 'POST',
+        data: {
+            object_id: object_id,
+            quantity: quantity,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function (response) {
+            console.log("Quantity updated successfully");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+
+document.getElementById("add-to-cart").addEventListener("click", function () {
+    const quantity = document.getElementById("quantity-input").value;
+
+    $.ajax({
+        url: "{% url 'cart:session-add-product' %}",
+        method: 'POST',
+        data: {
+            product_id: '{{ object.id }}',
+            quantity: quantity,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function (response) {
+            alert("محصول با موفقیت به سبد خرید اضافه شد!");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+});
+ </script>
 
 
 </html>
