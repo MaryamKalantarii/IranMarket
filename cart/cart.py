@@ -8,18 +8,18 @@ class CartSession():
         # اگر سبد خرید وجود نداشت، یک سبد خرید جدید ایجاد می‌کند
         self._cart = self.session.setdefault("cart", {"items": []})
         
-    def add_product(self, product_id, model_name):
+    def add_product(self, product_id, model_name, quantity=1):
         """افزودن محصول به سبد خرید"""
         for item in self._cart["items"]:
             if product_id == item["product_id"]:
-                # اگر محصول قبلاً وجود دارد، فقط تعداد را افزایش می‌دهد
-                item["quantity"] += 1
+                # اگر محصول قبلاً وجود دارد، تعداد را افزایش می‌دهد
+                item["quantity"] += int(quantity)
                 break
         else:
             # ایجاد آیتم جدید برای سبد خرید
             new_item = {
                 "product_id": product_id,
-                "quantity": 1,
+                "quantity": int(quantity),  # اضافه کردن مقدار quantity
                 "model_name": model_name  # اضافه کردن model_name به آیتم
             }
             self._cart["items"].append(new_item)

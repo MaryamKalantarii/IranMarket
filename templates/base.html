@@ -982,23 +982,22 @@
   <script src="{% static 'assets/js/custom.js' %}"></script>
   <script src="{% static 'assets/vendor/toastify/toastify.js' %}"></script>
   <script>
- function addToCart(buttonElement) {
+function addToCart(buttonElement) {
     var product_id = $(buttonElement).data("product-id"); // گرفتن product_id
     var model_name = $(buttonElement).data("model-name"); // گرفتن model_name
-
-    console.log("Product ID: " + product_id); // چاپ product_id
-    console.log("Model Name: " + model_name); // چاپ model_name
+    var quantity = $("#quantity-input").val(); // مقدار تعداد انتخاب‌شده
 
     $.ajax({
-        url: "{%  url 'cart:session-add-product' %}",
+        url: "{% url 'cart:session-add-product' %}",
         method: 'POST',
         data: {
             product_id: product_id,
             model_name: model_name,
+            quantity: quantity, // ارسال مقدار تعداد
             csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function (response) {
-            $("#total-cart-item-count").html(response.total_quantity);
+            $("#total-cart-item-count").html(response.total_quantity); // به‌روزرسانی تعداد سبد خرید
             console.log(response);
         },
         error: function (jqXHR, textStatus, errorThrown) {

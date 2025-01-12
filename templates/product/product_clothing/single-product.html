@@ -127,15 +127,23 @@
                       </div>
                       <!-- قیمت -->
                       <div class="text-right opacity-80 text-sm">
-                        قیمت:
+                        قیمت(تومان):
                       </div>
-                      <div class="text-left opacity-70 text-sm text-red-500 formatted-price" id="total-price">
-                        {% if object.is_discounted %}
-                          {{object.get_price}}
-                        {% else %}
-                          {{object.price}}
-                        {% endif %}
+                      {% if object.is_discounted %}
+                      <div class="flex text-red-500 formatted-price" id="total-price">
+                        <div>
+                          {{object.get_price}} 
+                        </div>
                       </div>
+                      
+                      {% else %}
+                      <div class="flex text-red-500 formatted-price" id="total-price">
+                        <div>
+                          {{object.price}} 
+                        </div>
+                       
+                      </div>
+                      {% endif %}
                       <!-- تعداد -->
                       <div class="text-right opacity-80 text-sm">
                         تعداد:
@@ -298,7 +306,7 @@
     let currentQuantity = parseInt(input.value, 10);
     const maxQuantity = parseInt(input.max, 10);
     const pricePerItem = "{{ object.price|safe }}"; // قیمت هر واحد محصول
-
+    const getpric = "{{ object.get_price|safe }}";
     const newQuantity = currentQuantity + change;
 
     if (newQuantity >= 1 && newQuantity <= maxQuantity) {
@@ -306,7 +314,9 @@
 
         // محاسبه قیمت کل
         const newTotalPrice = newQuantity * pricePerItem;
+        const newgetPrice = newQuantity * getpric;
         totalPrice.textContent = newTotalPrice.toLocaleString();
+        totalPrice.textContent = newgetPrice.toLocaleString();
 
         // ارسال درخواست AJAX برای به‌روزرسانی در سرور
         updateProductQuantityServer('{{ object.id }}', newQuantity);
@@ -331,25 +341,9 @@ function updateProductQuantityServer(object_id, quantity) {
     });
 }
 
-document.getElementById("add-to-cart").addEventListener("click", function () {
-    const quantity = document.getElementById("quantity-input").value;
 
-    $.ajax({
-        url: "{% url 'cart:session-add-product' %}",
-        method: 'POST',
-        data: {
-            product_id: '{{ object.id }}',
-            quantity: quantity,
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-        success: function (response) {
-            alert("محصول با موفقیت به سبد خرید اضافه شد!");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-        }
-    });
-});
+
+
  </script>
 
 

@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <button class="decrement-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none" 
             onclick="updateDetailQuantity(-1)">−</button>
     <input class="quantity-input w-12 h-8 mx-2 text-center border rounded-lg focus:outline-none" 
@@ -78,3 +78,85 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
 </script>
 
 
+
+
+// ارسال تعداد انتخاب‌شده به سرور هنگام افزودن به سبد خرید
+document.getElementById("add-to-cart-btn").addEventListener("click", function () {
+    const productId = this.getAttribute("data-product-id");
+    const quantity = document.getElementById("quantity-input").value;
+
+    $.ajax({
+        url: "{% url 'cart:add-to-cart' %}",
+        method: "POST",
+        data: {
+            product_id: productId,
+            quantity: quantity,
+            csrfmiddlewaretoken: "{{ csrf_token }}"
+        },
+        success: function (response) {
+            alert("محصول با موفقیت به سبد خرید اضافه شد!");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Error:", errorThrown);
+        }
+    });
+}); -->
+
+<td class="px-6 py-4">
+    <div>
+        <button class="decrement-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none" 
+                onclick="updateQuantity('{{ item.product_obj.id }}', -1)">−</button>
+        <input class="quantity-input w-12 h-8 mx-2 text-center border rounded-lg focus:outline-none" 
+               type="number" 
+               min="1" 
+               max="{{ item.product_obj.stock }}" 
+               value="{{ item.quantity }}" 
+               data-product-id="{{ item.product_obj.id }}"
+               readonly>
+        <button class="increment-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none" 
+                onclick="updateQuantity('{{ item.product_obj.id }}', 1)">+</button>
+    </div>
+</td>
+  <td class="px-6 py-4 text-sm opacity-90 text-gray-900 formatted-price">
+    {{item.total_price}}
+  </td>
+
+
+
+
+<script>
+    function updateQuantity(product_id, change) {
+        const input = document.querySelector(`input[data-product-id="${product_id}"]`);
+        let currentQuantity = parseInt(input.value, 10);
+        const maxQuantity = parseInt(input.max, 10);
+        const newQuantity = currentQuantity + change;
+
+        if (newQuantity >= 1 && newQuantity <= maxQuantity) {
+            // به‌روزرسانی مقدار جدید در ورودی
+            input.value = newQuantity;
+
+            // فراخوانی ایجکس برای به‌روزرسانی در سرور
+            changeProductQuantity(product_id, newQuantity);
+        }
+    }
+
+    function changeProductQuantity(product_id, quantity) {
+      console.log(product_id, quantity);
+        $.ajax({
+            url: "{% url 'cart:session-update-product-quantity' %}",
+            method: 'POST',
+            data: {
+                product_id: product_id,
+                quantity: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log(response);
+                window.location.reload();
+                // می‌توانید اینجا بدون بارگذاری مجدد، صفحه را به‌روزرسانی کنید
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }

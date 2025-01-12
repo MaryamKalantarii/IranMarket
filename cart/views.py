@@ -10,9 +10,11 @@ class SessionAddProduct(View):
         cart = CartSession(request.session)
         product_id = request.POST.get("product_id")
         model_name = request.POST.get("model_name")  # دریافت model_name از درخواست
-        
+        quantity = request.POST.get("quantity")
+
         if product_id and model_name:  # اطمینان از اینکه هر دو موجود باشند
-            cart.add_product(product_id, model_name)  # ارسال product_id و model_name به متد add_product
+            quantity = int(quantity) if quantity else 1
+            cart.add_product(product_id, model_name , quantity)  # ارسال product_id و model_name به متد add_product
         if request.user.is_authenticated:
             cart.merge_session_cart_in_db(request.user)
 
