@@ -44,8 +44,8 @@ class ClothingGrid(ListView):
             queryset = queryset.order_by('-price')  
         elif sort_option == "newest":
             queryset = queryset.order_by('-created_date')  
-        # elif sort_option == "most_viewed":
-        #     queryset = queryset.order_by('-views')  
+        elif sort_option == "oldest":
+            queryset = queryset.order_by('created_date')  
         
         return queryset
 

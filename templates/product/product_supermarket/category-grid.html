@@ -13,36 +13,39 @@
       <div class="md:flex">
         <div class="md:w-4/12 lg:w-3/12">
           <div class="bg-white mx-5 mb-4 px-3 py-3 border rounded-xl">
-            <div class="wrapper">
-              <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
-                <div class="field">
-                  <span>تا</span>
-                  <input type="number" value="1000000">
-                  <span>تومان</span>
+            <form id="price-filter-form" method="get" action="">
+                <div class="wrapper">
+                    <div class="price-input flex flex-col-reverse gap-y-3 text-sm opacity-80">
+                        <div class="field">
+                            <span>تا</span>
+                            <input type="number" id="max_price" name="max_price">
+                            <span>تومان</span>
+                        </div>
+                        <div class="field">
+                            <span>از</span>
+                            <input type="number" id="min_price" name="min_price">
+                            <span>تومان</span>
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <!-- <div class="progress"></div> -->
+                    </div>
+                    <div class="range-input">
+                        <input type="range" class="range-min" min="0" max="1000000" value="0" step="100" id="range-min">
+                        <input type="range" class="range-max" min="0" max="1000000" value="1000000" step="100" id="range-max">
+                    </div>
+                    <div class="flex justify-between opacity-70 text-xs my-3">
+                        <span>ارزان ترین</span>
+                        <span>گران ترین</span>
+                    </div>
                 </div>
-                <div class="field">
-                  <span>از</span>
-                  <input type="number" value="0">
-                  <span>تومان</span>
+                <div class="text-center mt-5 mb-3">
+                  <button class="bg-red-500 hover:bg-red-600 transition text-white opacity-80 rounded-2xl w-full py-2" type="submit">
+                    فیلتر
+                  </button>
                 </div>
-              </div>
-              <div class="slider">
-                <!-- <div class="progress"></div> -->
-              </div>
-              <div class="range-input">
-                <input type="range" class="range-min" min="0" max="1000000" value="0" step="100">
-                <input type="range" class="range-max" min="0" max="1000000" value="1000000" step="100">
-              </div>
-              <div class="flex justify-between opacity-70 text-xs my-3">
-                <span>
-                  ارزان ترین
-                </span>
-                <span>
-                  گران ترین
-                </span>
-              </div>
-            </div>
-          </div>
+            </form>
+        </div>
         </div>
         <div class="md:w-8/12 lg:w-9/12">
           <div class="bg-white mx-1 rounded-2xl grid place-items-center">
@@ -52,24 +55,18 @@
                   مرتب سازی:
                 </div>
                 <div class="flex flex-wrap gap-5 justify-start items-center">
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer text-red-600">
-                    محبوب ترین
-                  </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
-                    پرفروش ترین
-                  </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="cheapest">
                     ارزان ترین
                   </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="most_expensive">
                     گران ترین
                   </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="newest">
                     جدیدترین
                   </div>
-                  <div class="opacity-70 text-xs hover:text-red-500 transition cursor-pointer">
-                    پربازدیدترین
-                  </div>
+                  <div class="sort-option opacity-70 text-xs hover:text-red-500 transition cursor-pointer" data-sort="oldest">
+                    قدیمی ترین
+                  </div> 
                 </div>
               </div>
             </div>

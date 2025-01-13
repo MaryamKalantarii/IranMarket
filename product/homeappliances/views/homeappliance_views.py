@@ -23,8 +23,30 @@ class HomeapplianceGrid(ListView):
         if category_slug:
             queryset = queryset.filter(category_Homeappliances__slug=category_slug)
 
+        # فیلتر بر اساس بازه‌ی قیمتی
+        min_price = self.request.GET.get("min_price")
+        max_price = self.request.GET.get("max_price")
+        
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
+        
+        # اعمال مرتب‌سازی بر اساس پارامتر sort
+        sort_option = self.request.GET.get("sort")
+       
+        if sort_option == "cheapest":
+            queryset = queryset.order_by('price')  
+        elif sort_option == "most_expensive":
+            queryset = queryset.order_by('-price')  
+        elif sort_option == "newest":
+            queryset = queryset.order_by('-created_date')  
+        elif sort_option == "oldest":
+            queryset = queryset.order_by('created_date')  
         
         return queryset
+        
+    
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
