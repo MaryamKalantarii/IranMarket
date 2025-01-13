@@ -299,54 +299,7 @@
   <!-- TABS -->
   <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
   <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
- <script>
-  function updateDetailQuantity(change) {
-    const input = document.getElementById("quantity-input");
-    const totalPrice = document.getElementById("total-price");
-    let currentQuantity = parseInt(input.value, 10);
-    const maxQuantity = parseInt(input.max, 10);
-    const pricePerItem = "{{ object.price|safe }}"; // قیمت هر واحد محصول
-    const getpric = "{{ object.get_price|safe }}";
-    const newQuantity = currentQuantity + change;
-
-    if (newQuantity >= 1 && newQuantity <= maxQuantity) {
-        input.value = newQuantity;
-
-        // محاسبه قیمت کل
-        const newTotalPrice = newQuantity * pricePerItem;
-        const newgetPrice = newQuantity * getpric;
-        totalPrice.textContent = newTotalPrice.toLocaleString();
-        totalPrice.textContent = newgetPrice.toLocaleString();
-
-        // ارسال درخواست AJAX برای به‌روزرسانی در سرور
-        updateProductQuantityServer('{{ object.id }}', newQuantity);
-    }
-}
-
-function updateProductQuantityServer(object_id, quantity) {
-    $.ajax({
-        url: "{% url 'cart:session-update-product-quantity' %}",
-        method: 'POST',
-        data: {
-            object_id: object_id,
-            quantity: quantity,
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-        success: function (response) {
-            console.log("Quantity updated successfully");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-        }
-    });
-}
-
-
-
-
- </script>
-
-
+ 
 </html>
 
 {% endblock 'content' %}

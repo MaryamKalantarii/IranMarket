@@ -55,87 +55,7 @@
             
             <div class="md:flex sm:pr-7">
               <div class="md:w-2/3">
-                <div class="flex items-center">
-                  <div class="opacity-70 text-sm mb-1">
-                    رنگ بندی:
-                  </div>
-                  <div class="flex flex-wrap">
-                      <div class="flex items-center gap-x-2">
-                        <div class="flex w-max">
-                          <div class="inline-flex items-center">
-                            <label
-                              class="relative flex cursor-pointer items-center rounded-full p-3"
-                              for="pink"
-                            >
-                              <input
-                                id="pink"
-                                name="color"
-                                type="radio"
-                                class="before:content[''] peer relative h-7 w-7 cursor-pointer appearance-none rounded-full border border-blue-gray-200 bg-pink-500 text-pink-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10"
-                                checked
-                              />
-                              <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-pink-500 opacity-0 transition-opacity peer-checked:opacity-100">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-3.5 w-3.5"
-                                  viewBox="0 0 16 16"
-                                  fill="currentColor"
-                                >
-                                <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                </svg>
-                              </div>
-                            </label>
-                          </div>
-                          <div class="inline-flex items-center">
-                            <label
-                              class="relative flex cursor-pointer items-center rounded-full p-3"
-                              for="red"
-                            >
-                              <input
-                                id="red"
-                                name="color"
-                                type="radio"
-                                class="before:content[''] peer relative h-7 w-7 cursor-pointer appearance-none rounded-full border border-blue-gray-200 bg-red-500 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                              />
-                              <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-red-500 opacity-0 transition-opacity peer-checked:opacity-100">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-3.5 w-3.5"
-                                  viewBox="0 0 16 16"
-                                  fill="currentColor"
-                                >
-                                  <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                </svg>
-                              </div>
-                            </label>
-                          </div>
-                          <div class="inline-flex items-center">
-                            <label
-                              class="relative flex cursor-pointer items-center rounded-full p-3"
-                              for="green"
-                            >
-                              <input
-                                id="green"
-                                name="color"
-                                type="radio"
-                                class="before:content[''] peer relative h-7 w-7 cursor-pointer appearance-none rounded-full border border-blue-gray-200 bg-blue-500 text-blue-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-blue-500 checked:before:bg-blue-500 hover:before:opacity-10"
-                              />
-                              <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-blue-500 opacity-0 transition-opacity peer-checked:opacity-100">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-3.5 w-3.5"
-                                  viewBox="0 0 16 16"
-                                  fill="currentColor"
-                                >
-                                  <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                </svg>
-                              </div>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
+               
                 <div>
                   <div class="mt-4 mb-2 opacity-80 text-sm font-semibold">
                     ویژگی های محصول:
@@ -151,12 +71,13 @@
                   </div>
                 </div>
               </div>
+              {% if object.is_out_of_stock %}
               <div class="md:w-2/5 mt-5 md:mt-0">
                 <div class="pb-5 rounded-2xl shadow-xl border">
                   <div class="flex justify-between px-3 py-5">
                     <div class="text-right opacity-80 text-sm flex flex-col gap-y-6">
                       <div>
-                        گارانتی:
+                        اندازه:
                       </div>
                       <div>
                         موجود در انبار:
@@ -170,47 +91,98 @@
                     </div>
                     <div class="text-left opacity-70 text-sm flex flex-col gap-y-6">
                       <div>
-                        {{object.warranty}}
+                        __
                       </div>
                       <div>
+                        0
+                      </div>
+                      <div class="flex text-red-500">
+                        ناموجود
+                      </div>
+                    </div>
+                  </div>
+                  <span class="flex justify-center items-center opacity-90">
+                    <button class="px-7 py-2 text-center text-white bg-gray-500 align-middle border-0 rounded-lg shadow-md text-sm">موجود شد به من اطلاع بده</button>
+                  </span>
+                </div>
+              </div>
+              {% else %}
+              <div class="md:w-2/5 mt-5 md:mt-0">
+                <div class="pb-5 rounded-2xl shadow-xl border">
+                  <div class="px-3 py-5">
+                    <!-- استفاده از grid برای ساختار مرتب -->
+                    <div class="grid grid-cols-2 gap-y-4 items-center">
+                      <!-- اندازه -->
+                      <div class="text-right opacity-80 text-sm">
+                        اندازه:
+                      </div>
+                      <div class="text-left opacity-70 text-sm">
+                        {{object.size}}
+                      </div>
+                      <!-- موجود در انبار -->
+                      <div class="text-right opacity-80 text-sm">
+                        موجود در انبار:
+                      </div>
+                      <div class="text-left opacity-70 text-sm">
                         {{object.stock}}
                       </div>
+                      <!-- قیمت -->
+                      <div class="text-right opacity-80 text-sm">
+                        قیمت(تومان):
+                      </div>
                       {% if object.is_discounted %}
-                      <div class="flex text-red-500 formatted-price">
+                      <div class="flex text-red-500 formatted-price" id="total-price">
                         <div>
                           {{object.get_price}} 
                         </div>
-
                       </div>
+                      
                       {% else %}
-                      <div class="flex text-red-500 formatted-price">
+                      <div class="flex text-red-500 formatted-price" id="total-price">
                         <div>
                           {{object.price}} 
                         </div>
                        
                       </div>
                       {% endif %}
-                      
-                      <div class="flex text-sm sm:text-sm items-center justify-center lg:justify-start">
-                        <div class="flex items-center justify-center select-none">
-                          <div class="quantity flex items-center">
-                            <input class="w-12 h-7 mx-2 text-center border focus:outline-none rounded-lg" type="number" min="1" step="1" value="1" readonly>
-                          </div>
-                        </div>
+                      <!-- تعداد -->
+                      <div class="text-right opacity-80 text-sm">
+                        تعداد:
+                      </div>
+                      <div class="flex items-center">
+                        <!-- دکمه کم کردن تعداد -->
+                        <button class="decrement-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none"
+                                onclick="updateDetailQuantity(-1)">−</button>
+                        <!-- ورودی تعداد -->
+                        <input id="quantity-input" 
+                               class="w-12 h-8 mx-2 text-center border focus:outline-none rounded-lg" 
+                               type="number" 
+                               min="1" 
+                               max="{{ object.stock }}" 
+                               value="1" 
+                               readonly>
+                        <!-- دکمه افزایش تعداد -->
+                        <button class="increment-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none"
+                                onclick="updateDetailQuantity(1)">+</button>
                       </div>
                     </div>
                   </div>
+                  <!-- دکمه افزودن به سبد خرید -->
                   <span class="flex justify-center items-center opacity-90">
                     <form action="" method="post">
                       {% csrf_token %}
-                    <button class="px-7 py-2 text-center text-white bg-red-500  border-0 rounded-lg shadow-md text-sm"
-                    onclick="addToCart(this)"
-                    data-product-id="{{ object.id }}"
-                    data-model-name="dijitalgoods">افزودن به سبد خرید</button>
+                      <button id="add-to-cart" type="submit" class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
+                              onclick="addToCart(this)"
+                              data-product-id="{{ object.id }}"
+                              data-model-name="dijitalgoods">
+                        افزودن به سبد خرید
+                      </button>
                     </form>
-                    </span>
+                  </span>
                 </div>
               </div>
+              
+              {% endif %}
             </div>
           </div>
         </div>

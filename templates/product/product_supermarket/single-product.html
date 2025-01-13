@@ -53,7 +53,7 @@
             
             <div class="md:flex sm:pr-7">
               <div class="md:w-2/3">
-              
+               
                 <div>
                   <div class="mt-4 mb-2 opacity-80 text-sm font-semibold">
                     ویژگی های محصول:
@@ -69,12 +69,13 @@
                   </div>
                 </div>
               </div>
+              {% if object.is_out_of_stock %}
               <div class="md:w-2/5 mt-5 md:mt-0">
                 <div class="pb-5 rounded-2xl shadow-xl border">
                   <div class="flex justify-between px-3 py-5">
                     <div class="text-right opacity-80 text-sm flex flex-col gap-y-6">
                       <div>
-                        گارانتی:
+                        اندازه:
                       </div>
                       <div>
                         موجود در انبار:
@@ -88,47 +89,98 @@
                     </div>
                     <div class="text-left opacity-70 text-sm flex flex-col gap-y-6">
                       <div>
-                        {{object.warranty}}
+                        __
                       </div>
                       <div>
+                        0
+                      </div>
+                      <div class="flex text-red-500">
+                        ناموجود
+                      </div>
+                    </div>
+                  </div>
+                  <span class="flex justify-center items-center opacity-90">
+                    <button class="px-7 py-2 text-center text-white bg-gray-500 align-middle border-0 rounded-lg shadow-md text-sm">موجود شد به من اطلاع بده</button>
+                  </span>
+                </div>
+              </div>
+              {% else %}
+              <div class="md:w-2/5 mt-5 md:mt-0">
+                <div class="pb-5 rounded-2xl shadow-xl border">
+                  <div class="px-3 py-5">
+                    <!-- استفاده از grid برای ساختار مرتب -->
+                    <div class="grid grid-cols-2 gap-y-4 items-center">
+                      <!-- اندازه -->
+                      <div class="text-right opacity-80 text-sm">
+                        اندازه:
+                      </div>
+                      <div class="text-left opacity-70 text-sm">
+                        {{object.size}}
+                      </div>
+                      <!-- موجود در انبار -->
+                      <div class="text-right opacity-80 text-sm">
+                        موجود در انبار:
+                      </div>
+                      <div class="text-left opacity-70 text-sm">
                         {{object.stock}}
                       </div>
+                      <!-- قیمت -->
+                      <div class="text-right opacity-80 text-sm">
+                        قیمت(تومان):
+                      </div>
                       {% if object.is_discounted %}
-                      <div class="flex text-red-500 formatted-price">
+                      <div class="flex text-red-500 formatted-price" id="total-price">
                         <div>
                           {{object.get_price}} 
                         </div>
-
                       </div>
+                      
                       {% else %}
-                      <div class="flex text-red-500 formatted-price">
+                      <div class="flex text-red-500 formatted-price" id="total-price">
                         <div>
                           {{object.price}} 
                         </div>
                        
                       </div>
                       {% endif %}
-                      
-                      <div class="flex text-sm sm:text-sm items-center justify-center lg:justify-start">
-                        <div class="flex items-center justify-center select-none">
-                          <div class="quantity flex items-center">
-                            <input class="w-12 h-7 mx-2 text-center border focus:outline-none rounded-lg" type="number" min="1" step="1" value="1" readonly>
-                          </div>
-                        </div>
+                      <!-- تعداد -->
+                      <div class="text-right opacity-80 text-sm">
+                        تعداد:
+                      </div>
+                      <div class="flex items-center">
+                        <!-- دکمه کم کردن تعداد -->
+                        <button class="decrement-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none"
+                                onclick="updateDetailQuantity(-1)">−</button>
+                        <!-- ورودی تعداد -->
+                        <input id="quantity-input" 
+                               class="w-12 h-8 mx-2 text-center border focus:outline-none rounded-lg" 
+                               type="number" 
+                               min="1" 
+                               max="{{ object.stock }}" 
+                               value="1" 
+                               readonly>
+                        <!-- دکمه افزایش تعداد -->
+                        <button class="increment-btn w-8 h-8 rounded-full border text-lg font-semibold focus:outline-none"
+                                onclick="updateDetailQuantity(1)">+</button>
                       </div>
                     </div>
                   </div>
+                  <!-- دکمه افزودن به سبد خرید -->
                   <span class="flex justify-center items-center opacity-90">
                     <form action="" method="post">
                       {% csrf_token %}
-                    <button class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
-                    onclick="addToCart(this)"
-                    data-product-id="{{ object.id }}"
-                    data-model-name="supermarket">افزودن به سبد خرید</button>
+                      <button id="add-to-cart" type="submit" class="px-7 py-2 text-center text-white bg-red-500 align-middle border-0 rounded-lg shadow-md text-sm"
+                              onclick="addToCart(this)"
+                              data-product-id="{{ object.id }}"
+                              data-model-name="supermarket">
+                        افزودن به سبد خرید
+                      </button>
                     </form>
-                              </span>
+                  </span>
                 </div>
               </div>
+              
+              {% endif %}
             </div>
           </div>
         </div>
