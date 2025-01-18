@@ -627,7 +627,7 @@
         <nav
           class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-5 px-6 bg-white border-r overflow-y-auto">
           <div class="flex justify-center items-center mb-4">
-            <a class="order-1" href="index.html">
+            <a class="order-1" href="{% url 'root:home' %}">
               <img class="w-32" src="{% static 'assets/image/logo.png' %}" alt="" />
             </a>
           </div>
@@ -638,7 +638,7 @@
                   <div>
                     <div
                       class="md:flex justify-center align-middle lg:inline-block py-2 px-4 text-sm text-neutral-800 rounded-xl hover:text-neutral-700 hover:bg-red-100 transition">
-                      <a href="cart.html">
+                      <a href="{% url 'cart:cart-summary' %}">
                         <img
                           class="inline ml-1 w-5"
                           src="{% static 'assets/image/shopping-cart.png' %}"
@@ -647,7 +647,7 @@
                     </div>
                     <div
                       class="md:flex justify-center align-middle lg:inline-block py-2 px-4 text-sm text-neutral-800 rounded-xl hover:text-neutral-700 hover:bg-red-100 transition">
-                      <a href="login-register.html"
+                      <a href="{% url 'accounts:login' %}"
                         ><img
                           class="inline ml-1 w-5"
                           src="{% static 'assets/image/user.png' %}"
@@ -684,44 +684,288 @@
                   <div
                     class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
                     <ul class="list-reset">
+                      {% for category in categories %}
                       <li
                         class="relative"
                         x-data="{showChildren:false}"
                         @mouseleave="showChildren=false"
                         @mouseenter="showChildren=true">
                         <a
-                          href="category.html"
+                          href="/product/clothing/category-grid/?category={{ category.slug }}"
                           class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">مردانه</span>
+                          <span class="flex-1">{{category.name}}</span>
                         </a>
                       </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">زنانه</span>
-                        </a>
-                      </li>
-                      <li
-                        class="relative"
-                        x-data="{showChildren:false}"
-                        @mouseleave="showChildren=false"
-                        @mouseenter="showChildren=true">
-                        <a
-                          href="category.html"
-                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
-                          <span class="flex-1">بچگانه</span>
-                        </a>
-                      </li>
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
               </li>
-            
+              <li
+                class="relative flex"
+                x-data="{showChildren:false}"
+                @click.away="showChildren=false">
+                <a
+                  href=""
+                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
+                  @click.prevent="showChildren=!showChildren">
+                  <span>کالای دیجیتال</span>
+                  <span>
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  </span>
+                </a>
+                <div
+                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
+                  x-show="showChildren"
+                  x-transition:enter="transition ease duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-2"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease duration-300 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-4"
+                  style="display: none">
+                  </span>
+                  <div
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    {% for category in category_dijitalgoods %}
+                    <ul class="list-reset">
+                      <li
+                        class="relative"
+                        x-data="{showChildren:false}"
+                        @mouseleave="showChildren=false"
+                        @mouseenter="showChildren=true">
+                        <a
+                          href="/product/dijitalgoods/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="relative flex"
+                x-data="{showChildren:false}"
+                @click.away="showChildren=false">
+                <a
+                  href=""
+                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
+                  @click.prevent="showChildren=!showChildren">
+                  <span>لوازم خانگی</span>
+                  <span>
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  </span>
+                </a>
+                <div
+                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
+                  x-show="showChildren"
+                  x-transition:enter="transition ease duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-2"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease duration-300 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-4"
+                  style="display: none">
+                  </span>
+                  <div
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset">
+                      {% for category in category_homeappliances %}
+                      <li
+                        class="relative"
+                        x-data="{showChildren:false}"
+                        @mouseleave="showChildren=false"
+                        @mouseenter="showChildren=true">
+                        <a
+                          href="/product/homeappliances/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                     {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="relative flex"
+                x-data="{showChildren:false}"
+                @click.away="showChildren=false">
+                <a
+                  href=""
+                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
+                  @click.prevent="showChildren=!showChildren">
+                  <span>زیبایی</span>
+                  <span>
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  </span>
+                </a>
+                <div
+                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
+                  x-show="showChildren"
+                  x-transition:enter="transition ease duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-2"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease duration-300 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-4"
+                  style="display: none">
+                  </span>
+                  <div
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset">
+                      {% for category in category_beauty %}
+                      <li
+                        class="relative"
+                        x-data="{showChildren:false}"
+                        @mouseleave="showChildren=false"
+                        @mouseenter="showChildren=true">
+                        <a
+                          href="/product/beauty/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="relative flex"
+                x-data="{showChildren:false}"
+                @click.away="showChildren=false">
+                <a
+                  href=""
+                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
+                  @click.prevent="showChildren=!showChildren">
+                  <span>لوازم برقی</span>
+                  <span>
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  </span>
+                </a>
+                <div
+                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
+                  x-show="showChildren"
+                  x-transition:enter="transition ease duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-2"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease duration-300 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-4"
+                  style="display: none">
+                  </span>
+                  <div
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset">
+                      {% for category in category_appliances %}
+                      <li
+                        class="relative"
+                        x-data="{showChildren:false}"
+                        @mouseleave="showChildren=false"
+                        @mouseenter="showChildren=true">
+                        <a
+                          href="/product/appliances/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="relative flex"
+                x-data="{showChildren:false}"
+                @click.away="showChildren=false">
+                <a
+                  href=""
+                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
+                  @click.prevent="showChildren=!showChildren">
+                  <span>سوپر مارکت</span>
+                  <span>
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  </span>
+                </a>
+                <div
+                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
+                  x-show="showChildren"
+                  x-transition:enter="transition ease duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-2"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease duration-300 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-4"
+                  style="display: none">
+                  </span>
+                  <div
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset">
+                      {% for category in category_supermarket %}
+                      <li
+                        class="relative"
+                        x-data="{showChildren:false}"
+                        @mouseleave="showChildren=false"
+                        @mouseenter="showChildren=true">
+                        <a
+                          href="/product/supermarket/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                      {% endfor %}
+                      
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="relative flex"
+                x-data="{showChildren:false}"
+                @click.away="showChildren=false">
+                <a
+                  href=""
+                  class="flex justify-between items-center h-10 text-sm opacity-90 leading-10 px-3 cursor-pointer no-underline w-full hover:no-underline duration-100 mx-1 transition rounded-xl hover:bg-red-100"
+                  @click.prevent="showChildren=!showChildren">
+                  <span>کودک و نوزاد</span>
+                  <span>
+                    <img class="w-4 mr-1" src="{% static 'assets/image/chevron-down-login.png' %}" alt="" />
+                  </span>
+                </a>
+                <div
+                  class="bg-white rounded-2xl shadow-lg border-1 border-gray-50 text-sm absolute top-full right-0 min-w-full w-56 z-30 mt-1"
+                  x-show="showChildren"
+                  x-transition:enter="transition ease duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-2"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease duration-300 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-4"
+                  style="display: none">
+                  </span>
+                  <div
+                    class="bg-white rounded-2xl w-full relative z-10 py-2 px-2">
+                    <ul class="list-reset">
+                    {% for category in category_child %}
+                      <li
+                        class="relative"
+                        x-data="{showChildren:false}"
+                        @mouseleave="showChildren=false"
+                        @mouseenter="showChildren=true">
+                        <a
+                          href="/product/child/category-grid/?category={{ category.slug }}"
+                          class="px-4 py-2 flex w-full items-start hover:bg-red-100 rounded-lg transition no-underline hover:no-underline duration-100 cursor-pointer">
+                          <span class="flex-1">{{category.name}}</span>
+                        </a>
+                      </li>
+                     {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </nav>
