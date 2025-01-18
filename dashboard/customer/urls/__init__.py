@@ -8,4 +8,5 @@ urlpatterns = [
     path("",include("dashboard.customer.urls.addresses")),
     path("",include("dashboard.customer.urls.orders")),
     path("",include("dashboard.customer.urls.wishlists")),
+    path("",include("dashboard.customer.urls.comments")),
 ]
