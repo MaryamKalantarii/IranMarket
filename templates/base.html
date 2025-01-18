@@ -28,7 +28,7 @@
       <!-- TOP -->
       <nav
         class="relative px-5 py-2 flex flex-wrap justify-between items-start pt-5 bg-white">
-        <a class="order-2" href="index.html">
+        <a class="order-2" href="{% url 'root:home' %}">
           <img class="w-36" src="{% static 'assets/image/logo.png' %}" alt="" />
         </a>
         <div class="order-3 w-full mt-3 lg:mt-0 lg:w-5/12 lg:mr-[10%]">
@@ -1081,7 +1081,7 @@
     </div>
     <!-- MAIN -->
     <div class="flex items-center justify-between my-4 px-5">
-      <a href="index.html" class="inline-block">
+      <a href="{% url 'root:home' %}" class="inline-block">
         <img
           src="{% static 'assets/image/logo.png' %}"
           alt="logo"
